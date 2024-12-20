@@ -8,6 +8,6 @@ public interface Page {
 
     void reloadPage();
 
-    String getPageURL();
+    String getActualPageURL();
 
 }

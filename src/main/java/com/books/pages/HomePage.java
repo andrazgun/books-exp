@@ -18,8 +18,8 @@ public class HomePage extends BasePage implements Page {
         driver.findElement(searchButton).click();
     }
 
-    public String getPageTitle() {
-        return driver.getTitle();
+    public String getActualPageTitle() {
+        return super.getActualPageTitle();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class HomePage extends BasePage implements Page {
         driver.navigate().refresh();
     }
 
-    public String getPageURL() {
+    public String getActualPageURL() {
         return driver.getCurrentUrl();
     }
     public String expectedURL() {

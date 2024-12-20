@@ -24,12 +24,9 @@ public class BasePage implements Page {
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));
     }
 
-
-
     @Override
     public void closePage() {
         driver.quit();
-
     }
 
     @Override
@@ -37,11 +34,11 @@ public class BasePage implements Page {
         driver.navigate().refresh();
     }
 
-    public String getPageURL() {
+    public String getActualPageURL() {
         return driver.getCurrentUrl();
     }
 
-    public String getPageTitle() {
+    public String getActualPageTitle() {
         return driver.getTitle();
     }
 

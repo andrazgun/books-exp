@@ -16,7 +16,7 @@ public class HeaderStepdefs {
 
     @When("I hover over Account icon")
     public void iHoverOverAccountIcon() {
-        headerNav.hoverOverElement();
+        headerNav.hoverOverAccountIcon();
     }
 
     @And("I click Login button")
@@ -26,8 +26,8 @@ public class HeaderStepdefs {
 
     @Then("I should see the Login Page")
     public void iShouldSeeTheLoginPage() {
-        String actualTitle = headerNav.getPageTitle();
-        String expectedTitle = loginPage.setExpectedPageTitle();
+        String actualTitle = headerNav.getActualPageTitle();
+        String expectedTitle = loginPage.getExpectedPageTitle();
         assertThat(expectedTitle).as("Page title contains %s name", expectedTitle)
                 .contains(actualTitle);
     }
