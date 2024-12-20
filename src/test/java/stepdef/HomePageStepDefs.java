@@ -32,8 +32,9 @@ public class HomePageStepDefs {
     @Then("I should see a results page with {string}")
     public void iShouldSeeAResultsPageWith(String bookName) {
         String title = homePage.getPageTitle();
-        assertThat(title).contains(bookName);
-        System.out.println("pass");
-        driver.quit();
+        assertThat(title).
+                as("%s title contains %s name", title, bookName)
+                .contains(bookName);
+                driver.quit();
     }
 }
