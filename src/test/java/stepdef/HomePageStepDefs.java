@@ -3,10 +3,11 @@ package stepdef;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepDefs {
 
@@ -14,22 +15,23 @@ public class HomePageStepDefs {
     private pages.HomePage homePage;
 
     @Given("I am on the Books Express homepage")
-    public void i_am_on_the_books_express_homepage() {
+    public void iAmOnTheBooksExpressHomepage() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://www.books-express.ro/");
+        driver.manage().window().maximize();
         homePage = new pages.HomePage(driver);
+        homePage.openPage();
     }
 
     @When("I search for {string}")
-    public void i_search_for(String bookName) {
+    public void iSearchFor(String bookName) {
         homePage.searchForBook(bookName);
     }
 
     @Then("I should see a results page with {string}")
-    public void i_should_see_a_results_page_with(String bookName) {
+    public void iShouldSeeAResultsPageWith(String bookName) {
         String title = homePage.getPageTitle();
-        Assertions.assertThat(title).contains(bookName);
+        assertThat(title).contains(bookName);
         System.out.println("pass");
         driver.quit();
     }

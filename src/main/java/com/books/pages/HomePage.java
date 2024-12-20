@@ -1,9 +1,10 @@
-package pages;
+package com.books.pages;
 
+import com.books.pages.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
+public class HomePage implements Page {
     private WebDriver driver;
 
     // Locators
@@ -23,5 +24,10 @@ public class HomePage {
 
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    @Override
+    public void openPage() {
+        driver.get("https://www.books-express.ro/");
     }
 }
