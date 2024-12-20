@@ -1,7 +1,6 @@
 package stepdef;
 
 import com.books.pages.HeaderNav;
-import com.books.pages.HomePage;
 import com.books.pages.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -12,14 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HeaderStepdefs {
 
-    private HomePage homePage;
-    private HeaderNav headerNav;
-    private LoginPage loginPage;
+    private HeaderNav headerNav = new HeaderNav(driver);
+    private LoginPage loginPage = new LoginPage(driver);
 
     @When("I hover over Account icon")
     public void iHoverOverAccountIcon() {
-        headerNav = new HeaderNav(driver);
-        loginPage = new LoginPage(driver);
+//        headerNav = new HeaderNav(driver);
+
         headerNav.hoverOverElement();
     }
 
