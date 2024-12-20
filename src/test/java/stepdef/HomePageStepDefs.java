@@ -32,6 +32,6 @@ public class HomePageStepDefs {
         String title = homePage.getPageTitle();
         assertThat(title).as("%s title contains %s name", title, bookName)
                 .contains(bookName);
-        homePage.closePage();
+//        homePage.closePage();
     }
 }

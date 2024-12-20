@@ -7,9 +7,12 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import static com.books.pages.BasePage.driver;
+
 public class WebdriverFactory {
 
     public static WebDriver getDriver(String browser) {
+
         WebDriver driver;
 
         switch (browser.toLowerCase()) {
@@ -33,4 +36,12 @@ public class WebdriverFactory {
         driver.manage().deleteAllCookies();
         return driver;
     }
+
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
+
 }

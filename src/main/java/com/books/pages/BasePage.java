@@ -41,6 +41,10 @@ public class BasePage implements Page {
         return driver.getCurrentUrl();
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
+
     public WebElement getElementFromList(By element) {
         List<WebElement> elementsList = driver.findElements(element);
         List<WebElement> limitedElementsList = elementsList.stream()
