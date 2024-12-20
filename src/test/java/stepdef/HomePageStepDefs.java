@@ -10,16 +10,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepDefs {
 
-    private HomePage homePage;
+    private HomePage homePage = new HomePage(driver);;
 
     @Given("I am on the Books Express homepage")
     public void iAmOnTheBooksExpressHomepage() {
-        homePage = new HomePage(driver);
         homePage.openPage();
         String actualURL = homePage.getPageURL();
         String expectedURL = homePage.expectedURL();
-        assertThat(actualURL).as("Home page URL is %s", actualURL, expectedURL)
-                .contains(expectedURL);
+        assertThat(expectedURL).as("Home page URL is %s", expectedURL)
+                .contains(actualURL);
     }
 
     @When("I search for {string}")

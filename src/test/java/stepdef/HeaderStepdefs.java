@@ -16,8 +16,6 @@ public class HeaderStepdefs {
 
     @When("I hover over Account icon")
     public void iHoverOverAccountIcon() {
-//        headerNav = new HeaderNav(driver);
-
         headerNav.hoverOverElement();
     }
 
