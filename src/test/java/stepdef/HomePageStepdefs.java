@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HomePageStepDefs {
+public class HomePageStepdefs {
 
     private HomePage homePage = new HomePage(driver);
 
@@ -16,7 +16,7 @@ public class HomePageStepDefs {
     public void iAmOnTheBooksExpressHomepage() {
         homePage.openPage();
         String actualURL = homePage.getActualPageURL();
-        String expectedURL = homePage.expectedURL();
+        String expectedURL = homePage.getExpectedPageUrl();
         assertThat(expectedURL).as("Home page URL is %s", expectedURL)
                 .contains(actualURL);
     }

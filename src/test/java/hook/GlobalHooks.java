@@ -11,15 +11,15 @@ import org.openqa.selenium.WebDriver;
 public class GlobalHooks {
     WebDriver driver;
 
-    @BeforeAll
-    public void setUp() {
+//    @BeforeAll
+    public void beforeAll() {
         // Initialize WebDriver before each scenario
         driver = WebDriverManager.chromedriver().create();
         System.out.println("WebDriver initialized.");
     }
 
-    @After
-    public void tearDown() {
+//    @After
+    public void after() {
         // Quit WebDriver after each scenario
         driver.quit();
         System.out.println("WebDriver quit.");

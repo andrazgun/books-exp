@@ -19,16 +19,17 @@ public class HeaderStepdefs {
         headerNav.hoverOverAccountIcon();
     }
 
-    @And("I click Login button")
+    @And("I click Login button on Header")
     public void iClickLoginButton() {
         headerNav.clickAccountButton();
     }
 
-    @Then("I should see the Login Page")
-    public void iShouldSeeTheLoginPage() {
-        String actualTitle = headerNav.getActualPageTitle();
-        String expectedTitle = loginPage.getExpectedPageTitle();
-        assertThat(expectedTitle).as("Page title contains %s name", expectedTitle)
-                .contains(actualTitle);
+    @Then("I should see {string} on the Header")
+    public void iShouldSeePersonalDetailsOnTheHeader(String actualText) {
+        headerNav.hoverOverAccountIcon();
+        String expectedText = headerNav.getPersonalDetailsText();
+        assertThat(expectedText).as("Expected text contains %s",expectedText)
+                .contains(actualText);
+
     }
 }

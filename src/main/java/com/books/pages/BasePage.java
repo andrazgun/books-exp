@@ -14,7 +14,7 @@ import static utils.WebdriverFactory.getDriver;
 
 public class BasePage implements Page {
 
-    private String url;
+    public String expectedPageUrl;
     public static WebDriver driver = getDriver("chrome");
     public WebDriverWait wait;
     private final By acceptCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
@@ -25,6 +25,12 @@ public class BasePage implements Page {
     }
 
     @Override
+    public void openPage() {
+        driver.get(expectedPageUrl);
+        getBaseElement(acceptCookiesButton).click();
+    }
+
+    @Override
     public void closePage() {
         driver.quit();
     }
@@ -32,6 +38,10 @@ public class BasePage implements Page {
     @Override
     public void reloadPage() {
         driver.navigate().refresh();
+    }
+
+    public String getExpectedPageUrl() {
+        return expectedPageUrl;
     }
 
     public String getActualPageURL() {
@@ -53,12 +63,6 @@ public class BasePage implements Page {
     public WebElement getBaseElement(By element) {
         waitUntilElementIsClickable(driver.findElement(element));
         return driver.findElement(element);
-    }
-
-    @Override
-    public void openPage() {
-        driver.get(url);
-        getBaseElement(acceptCookiesButton).click();
     }
 
     public void hoverOverElement(WebElement element) {

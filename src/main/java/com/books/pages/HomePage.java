@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage implements Page {
 
-    private String url = "https://www.books-express.ro/";
+    private String expectedPageUrl = "https://www.books-express.ro/";
     private By searchField = By.cssSelector("[id='search']");
     private By searchButton = By.cssSelector("[class='button special search right']");
 
@@ -18,13 +18,19 @@ public class HomePage extends BasePage implements Page {
         driver.findElement(searchButton).click();
     }
 
+    @Override
     public String getActualPageTitle() {
         return super.getActualPageTitle();
     }
 
     @Override
+    public String getActualPageURL() {
+        return driver.getCurrentUrl();
+    }
+
+    @Override
     public void openPage() {
-        driver.get(url);
+        driver.get(expectedPageUrl);
     }
 
     @Override
@@ -37,10 +43,8 @@ public class HomePage extends BasePage implements Page {
         driver.navigate().refresh();
     }
 
-    public String getActualPageURL() {
-        return driver.getCurrentUrl();
-    }
-    public String expectedURL() {
-        return url;
+    @Override
+    public String getExpectedPageUrl() {
+        return expectedPageUrl;
     }
 }

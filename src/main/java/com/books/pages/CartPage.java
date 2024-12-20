@@ -2,7 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class CartPage extends BasePage{
+public class CartPage extends BasePage implements Page{
 
     private String url = "https://www.books-express.ro/cart";
     private String expectedPageTitle = "Coș de cumpărături";
@@ -12,8 +12,9 @@ public class CartPage extends BasePage{
         super(driver);
     }
 
-    public String setExpectedPageTitle() {
-        return expectedPageTitle;
+    public String getActualPageTitle() {
+        return super.getActualPageTitle();
     }
+
 
 }

@@ -10,4 +10,6 @@ public interface Page {
 
     String getActualPageURL();
 
+    String getActualPageTitle();
+
 }

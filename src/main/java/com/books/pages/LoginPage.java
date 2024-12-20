@@ -3,7 +3,7 @@ package com.books.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage implements Page {
 
     private String expectedPageUrl = "https://www.books-express.ro/login";
     private String expectedPageTitle = "Intră în cont!";
@@ -31,6 +31,7 @@ public class LoginPage extends BasePage{
         return expectedPageTitle;
     }
 
+    @Override
     public String getExpectedPageUrl() {
         return expectedPageUrl;
     }
