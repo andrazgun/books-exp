@@ -7,7 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class Webdriver {
+public class WebdriverFactory {
 
     public static WebDriver getDriver(String browser) {
         WebDriver driver;
@@ -28,6 +28,9 @@ public class Webdriver {
             case "safari" -> driver = new SafariDriver(); // SafariDriver doesn't require WebDriverManager
             default -> throw new IllegalArgumentException("Browser \"" + browser + "\" not supported.");
         }
+
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
         return driver;
     }
 }

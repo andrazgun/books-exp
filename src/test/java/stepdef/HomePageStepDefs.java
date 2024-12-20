@@ -4,24 +4,22 @@ import com.books.pages.HomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
+import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepDefs {
 
-    private WebDriver driver;
     private HomePage homePage;
 
     @Given("I am on the Books Express homepage")
     public void iAmOnTheBooksExpressHomepage() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
         homePage = new HomePage(driver);
         homePage.openPage();
+        String actualURL = homePage.getPageURL();
+        String expectedURL = homePage.expectedURL();
+        assertThat(actualURL).as("Home page URL is %s", actualURL, expectedURL)
+                .contains(expectedURL);
     }
 
     @When("I search for {string}")
@@ -32,9 +30,8 @@ public class HomePageStepDefs {
     @Then("I should see a results page with {string}")
     public void iShouldSeeAResultsPageWith(String bookName) {
         String title = homePage.getPageTitle();
-        assertThat(title).
-                as("%s title contains %s name", title, bookName)
+        assertThat(title).as("%s title contains %s name", title, bookName)
                 .contains(bookName);
-                driver.quit();
+        homePage.closePage();
     }
 }
