@@ -2,6 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage implements Page {
 
@@ -46,5 +47,19 @@ public class HomePage extends BasePage implements Page {
     @Override
     public String getExpectedPageUrl() {
         return expectedPageUrl;
+    }
+
+    public WebElement getClickableCookiesDialogElement() {
+        return super.getClickableCookiesDialogElement();
+    }
+
+    public WebElement getCookiesDialogElement() {
+        return super.getCookiesDialogElement();
+    }
+
+
+
+    public void acceptAllCookiesButton() {
+        super.acceptAllCookiesButton();
     }
 }

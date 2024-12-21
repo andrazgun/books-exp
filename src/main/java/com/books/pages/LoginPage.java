@@ -2,6 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.BrowserUtils;
 
 public class LoginPage extends BasePage implements Page {
 
@@ -17,11 +18,13 @@ public class LoginPage extends BasePage implements Page {
     }
 
     public void insertEmail(String email) {
+        BrowserUtils.waitUntilElementIsClickable(driver.findElement(emailField));
         driver.findElement(emailField).clear();
         driver.findElement(emailField).sendKeys(email);
     }
 
     public void insertPassword(String email) {
+        BrowserUtils.waitUntilElementIsClickable(driver.findElement(passwordField));
         driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(email);
     }

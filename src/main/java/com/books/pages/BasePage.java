@@ -10,6 +10,7 @@ import java.time.Duration;
 import java.util.List;
 
 import static utils.BrowserUtils.waitUntilElementIsClickable;
+import static utils.BrowserUtils.waitUntilElementIsVisible;
 import static utils.WebdriverFactory.getDriver;
 
 public class BasePage implements Page {
@@ -17,7 +18,9 @@ public class BasePage implements Page {
     public String expectedPageUrl;
     public static WebDriver driver = getDriver("chrome");
     public WebDriverWait wait;
-    private final By acceptCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
+    public By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
+    public By cookieBotFooter = By.cssSelector("[id='CybotCookiebotDialogFooter']");
+    public By acceptCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
 
     public BasePage(WebDriver driver) {
         BasePage.driver = driver;
@@ -27,7 +30,18 @@ public class BasePage implements Page {
     @Override
     public void openPage() {
         driver.get(expectedPageUrl);
-        getBaseElement(acceptCookiesButton).click();
+    }
+
+    public void acceptAllCookiesButton() {
+        getClickableBaseElement(acceptCookiesButton).click();
+    }
+
+    public WebElement getClickableCookiesDialogElement() {
+        return getClickableBaseElement(cookieBotDialog);
+    }
+
+    public WebElement getCookiesDialogElement() {
+        return getCookiesDialogElement(cookieBotDialog);
     }
 
     @Override
@@ -60,14 +74,23 @@ public class BasePage implements Page {
         return limitedElementsList.get(0);
     }
 
-    public WebElement getBaseElement(By element) {
+    public WebElement getClickableBaseElement(By element) {
         waitUntilElementIsClickable(driver.findElement(element));
         return driver.findElement(element);
     }
 
+    public WebElement getViewableBaseElement(By element) {
+        waitUntilElementIsClickable(driver.findElement(element));
+        return driver.findElement(element);
+    }
+
+    public WebElement getCookiesDialogElement(By element) {
+        return driver.findElement(element);
+    }
+
     public void hoverOverElement(WebElement element) {
+        waitUntilElementIsVisible(element);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
-
 }

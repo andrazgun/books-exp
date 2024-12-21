@@ -14,7 +14,6 @@ import static com.books.pages.BasePage.driver;
 public class BrowserUtils {
 
     public static void waitUntilElementIsClickable(WebElement element) {
-        scrollIntoView(element);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -27,4 +26,6 @@ public class BrowserUtils {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
+
 }
