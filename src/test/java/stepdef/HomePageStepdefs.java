@@ -1,5 +1,6 @@
 package stepdef;
 
+import com.books.pages.BasePage;
 import com.books.pages.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepdefs {
 
+    private BasePage basePage = new BasePage(driver);
     private HomePage homePage = new HomePage(driver);
 
     @Given("I am on the Books Express homepage")
@@ -48,13 +50,18 @@ public class HomePageStepdefs {
 
     @When("I click accept all cookies button")
     public void iClickAcceptAllCookiesButton() {
-        homePage.acceptAllCookiesButton();
+        homePage.clickAcceptAllCookiesButton();
     }
 
     @Then("The cookies dialog is not displayed")
     public void theCookiesDialogIsNotDisplayed() {
-        assertThat(homePage.getCookiesDialogElement().isDisplayed())
+        assertThat(basePage.getCookiesDialogElement().isDisplayed())
                 .withFailMessage("Expected the cookieBot dialog to not be displayed, but it was.")
                 .isFalse();
+    }
+
+    @And("I reload the page")
+    public void iReloadThePage() {
+        homePage.reloadPage();
     }
 }

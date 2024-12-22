@@ -53,13 +53,7 @@ public class HomePage extends BasePage implements Page {
         return super.getClickableCookiesDialogElement();
     }
 
-    public WebElement getCookiesDialogElement() {
-        return super.getCookiesDialogElement();
-    }
-
-
-
-    public void acceptAllCookiesButton() {
-        super.acceptAllCookiesButton();
+    public void clickAcceptAllCookiesButton() {
+        super.clickAcceptAllCookiesButton();
     }
 }

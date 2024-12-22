@@ -33,6 +33,7 @@ public class LoginStepdefs {
     public void iInsertThePasswordAndClickTheLoginButton(String password) {
         loginPage.insertPassword(password);
         loginPage.clickLoginButton();
+
     }
 
     @Then("I should see the Login Page")

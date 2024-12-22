@@ -11,5 +11,6 @@ Feature: Login
     Then I should see the Login Page
     When I insert email "agtest1@yopmail.com" and click the email button
     And I insert password "Test!1234" and click the Login button
-    And I hover over Account icon
+    And I reload the page
+    When I hover over Account icon
     Then I should see "Detalii personale" on the Header

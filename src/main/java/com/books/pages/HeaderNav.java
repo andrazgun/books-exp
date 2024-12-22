@@ -3,6 +3,7 @@ package com.books.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.BrowserUtils;
 
 public class HeaderNav extends BasePage{
 
