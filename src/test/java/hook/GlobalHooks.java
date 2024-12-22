@@ -18,7 +18,7 @@ public class GlobalHooks {
         System.out.println("WebDriver initialized.");
     }
 
-//    @After
+    @After
     public void after() {
         // Quit WebDriver after each scenario
         driver.quit();

@@ -32,12 +32,10 @@ public class BasePage implements Page {
         try {
             if (getCookiesDialogElement().isDisplayed()) {
                 getClickableBaseElement(acceptAllCookiesButton).click();
-
             }
         }
         catch (NoSuchElementException ignored) {
         }
-
     }
 
     public WebElement getClickableCookiesDialogElement() {

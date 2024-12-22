@@ -64,4 +64,9 @@ public class HomePageStepdefs {
     public void iReloadThePage() {
         homePage.reloadPage();
     }
+
+    @And("I click the product category named {string}")
+    public void iClickTheProductCategoryNamed(String categoryName) {
+        homePage.clickOnProductCategory(categoryName);
+    }
 }

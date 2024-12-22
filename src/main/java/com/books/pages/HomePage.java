@@ -1,14 +1,19 @@
 package com.books.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class HomePage extends BasePage implements Page {
 
     private String expectedPageUrl = "https://www.books-express.ro/";
     private By searchField = By.cssSelector("[id='search']");
     private By searchButton = By.cssSelector("[class='button special search right']");
+    private By productsDropdown = By.cssSelector("[id='products']");
+    private By categoryList = By.cssSelector("[class='category-menu']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -55,5 +60,21 @@ public class HomePage extends BasePage implements Page {
 
     public void clickAcceptAllCookiesButton() {
         super.clickAcceptAllCookiesButton();
+    }
+
+    public void hoverOverProductsDropdown() {
+        super.hoverOverElement(getBaseElement(productsDropdown));
+    }
+
+    public WebElement selectProductCategory(String elementName) {
+        List<WebElement> elementsList = driver.findElements(categoryList);
+        return elementsList.stream()
+                .filter(elem -> elem.getText().equalsIgnoreCase((elementName)))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Category with name '" + elementName + "' not found."));
+    }
+
+    public void clickOnProductCategory (String categoryName) {
+        selectProductCategory(categoryName).click();
     }
 }
