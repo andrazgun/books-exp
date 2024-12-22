@@ -16,7 +16,6 @@ public class BasePage implements Page {
     public static WebDriver driver = getDriver("chrome");
     public WebDriverWait wait;
     public By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
-    public By cookieBotFooter = By.cssSelector("[id='CybotCookiebotDialogFooter']");
     public By acceptAllCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
 
     public BasePage(WebDriver driver) {
@@ -81,12 +80,12 @@ public class BasePage implements Page {
 
     public WebElement getClickableBaseElement(By element) {
         waitUntilElementIsClickable(driver.findElement(element));
-        return driver.findElement(element);
+        return getBaseElement(element);
     }
 
     public WebElement getViewableBaseElement(By element) {
         waitUntilElementIsClickable(driver.findElement(element));
-        return driver.findElement(element);
+        return getBaseElement(element);
     }
 
     public WebElement getBaseElement(By element) {

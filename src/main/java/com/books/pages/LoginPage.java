@@ -2,6 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import utils.BrowserUtils;
 
 public class LoginPage extends BasePage implements Page {
@@ -18,17 +19,16 @@ public class LoginPage extends BasePage implements Page {
     }
 
     public void insertEmail(String email) {
-        BrowserUtils.waitUntilElementIsClickable(driver.findElement(emailField));
-        driver.findElement(emailField).clear();
-        driver.findElement(emailField).sendKeys(email);
+        BrowserUtils.waitUntilElementIsClickable(getBaseElement(emailField));
+        getBaseElement(emailField).clear();
+        getBaseElement(emailField).sendKeys(email);
     }
 
     public void insertPassword(String email) {
-        BrowserUtils.waitUntilElementIsClickable(driver.findElement(passwordField));
-        driver.findElement(passwordField).clear();
-        driver.findElement(passwordField).sendKeys(email);
+        BrowserUtils.waitUntilElementIsClickable(getBaseElement(passwordField));
+        getBaseElement(passwordField).clear();
+        getBaseElement(passwordField).sendKeys(email);
     }
-
 
     public String getExpectedPageTitle() {
         return expectedPageTitle;
@@ -40,12 +40,20 @@ public class LoginPage extends BasePage implements Page {
     }
 
     public void clickEmailButton() {
-        driver.findElement(emailButton).click();
+        getBaseElement(emailButton).click();
     }
 
     public void clickLoginButton() {
-        driver.findElement(loginButton).click();
+        getBaseElement(loginButton).click();
+    }
 
+    @Override
+    public void openPage() {
+        driver.get(expectedPageUrl);
+    }
+
+    public WebElement getLoginButtonElement() {
+        return getBaseElement(loginButton);
     }
 
 }

@@ -3,14 +3,19 @@ package stepdef;
 import com.books.pages.HeaderNav;
 import com.books.pages.LoginPage;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import utils.BrowserUtils;
 
 import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepdefs {
 
+    private static final Logger log = LoggerFactory.getLogger(LoginStepdefs.class);
     private HeaderNav headerNav = new HeaderNav(driver);
     private LoginPage loginPage = new LoginPage(driver);
 
@@ -27,12 +32,14 @@ public class LoginStepdefs {
     public void iInsertEmailEmailAndClickTheEmailButton(String email) {
         loginPage.insertEmail(email);
         loginPage.clickEmailButton();
+        BrowserUtils.waitForPageLoad();
     }
 
-    @And("I insert password {string} and click the Login button")
+    @When("I insert password {string} and click the Login button")
     public void iInsertThePasswordAndClickTheLoginButton(String password) {
         loginPage.insertPassword(password);
         loginPage.clickLoginButton();
+        BrowserUtils.waitForPageLoad();
 
     }
 
@@ -42,5 +49,17 @@ public class LoginStepdefs {
         String expectedTitle = loginPage.getExpectedPageTitle();
         assertThat(expectedTitle).as("Page title contains %s name", expectedTitle)
                 .contains(actualTitle);
+    }
+
+    @Given("I navigate to Login Page")
+    public void iNavigateToLoginPage() {
+        loginPage.openPage();
+    }
+
+    @Then("I should see the Login button")
+    public void iShouldSeeTheLoginButton() {
+        assertThat(loginPage.getLoginButtonElement().isDisplayed())
+                .withFailMessage("Expected element to be displayed, but it was not.")
+                .isTrue();
     }
 }

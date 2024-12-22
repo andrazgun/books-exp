@@ -27,5 +27,12 @@ public class BrowserUtils {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public static void waitForPageLoad() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+                .executeScript("return document.readyState").equals("complete"));
+    }
+
+
 
 }

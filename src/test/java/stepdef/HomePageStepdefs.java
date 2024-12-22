@@ -15,13 +15,13 @@ public class HomePageStepdefs {
     private BasePage basePage = new BasePage(driver);
     private HomePage homePage = new HomePage(driver);
 
-    @Given("I am on the Books Express homepage")
-    public void iAmOnTheBooksExpressHomepage() {
+    @Given("I navigate to Homepage")
+    public void iNavigateToHomepage() {
         homePage.openPage();
-        String actualURL = homePage.getActualPageURL();
-        String expectedURL = homePage.getExpectedPageUrl();
-        assertThat(expectedURL).as("Home page URL is %s", expectedURL)
-                .contains(actualURL);
+        String actualPageURL = homePage.getActualPageURL();
+        String expectedPageURL = homePage.getExpectedPageUrl();
+        assertThat(expectedPageURL).as("Page URL is %s", expectedPageURL)
+                .contains(actualPageURL);
     }
 
     @When("I search for {string}")

@@ -21,15 +21,20 @@ public class HeaderStepdefs {
 
     @And("I click Login button on Header")
     public void iClickLoginButton() {
-        headerNav.clickAccountButton();
+        headerNav.clickLoginButton();
     }
 
     @Then("I should see {string} on the Header")
     public void iShouldSeePersonalDetailsOnTheHeader(String actualText) {
         headerNav.hoverOverAccountIcon();
         String expectedText = headerNav.getPersonalDetailsText();
-        assertThat(expectedText).as("Expected text contains %s",expectedText)
+        assertThat(expectedText).as("Expected text contains %s", expectedText)
                 .contains(actualText);
 
+    }
+
+    @And("I click {string} button on Header")
+    public void iClickButtonOnHeader(String buttonName) {
+        headerNav.clickUserDetailsButton();
     }
 }
