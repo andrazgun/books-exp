@@ -1,6 +1,7 @@
 package com.books.stepdef;
 
 import com.books.pages.AccountPage;
+import com.books.pages.PageObjectManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
@@ -9,7 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountStepdefs {
 
-    private final AccountPage accountPage = new AccountPage(driver);
+    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    AccountPage accountPage = pageObjectManager.createPage(AccountPage.class);
 
     @Then("I should see User Details Page")
     public void iShouldSeeUserDetailsPage() {

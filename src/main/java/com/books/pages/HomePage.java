@@ -9,15 +9,15 @@ import java.util.List;
 
 public class HomePage extends BasePage implements Page {
 
-    private String expectedPageUrl = "https://www.books-express.ro/";
-    private By searchField = By.cssSelector("[id='search']");
-    private By searchButton = By.cssSelector("[class='button special search right']");
-    private By productsDropdown = By.cssSelector("[id='products']");
-    private By categoryList = By.cssSelector("[class='category-menu']");
+    private final String expectedPageUrl = "https://www.books-express.ro/";
+    private final By searchField = By.cssSelector("[id='search']");
+    private final By searchButton = By.cssSelector("[class='button special search right']");
+    private final By productsDropdown = By.cssSelector("[id='products']");
+    private final By categoryList = By.cssSelector("[class='category-menu']");
+    private final By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
+    private final By acceptAllCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
+    public HomePage(WebDriver driver) { super(driver); }
 
     public void searchForBook(String bookName) {
         getBaseElement(searchField).sendKeys(bookName);
@@ -54,14 +54,6 @@ public class HomePage extends BasePage implements Page {
         return expectedPageUrl;
     }
 
-    public WebElement getClickableCookiesDialogElement() {
-        return super.getClickableCookiesDialogElement();
-    }
-
-    public void clickAcceptAllCookiesButton() {
-        super.clickAcceptAllCookiesButton();
-    }
-
     public void hoverOverProductsDropdown() {
         super.hoverOverElement(getBaseElement(productsDropdown));
     }
@@ -76,5 +68,21 @@ public class HomePage extends BasePage implements Page {
 
     public void clickOnProductCategory (String categoryName) {
         selectProductCategory(categoryName).click();
+    }
+    public void clickAcceptAllCookiesButton() {
+        try {
+            if (getCookiesDialogElement().isDisplayed()) {
+                getClickableBaseElement(acceptAllCookiesButton).click();
+            }
+        } catch (NoSuchElementException ignored) {
+        }
+    }
+
+    public WebElement getClickableCookiesDialogElement() {
+        return getClickableBaseElement(cookieBotDialog);
+    }
+
+    public WebElement getCookiesDialogElement() {
+        return getBaseElement(cookieBotDialog);
     }
 }

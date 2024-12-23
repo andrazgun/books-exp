@@ -2,55 +2,20 @@ package com.books.pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import com.books.utils.BrowserUtils;
-import com.books.utils.WebdriverFactory;
 
-import java.time.Duration;
-
-public class BasePage extends BrowserUtils implements Page {
+public class BasePage extends PageObjectManager implements Page {
 
     public String expectedPageUrl;
-    public static WebDriver driver = WebdriverFactory.getDriver();
-    public WebDriverWait wait;
-    public By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
-    public By acceptAllCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
-
-    public BasePage(WebDriver driver) {
-        BasePage.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-    }
+    public BasePage(WebDriver driver) { super(driver); }
 
     @Override
     public void openPage() {
         super.openPage(this.expectedPageUrl);
     }
 
-    public void clickAcceptAllCookiesButton() {
-        try {
-            if (getCookiesDialogElement().isDisplayed()) {
-                getClickableBaseElement(acceptAllCookiesButton).click();
-            }
-        } catch (NoSuchElementException ignored) {
-        }
-    }
-
-    public WebElement getClickableCookiesDialogElement() {
-        return getClickableBaseElement(cookieBotDialog);
-    }
-
-    public WebElement getCookiesDialogElement() {
-        return getBaseElement(cookieBotDialog);
-    }
-
     @Override
     public void closePage() {
         super.closePage();
-    }
-
-    @Override
-    public void refreshPage() {
-
     }
 
     public String getExpectedPageUrl() {

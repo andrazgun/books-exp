@@ -5,7 +5,6 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import com.books.utils.WebdriverFactory;
 
-
 public class GlobalHooks {
 
     private WebDriver driver;

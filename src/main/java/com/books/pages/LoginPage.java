@@ -7,25 +7,25 @@ import com.books.utils.BrowserUtils;
 
 public class LoginPage extends BasePage implements Page {
 
-    private String expectedPageUrl = "https://www.books-express.ro/login";
-    private String expectedPageTitle = "Intră în cont!";
-    private By emailField = By.cssSelector("[id='username']");
-    private By emailButton = By.cssSelector("[id='email-button']");
-    private By passwordField = By.cssSelector("[id='password']");
-    private By loginButton = By.cssSelector("[id='login-button']");
+    private final String expectedPageUrl = "https://www.books-express.ro/login";
+    private final String expectedPageTitle = "Intră în cont!";
+    private final By emailField = By.cssSelector("[id='username']");
+    private final By emailButton = By.cssSelector("[id='email-button']");
+    private final By passwordField = By.cssSelector("[id='password']");
+    private final By loginButton = By.cssSelector("[id='login-button']");
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public void insertEmail(String email) {
-        BrowserUtils.waitUntilElementIsClickable(getBaseElement(emailField));
+        waitUntilElementIsClickable(getBaseElement(emailField));
         getBaseElement(emailField).clear();
         getBaseElement(emailField).sendKeys(email);
     }
 
     public void insertPassword(String email) {
-        BrowserUtils.waitUntilElementIsClickable(getBaseElement(passwordField));
+        waitUntilElementIsClickable(getBaseElement(passwordField));
         getBaseElement(passwordField).clear();
         getBaseElement(passwordField).sendKeys(email);
     }
@@ -48,10 +48,7 @@ public class LoginPage extends BasePage implements Page {
     }
 
     @Override
-    public void openPage() {
-        //        driver.get(expectedPageUrl);
-        super.openPage(this.expectedPageUrl);
-    }
+    public void openPage() { super.openPage(this.expectedPageUrl); }
 
     public WebElement getLoginButtonElement() {
         return getBaseElement(loginButton);

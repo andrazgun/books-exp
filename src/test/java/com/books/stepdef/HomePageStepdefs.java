@@ -1,7 +1,7 @@
 package com.books.stepdef;
 
-import com.books.pages.BasePage;
 import com.books.pages.HomePage;
+import com.books.pages.PageObjectManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepdefs {
 
-    private final BasePage basePage = new BasePage(driver);
-    private final HomePage homePage = new HomePage(driver);
+    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    HomePage homePage = pageObjectManager.createPage(HomePage.class);
 
     @Given("I navigate to Homepage")
     public void iNavigateToHomepage() {
@@ -54,7 +54,7 @@ public class HomePageStepdefs {
 
     @Then("The cookies dialog is not displayed")
     public void theCookiesDialogIsNotDisplayed() {
-        assertThat(basePage.getCookiesDialogElement().isDisplayed())
+        assertThat(homePage.getCookiesDialogElement().isDisplayed())
                 .withFailMessage("Expected the cookieBot dialog to not be displayed, but it was.")
                 .isFalse();
     }

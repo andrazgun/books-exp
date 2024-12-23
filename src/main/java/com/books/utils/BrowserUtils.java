@@ -13,9 +13,7 @@ import static com.books.pages.BasePage.driver;
 
 public class BrowserUtils {
 
-    public void openPage(String url) {
-        driver.get(url);
-    }
+    public void openPage(String url) { driver.get(url); }
 
     public void closePage() {
         driver.quit();

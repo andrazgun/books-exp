@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 public class ListPage extends BasePage implements Page {
 
-    private String expectedPageUrl = "https://www.books-express.ro/user/wishlist";
-    private String expectedPageTitle = "Liste Express";
+    private final String expectedPageUrl = "https://www.books-express.ro/user/wishlist";
+    private final String expectedPageTitle = "Liste Express";
 
     public ListPage(WebDriver driver) {
         super(driver);

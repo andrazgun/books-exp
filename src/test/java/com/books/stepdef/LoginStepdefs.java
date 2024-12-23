@@ -2,12 +2,11 @@ package com.books.stepdef;
 
 import com.books.pages.HeaderNav;
 import com.books.pages.LoginPage;
+import com.books.pages.PageObjectManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.books.utils.BrowserUtils;
 
 import static com.books.pages.BasePage.driver;
@@ -15,8 +14,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepdefs {
 
-    private final HeaderNav headerNav = new HeaderNav(driver);
-    private LoginPage loginPage = new LoginPage(driver);
+    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    HeaderNav headerNav = pageObjectManager.createPage(HeaderNav.class);
+    LoginPage loginPage = pageObjectManager.createPage(LoginPage.class);
 
     @When("I click Login button on Login Page")
     public void iClickLoginButtonOnLoginPage() {
@@ -39,7 +39,6 @@ public class LoginStepdefs {
         loginPage.insertPassword(password);
         loginPage.clickLoginButton();
         BrowserUtils.waitForPageLoad();
-
     }
 
     @Then("I should see the Login Page")
