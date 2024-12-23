@@ -28,6 +28,7 @@ public class WebDriverFactory {
                     ChromeOptions options = new ChromeOptions();
                     options.setAcceptInsecureCerts(true);
                     options.addArguments("start-maximized");
+                    options.addArguments("--headless");
                     options.addArguments("incognito");
 
                     DRIVER.set(new ChromeDriver(options));
