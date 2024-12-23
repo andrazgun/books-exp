@@ -18,6 +18,14 @@ public class BrowserUtils {
         driver.quit();
     }
 
+    public void maximizeWindow() {
+        driver.manage().window().maximize();
+    }
+
+    public void deleteAllCookies() {
+        driver.manage().deleteAllCookies();
+    }
+
     public WebElement getBaseElement(By element) {
         return driver.findElement(element);
     }

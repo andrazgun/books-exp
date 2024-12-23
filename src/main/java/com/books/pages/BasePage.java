@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BrowserUtils;
+import utils.WebdriverFactory;
 
 import java.time.Duration;
 import java.util.List;
@@ -14,7 +15,7 @@ import static utils.WebdriverFactory.getDriver;
 public class BasePage extends BrowserUtils implements Page {
 
     public String expectedPageUrl;
-    public static WebDriver driver = getDriver("chrome");
+    public static WebDriver driver = WebdriverFactory.getDriver();
     public WebDriverWait wait;
     public By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
     public By acceptAllCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");

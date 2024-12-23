@@ -34,7 +34,6 @@ public class HomePageStepdefs {
         String title = homePage.getActualPageTitle();
         assertThat(title).as("%s title contains %s name", title, bookName)
                 .contains(bookName);
-        homePage.closePage();
     }
 
     @And("Cookie dialog is displayed")

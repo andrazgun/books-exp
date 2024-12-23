@@ -15,14 +15,17 @@ public class GlobalHooks {
     @Before
     public void beforeAll() {
         // Initialize WebDriver before each scenario
-        driver = WebDriverManager.chromedriver().create();
-        System.out.println("WebDriver initialized.");
+        if (driver == null) {
+            driver = WebDriverManager.chromedriver().create();
+            System.out.println("WebDriver initialized.");
+        }
     }
 
     @After
     public void after() {
         if (driver != null) {
             driver.quit();
+            driver = null; // Optional: Prevent reuse of the driver reference.
         }
         System.out.println("WebDriver quit.");
     }

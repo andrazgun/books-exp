@@ -11,36 +11,23 @@ import static com.books.pages.BasePage.driver;
 
 public class WebdriverFactory {
 
-    public static WebDriver getDriver(String browser) {
+    private static final ThreadLocal<WebDriver> driverInstance = new ThreadLocal<>();
 
-        WebDriver driver;
+    public static WebDriver getDriver() {
 
-        switch (browser.toLowerCase()) {
-            case "chrome" -> {
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-            }
-            case "firefox" -> {
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-            }
-            case "edge" -> {
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
-            }
-            case "safari" -> driver = new SafariDriver(); // SafariDriver doesn't require WebDriverManager
-            default -> throw new IllegalArgumentException("Browser \"" + browser + "\" not supported.");
+        if (driverInstance.get() == null) {
+            driverInstance.set(new ChromeDriver());
         }
 
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        return driver;
+        driverInstance.get().manage().window().maximize();
+        driverInstance.get().manage().deleteAllCookies();
+        return driverInstance.get();
     }
 
     public static void quitDriver() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driverInstance.get() != null) {
+            driverInstance.get().quit();
+            driverInstance.remove();
         }
     }
 
