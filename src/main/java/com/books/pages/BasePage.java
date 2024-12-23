@@ -1,10 +1,10 @@
 package com.books.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.BrowserUtils;
+import utils.WebdriverFactory;
 
 import java.time.Duration;
 import java.util.List;
@@ -12,12 +12,13 @@ import java.util.List;
 import static utils.BrowserUtils.waitUntilElementIsClickable;
 import static utils.WebdriverFactory.getDriver;
 
-public class BasePage implements Page {
+public class BasePage extends BrowserUtils implements Page {
 
     public String expectedPageUrl;
-    public static WebDriver driver = getDriver("chrome");
+    public static WebDriver driver = WebdriverFactory.getDriver();
     public WebDriverWait wait;
-    private final By acceptCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
+    public By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
+    public By acceptAllCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
 
     public BasePage(WebDriver driver) {
         BasePage.driver = driver;
@@ -26,13 +27,29 @@ public class BasePage implements Page {
 
     @Override
     public void openPage() {
-        driver.get(expectedPageUrl);
-        getBaseElement(acceptCookiesButton).click();
+        super.openPage(this.expectedPageUrl);
+    }
+
+    public void clickAcceptAllCookiesButton() {
+        try {
+            if (getCookiesDialogElement().isDisplayed()) {
+                getClickableBaseElement(acceptAllCookiesButton).click();
+            }
+        } catch (NoSuchElementException ignored) {
+        }
+    }
+
+    public WebElement getClickableCookiesDialogElement() {
+        return getClickableBaseElement(cookieBotDialog);
+    }
+
+    public WebElement getCookiesDialogElement() {
+        return getBaseElement(cookieBotDialog);
     }
 
     @Override
     public void closePage() {
-        driver.quit();
+        super.closePage();
     }
 
     @Override
@@ -44,30 +61,33 @@ public class BasePage implements Page {
         return expectedPageUrl;
     }
 
+    @Override
     public String getActualPageURL() {
-        return driver.getCurrentUrl();
+        return super.getActualPageURL();
     }
 
+    @Override
     public String getActualPageTitle() {
-        return driver.getTitle();
+        return super.getActualPageTitle();
     }
 
-    public WebElement getElementFromList(By element) {
-        List<WebElement> elementsList = driver.findElements(element);
-        List<WebElement> limitedElementsList = elementsList.stream()
-                .limit(5)
-                .toList();
-        return limitedElementsList.get(0);
-    }
-
-    public WebElement getBaseElement(By element) {
+    public WebElement getClickableBaseElement(By element) {
         waitUntilElementIsClickable(driver.findElement(element));
-        return driver.findElement(element);
+        return getBaseElement(element);
+    }
+
+    public WebElement getViewableBaseElement(By element) {
+        waitUntilElementIsClickable(driver.findElement(element));
+        return getBaseElement(element);
+    }
+
+    @Override
+    public WebElement getBaseElement(By element) {
+        return super.getBaseElement(element);
     }
 
     public void hoverOverElement(WebElement element) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
-
 }

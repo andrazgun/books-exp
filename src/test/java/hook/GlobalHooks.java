@@ -6,22 +6,27 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import utils.WebdriverFactory;
 
 
 public class GlobalHooks {
-    WebDriver driver;
 
-//    @BeforeAll
+    private WebDriver driver;
+
+    @Before
     public void beforeAll() {
         // Initialize WebDriver before each scenario
-        driver = WebDriverManager.chromedriver().create();
-        System.out.println("WebDriver initialized.");
+        if (driver == null) {
+            driver = WebdriverFactory.getDriver();
+            System.out.println("WebDriver initialized.");
+        }
     }
 
-//    @After
+    @After
     public void after() {
-        // Quit WebDriver after each scenario
-        driver.quit();
+        if (driver != null) {
+            WebdriverFactory.quitDriver();
+        }
         System.out.println("WebDriver quit.");
     }
 }

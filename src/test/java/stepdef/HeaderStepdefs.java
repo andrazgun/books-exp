@@ -14,22 +14,27 @@ public class HeaderStepdefs {
     private HeaderNav headerNav = new HeaderNav(driver);
     private LoginPage loginPage = new LoginPage(driver);
 
-    @When("I hover over Account icon")
+    @When("I hover over Account icon on the Header")
     public void iHoverOverAccountIcon() {
         headerNav.hoverOverAccountIcon();
     }
 
     @And("I click Login button on Header")
     public void iClickLoginButton() {
-        headerNav.clickAccountButton();
+        headerNav.clickLoginButton();
     }
 
     @Then("I should see {string} on the Header")
     public void iShouldSeePersonalDetailsOnTheHeader(String actualText) {
         headerNav.hoverOverAccountIcon();
         String expectedText = headerNav.getPersonalDetailsText();
-        assertThat(expectedText).as("Expected text contains %s",expectedText)
+        assertThat(expectedText).as("Expected text contains %s", expectedText)
                 .contains(actualText);
 
+    }
+
+    @And("I click User Details button on Header")
+    public void iClickButtonOnHeader() {
+        headerNav.clickUserDetailsButton();
     }
 }

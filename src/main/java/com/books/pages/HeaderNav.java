@@ -2,14 +2,15 @@ package com.books.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class HeaderNav extends BasePage{
 
     private final By cartIcon = By.cssSelector("[id='show-cart']");
     private final By cartButton = By.cssSelector("[class='button special full']");
     private final By accountIcon = By.cssSelector("[id='show-user']");
-    private final By accountButton = By.cssSelector("[href='/login']");
+    private final By loginButton = By.cssSelector("[href='/login']");
+    private final By userDetailsButton = By.cssSelector("[href='/user/details']");
+    private final By logoutButton = By.cssSelector("[href='/logout']");
     private final By listIcon = By.cssSelector("[id='show-lists']");
     private final By listButton = By.cssSelector("[href='/user/wishlist']");
     private final By personalDetailsButton = By.cssSelector("[href='/user/details']");
@@ -19,30 +20,38 @@ public class HeaderNav extends BasePage{
     }
 
     public void hoverOverAccountIcon() {
-        super.hoverOverElement(driver.findElement(accountIcon));
+        super.hoverOverElement(getBaseElement(accountIcon));
     }
 
     public void hoverOverListIcon() {
-        super.hoverOverElement(driver.findElement(listIcon));
+        super.hoverOverElement(getBaseElement(listIcon));
     }
 
     public void hoverOverCartIcon() {
-        super.hoverOverElement(driver.findElement(cartIcon));
+        super.hoverOverElement(getBaseElement(cartIcon));
     }
 
-    public void clickAccountButton() {
-      driver.findElement(accountButton).click();
+    public void clickLoginButton() {
+      getBaseElement(loginButton).click();
+    }
+
+    public void clickUserDetailsButton() {
+        getBaseElement(userDetailsButton).click();
+    }
+
+    public void clickLogoutButton() {
+      getBaseElement(logoutButton).click();
     }
 
     public void clickListButton() {
-        driver.findElement(listButton).click();
+        getBaseElement(listButton).click();
     }
 
     public void clickCartButton() {
-        driver.findElement(cartButton).click();
+        getBaseElement(cartButton).click();
     }
 
     public String getPersonalDetailsText() {
-      return driver.findElement(personalDetailsButton).getText();
+      return getBaseElement(personalDetailsButton).getText();
     }
 }
