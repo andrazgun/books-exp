@@ -26,8 +26,6 @@ public class GlobalHooks {
     public void after() {
         if (driver != null) {
             WebdriverFactory.quitDriver();
-//            driver.quit();
-//            driver = null; // Optional: Prevent reuse of the driver reference.
         }
         System.out.println("WebDriver quit.");
     }
