@@ -24,5 +24,4 @@ public class PageObjectManager extends BrowserUtils {
             throw new RuntimeException("Failed to create page object: " + pageClass.getSimpleName(), e);
         }
     }
-
 }
