@@ -16,8 +16,6 @@ public class BrowserUtils {
 
     public void openPage(String expectedPageUrl) {
         driver.get(expectedPageUrl);
-        deleteAllCookies();
-        maximizeWindow();
     }
 
     public void closePage() {

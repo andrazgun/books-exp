@@ -3,9 +3,12 @@ package utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
+import java.util.Arrays;
 
 import static com.books.pages.BasePage.driver;
 
@@ -16,7 +19,12 @@ public class WebdriverFactory {
     public static WebDriver getDriver() {
 
         if (driverInstance.get() == null) {
-            driverInstance.set(new ChromeDriver());
+            ChromeOptions options = new ChromeOptions();
+            options.setAcceptInsecureCerts(true);
+            options.addArguments("start-maximized");
+            options.addArguments("incognito");
+
+            driverInstance.set(new ChromeDriver(options));
         }
         return driverInstance.get();
     }
