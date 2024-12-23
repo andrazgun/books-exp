@@ -5,11 +5,21 @@ import com.books.utils.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class PageObjectManager extends BrowserUtils {
 
-    public static WebDriver driver = WebDriverFactory.getDriver();
+    public static WebDriver driver;
+
+    static {
+        try {
+            driver = WebDriverFactory.getDriver();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public WebDriverWait wait;
 
     public PageObjectManager(WebDriver driver) {
