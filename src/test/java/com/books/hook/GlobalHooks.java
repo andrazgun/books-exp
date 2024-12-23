@@ -3,7 +3,7 @@ package com.books.hook;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import com.books.utils.WebdriverFactory;
+import com.books.utils.WebDriverFactory;
 
 public class GlobalHooks {
 
@@ -13,7 +13,7 @@ public class GlobalHooks {
     public void beforeAll() {
         // Initialize WebDriver before each scenario
         if (driver == null) {
-            driver = WebdriverFactory.getDriver();
+            driver = WebDriverFactory.getDriver();
             System.out.println("WebDriver initialized.");
         }
     }
@@ -21,7 +21,7 @@ public class GlobalHooks {
     @After
     public void after() {
         if (driver != null) {
-            WebdriverFactory.quitDriver();
+            WebDriverFactory.quitDriver();
         }
         System.out.println("WebDriver quit.");
     }

@@ -8,7 +8,7 @@ import com.books.utils.BrowserUtils;
 public class AccountPage extends BasePage implements Page {
 
     private final String expectedPageUrl = "https://www.books-express.ro/user/details";
-    private By personalDetailsElement = By.cssSelector("[id='profile']");
+    private final By personalDetailsElement = By.cssSelector("[id='profile']");
 
     public AccountPage(WebDriver driver) {
         super(driver);

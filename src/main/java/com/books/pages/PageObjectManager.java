@@ -1,7 +1,7 @@
 package com.books.pages;
 
 import com.books.utils.BrowserUtils;
-import com.books.utils.WebdriverFactory;
+import com.books.utils.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class PageObjectManager extends BrowserUtils {
 
-    public static WebDriver driver = WebdriverFactory.getDriver();
+    public static WebDriver driver = WebDriverFactory.getDriver();
     public WebDriverWait wait;
 
     public PageObjectManager(WebDriver driver) {

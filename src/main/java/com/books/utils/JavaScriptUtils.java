@@ -26,7 +26,7 @@ public class JavaScriptUtils {
     }
 
     private static JavascriptExecutor getJavascriptExecutor() {
-        return (JavascriptExecutor) WebdriverFactory.getDriver();
+        return (JavascriptExecutor) WebDriverFactory.getDriver();
     }
 
 }
