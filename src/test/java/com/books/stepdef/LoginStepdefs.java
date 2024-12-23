@@ -1,4 +1,4 @@
-package stepdef;
+package com.books.stepdef;
 
 import com.books.pages.HeaderNav;
 import com.books.pages.LoginPage;
@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import utils.BrowserUtils;
+import com.books.utils.BrowserUtils;
 
 import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;

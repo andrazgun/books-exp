@@ -45,8 +45,8 @@ public class HomePage extends BasePage implements Page {
     }
 
     @Override
-    public void reloadPage() {
-        driver.navigate().refresh();
+    public void refreshPage() {
+        super.refreshPage();
     }
 
     @Override

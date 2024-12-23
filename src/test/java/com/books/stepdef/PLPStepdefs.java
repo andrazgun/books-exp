@@ -1,4 +1,4 @@
-package stepdef;
+package com.books.stepdef;
 
 import com.books.pages.PLPPage;
 import io.cucumber.java.en.Then;
