@@ -3,6 +3,7 @@ package com.books.pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.BrowserUtils;
 
 import java.time.Duration;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 import static utils.BrowserUtils.waitUntilElementIsClickable;
 import static utils.WebdriverFactory.getDriver;
 
-public class BasePage implements Page {
+public class BasePage extends BrowserUtils implements Page {
 
     public String expectedPageUrl;
     public static WebDriver driver = getDriver("chrome");
@@ -33,8 +34,7 @@ public class BasePage implements Page {
             if (getCookiesDialogElement().isDisplayed()) {
                 getClickableBaseElement(acceptAllCookiesButton).click();
             }
-        }
-        catch (NoSuchElementException ignored) {
+        } catch (NoSuchElementException ignored) {
         }
     }
 
@@ -48,7 +48,7 @@ public class BasePage implements Page {
 
     @Override
     public void closePage() {
-        driver.quit();
+        super.closePage();
     }
 
     @Override
@@ -60,20 +60,14 @@ public class BasePage implements Page {
         return expectedPageUrl;
     }
 
+    @Override
     public String getActualPageURL() {
-        return driver.getCurrentUrl();
+        return super.getActualPageURL();
     }
 
+    @Override
     public String getActualPageTitle() {
-        return driver.getTitle();
-    }
-
-    public WebElement getElementFromList(By element) {
-        List<WebElement> elementsList = driver.findElements(element);
-        List<WebElement> limitedElementsList = elementsList.stream()
-                .limit(5)
-                .toList();
-        return limitedElementsList.get(0);
+        return super.getActualPageTitle();
     }
 
     public WebElement getClickableBaseElement(By element) {
@@ -86,12 +80,12 @@ public class BasePage implements Page {
         return getBaseElement(element);
     }
 
+    @Override
     public WebElement getBaseElement(By element) {
-        return driver.findElement(element);
+        return super.getBaseElement(element);
     }
 
     public void hoverOverElement(WebElement element) {
-//        waitUntilElementIsVisible(element);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }

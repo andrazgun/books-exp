@@ -9,9 +9,10 @@ import org.openqa.selenium.WebDriver;
 
 
 public class GlobalHooks {
-    WebDriver driver;
 
-//    @BeforeAll
+    private WebDriver driver;
+
+    @Before
     public void beforeAll() {
         // Initialize WebDriver before each scenario
         driver = WebDriverManager.chromedriver().create();
@@ -20,8 +21,9 @@ public class GlobalHooks {
 
     @After
     public void after() {
-        // Quit WebDriver after each scenario
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
         System.out.println("WebDriver quit.");
     }
 }

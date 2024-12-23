@@ -29,12 +29,12 @@ public class HomePageStepdefs {
         homePage.searchForBook(bookName);
     }
 
-    @Then("I should see a results page with {string}")
+    @Then("I should see a search results page with {string}")
     public void iShouldSeeAResultsPageWith(String bookName) {
         String title = homePage.getActualPageTitle();
         assertThat(title).as("%s title contains %s name", title, bookName)
                 .contains(bookName);
-//        homePage.closePage();
+        homePage.closePage();
     }
 
     @And("Cookie dialog is displayed")

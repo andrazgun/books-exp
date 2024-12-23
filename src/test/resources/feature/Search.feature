@@ -1,10 +1,10 @@
-#Feature: Search books on Books Express
-#
-#  Background:
-#    Given I navigate to Homepage
-#    And I click accept all cookies button
-#
-#  Scenario: Search for a specific book
-#    Given I search for "Selenium Testing"
-#    Then I should see a results page with "Selenium Testing"
-#
+Feature: Search Functionality
+
+  Background:
+    Given I navigate to Homepage
+    And I click accept all cookies button
+
+  Scenario: Searching for a specific book returns a list of specific books
+    Given I search for "Selenium Testing"
+    Then I should see a search results page with "Selenium Testing"
+

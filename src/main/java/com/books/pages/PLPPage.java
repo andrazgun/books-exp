@@ -9,8 +9,9 @@ public class PLPPage extends BasePage implements Page {
         super(driver);
     }
 
+    @Override
     public String getActualPageURL() {
-        return driver.getCurrentUrl();
+        return super.getActualPageURL();
     }
 
     public boolean isCategoryPresentInUrl(String categoryName) {

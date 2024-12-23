@@ -2,7 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class ListPage extends  BasePage implements Page{
+public class ListPage extends BasePage implements Page {
 
     private String expectedPageUrl = "https://www.books-express.ro/user/wishlist";
     private String expectedPageTitle = "Liste Express";
@@ -15,6 +15,7 @@ public class ListPage extends  BasePage implements Page{
         return expectedPageTitle;
     }
 
+    @Override
     public String getExpectedPageUrl() {
         return expectedPageUrl;
     }

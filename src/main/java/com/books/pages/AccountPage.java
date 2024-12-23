@@ -26,12 +26,12 @@ public class AccountPage extends BasePage implements Page {
 
     @Override
     public String getActualPageURL() {
-        return driver.getCurrentUrl();
+        return super.getActualPageURL();
     }
 
     @Override
     public String getActualPageTitle() {
-        return driver.getTitle();
+        return super.getActualPageTitle();
     }
 
     public WebElement getViewablePersonalDetailsElement() {

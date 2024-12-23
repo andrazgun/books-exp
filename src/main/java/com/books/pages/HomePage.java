@@ -20,8 +20,8 @@ public class HomePage extends BasePage implements Page {
     }
 
     public void searchForBook(String bookName) {
-        driver.findElement(searchField).sendKeys(bookName);
-        driver.findElement(searchButton).click();
+        getBaseElement(searchField).sendKeys(bookName);
+        getBaseElement(searchButton).click();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class HomePage extends BasePage implements Page {
 
     @Override
     public String getActualPageURL() {
-        return driver.getCurrentUrl();
+        return super.getActualPageURL();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class HomePage extends BasePage implements Page {
 
     @Override
     public void closePage() {
-        driver.quit();
+        super.closePage();
     }
 
     @Override

@@ -14,7 +14,7 @@ public class HeaderStepdefs {
     private HeaderNav headerNav = new HeaderNav(driver);
     private LoginPage loginPage = new LoginPage(driver);
 
-    @When("I hover over Account icon")
+    @When("I hover over Account icon on the Header")
     public void iHoverOverAccountIcon() {
         headerNav.hoverOverAccountIcon();
     }
@@ -33,8 +33,8 @@ public class HeaderStepdefs {
 
     }
 
-    @And("I click {string} button on Header")
-    public void iClickButtonOnHeader(String buttonName) {
+    @And("I click User Details button on Header")
+    public void iClickButtonOnHeader() {
         headerNav.clickUserDetailsButton();
     }
 }

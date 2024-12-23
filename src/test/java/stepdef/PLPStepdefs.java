@@ -2,6 +2,7 @@ package stepdef;
 
 import com.books.pages.PLPPage;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,4 +15,5 @@ public class PLPStepdefs {
     public void theProductProductListPageOpens(String productCategory) {
         assertThat(plpPage.getActualPageURL()).containsIgnoringCase(productCategory);
     }
+
 }
