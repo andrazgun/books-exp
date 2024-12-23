@@ -3,30 +3,31 @@ package com.books.utils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
+
 public class JavaScriptUtils {
 
-    public static Object executeScript(final String script, final Object... elements) {
+    public static Object executeScript(final String script, final Object... elements) throws IOException {
         return getJavascriptExecutor().executeScript(script, elements);
     }
 
-    public static void scrollUp() {
+    public static void scrollUp() throws IOException {
         executeScript("window.scrollBy(0,-document.body.scrollHeight)");
     }
 
-    public static void scrollScreenUp() {
+    public static void scrollScreenUp() throws IOException {
         executeScript("window.scrollBy(0, -document.documentElement.clientHeight)");
     }
 
-    public static void scrollScreenDown() {
+    public static void scrollScreenDown() throws IOException {
         executeScript("window.scrollBy(0, document.documentElement.clientHeight)");
     }
 
-    public static void scrollIntoView(WebElement element) {
+    public static void scrollIntoView(WebElement element) throws IOException {
         executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    private static JavascriptExecutor getJavascriptExecutor() {
+    private static JavascriptExecutor getJavascriptExecutor() throws IOException {
         return (JavascriptExecutor) WebDriverFactory.getDriver();
     }
-
 }
