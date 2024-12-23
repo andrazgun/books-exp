@@ -18,9 +18,6 @@ public class WebdriverFactory {
         if (driverInstance.get() == null) {
             driverInstance.set(new ChromeDriver());
         }
-
-        driverInstance.get().manage().window().maximize();
-        driverInstance.get().manage().deleteAllCookies();
         return driverInstance.get();
     }
 

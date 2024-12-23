@@ -27,7 +27,7 @@ public class BasePage extends BrowserUtils implements Page {
 
     @Override
     public void openPage() {
-        driver.get(expectedPageUrl);
+        super.openPage(this.expectedPageUrl);
     }
 
     public void clickAcceptAllCookiesButton() {

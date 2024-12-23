@@ -16,7 +16,7 @@ public class AccountPage extends BasePage implements Page {
 
     @Override
     public void openPage() {
-        driver.get(expectedPageUrl);
+        super.openPage(this.expectedPageUrl);
     }
 
     @Override

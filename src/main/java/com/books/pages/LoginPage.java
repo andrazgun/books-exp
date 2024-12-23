@@ -49,7 +49,8 @@ public class LoginPage extends BasePage implements Page {
 
     @Override
     public void openPage() {
-        driver.get(expectedPageUrl);
+        //        driver.get(expectedPageUrl);
+        super.openPage(this.expectedPageUrl);
     }
 
     public WebElement getLoginButtonElement() {

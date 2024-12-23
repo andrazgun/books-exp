@@ -14,6 +14,12 @@ import static com.books.pages.BasePage.driver;
 
 public class BrowserUtils {
 
+    public void openPage(String expectedPageUrl) {
+        driver.get(expectedPageUrl);
+        deleteAllCookies();
+        maximizeWindow();
+    }
+
     public void closePage() {
         driver.quit();
     }
