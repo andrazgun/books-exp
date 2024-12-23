@@ -1,4 +1,4 @@
-package stepdef;
+package com.books.stepdef;
 
 import com.books.pages.HomePage;
 import io.cucumber.java.en.Given;

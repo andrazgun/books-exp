@@ -1,4 +1,4 @@
-package stepdef;
+package com.books.stepdef;
 
 import com.books.pages.BasePage;
 import com.books.pages.HomePage;
@@ -61,7 +61,7 @@ public class HomePageStepdefs {
 
     @And("I reload the page")
     public void iReloadThePage() {
-        homePage.reloadPage();
+        homePage.refreshPage();
     }
 
     @And("I click the product category named {string}")

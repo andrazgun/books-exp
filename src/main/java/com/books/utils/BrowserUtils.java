@@ -1,9 +1,8 @@
-package utils;
+package com.books.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,12 +13,20 @@ import static com.books.pages.BasePage.driver;
 
 public class BrowserUtils {
 
-    public void openPage(String expectedPageUrl) {
-        driver.get(expectedPageUrl);
+    public void openPage(String url) {
+        driver.get(url);
     }
 
     public void closePage() {
         driver.quit();
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+    public void goBack() {
+        driver.navigate().back();
     }
 
     public void maximizeWindow() {
@@ -46,6 +53,7 @@ public class BrowserUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
+
     public static void waitUntilElementIsVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -69,6 +77,5 @@ public class BrowserUtils {
                 .toList();
         return limitedElementsList.get(0);
     }
-
 
 }

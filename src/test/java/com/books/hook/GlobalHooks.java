@@ -1,12 +1,9 @@
-package hook;
+package com.books.hook;
 
 import io.cucumber.java.After;
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import utils.WebdriverFactory;
+import com.books.utils.WebdriverFactory;
 
 
 public class GlobalHooks {

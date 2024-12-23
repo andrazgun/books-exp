@@ -3,14 +3,10 @@ package com.books.pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.BrowserUtils;
-import utils.WebdriverFactory;
+import com.books.utils.BrowserUtils;
+import com.books.utils.WebdriverFactory;
 
 import java.time.Duration;
-import java.util.List;
-
-import static utils.BrowserUtils.waitUntilElementIsClickable;
-import static utils.WebdriverFactory.getDriver;
 
 public class BasePage extends BrowserUtils implements Page {
 
@@ -53,8 +49,8 @@ public class BasePage extends BrowserUtils implements Page {
     }
 
     @Override
-    public void reloadPage() {
-        driver.navigate().refresh();
+    public void refreshPage() {
+
     }
 
     public String getExpectedPageUrl() {
