@@ -8,7 +8,8 @@ import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountStepdefs {
-    private AccountPage accountPage = new AccountPage(driver);
+
+    private final AccountPage accountPage = new AccountPage(driver);
 
     @Then("I should see User Details Page")
     public void iShouldSeeUserDetailsPage() {

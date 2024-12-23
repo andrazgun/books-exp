@@ -15,8 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepdefs {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginStepdefs.class);
-    private HeaderNav headerNav = new HeaderNav(driver);
+    private final HeaderNav headerNav = new HeaderNav(driver);
     private LoginPage loginPage = new LoginPage(driver);
 
     @When("I click Login button on Login Page")

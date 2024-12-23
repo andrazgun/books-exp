@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HeaderStepdefs {
 
-    private HeaderNav headerNav = new HeaderNav(driver);
+    private final HeaderNav headerNav = new HeaderNav(driver);
     private LoginPage loginPage = new LoginPage(driver);
 
     @When("I hover over Account icon on the Header")

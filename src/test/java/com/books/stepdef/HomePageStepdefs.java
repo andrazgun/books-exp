@@ -12,8 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepdefs {
 
-    private BasePage basePage = new BasePage(driver);
-    private HomePage homePage = new HomePage(driver);
+    private final BasePage basePage = new BasePage(driver);
+    private final HomePage homePage = new HomePage(driver);
 
     @Given("I navigate to Homepage")
     public void iNavigateToHomepage() {
