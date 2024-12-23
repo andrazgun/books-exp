@@ -1,7 +1,7 @@
 package com.books.stepdef;
 
 import com.books.pages.HeaderNav;
-import com.books.pages.LoginPage;
+import com.books.pages.PageObjectManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,8 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HeaderStepdefs {
 
-    private final HeaderNav headerNav = new HeaderNav(driver);
-    private LoginPage loginPage = new LoginPage(driver);
+    PageObjectManager pageObjectManager = new PageObjectManager(driver);
+    HeaderNav headerNav = pageObjectManager.createPage(HeaderNav.class);
 
     @When("I hover over Account icon on the Header")
     public void iHoverOverAccountIcon() {
