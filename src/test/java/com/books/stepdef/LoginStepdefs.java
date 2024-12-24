@@ -1,22 +1,27 @@
 package com.books.stepdef;
 
+import com.books.hook.GlobalHooks;
 import com.books.pages.HeaderNav;
 import com.books.pages.LoginPage;
-import com.books.pages.PageObjectManager;
+import com.books.utils.PageObjectFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import com.books.utils.BrowserUtils;
 
-import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepdefs {
 
-    PageObjectManager pageObjectManager = new PageObjectManager(driver);
-    HeaderNav headerNav = pageObjectManager.createPage(HeaderNav.class);
-    LoginPage loginPage = pageObjectManager.createPage(LoginPage.class);
+    private HeaderNav headerNav;
+    private LoginPage loginPage;
+
+    private LoginStepdefs() {
+
+        PageObjectFactory pageObjectFactory = new PageObjectFactory(GlobalHooks.driver);
+        this.headerNav = pageObjectFactory.createPage(HeaderNav.class);
+        this.loginPage = pageObjectFactory.createPage(LoginPage.class);
+    }
 
     @When("I click Login button on Login Page")
     public void iClickLoginButtonOnLoginPage() {
@@ -31,14 +36,14 @@ public class LoginStepdefs {
     public void iInsertEmailEmailAndClickTheEmailButton(String email) {
         loginPage.insertEmail(email);
         loginPage.clickEmailButton();
-        BrowserUtils.waitForPageLoad();
+        loginPage.waitForPageLoad();
     }
 
     @When("I insert password {string} and click the Login button")
     public void iInsertThePasswordAndClickTheLoginButton(String password) {
         loginPage.insertPassword(password);
         loginPage.clickLoginButton();
-        BrowserUtils.waitForPageLoad();
+        loginPage.waitForPageLoad();
     }
 
     @Then("I should see the Login Page")

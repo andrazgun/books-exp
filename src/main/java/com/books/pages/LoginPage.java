@@ -3,9 +3,8 @@ package com.books.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.books.utils.BrowserUtils;
 
-public class LoginPage extends BasePage implements Page {
+public class LoginPage extends BasePage {
 
     private final String expectedPageUrl = "https://www.books-express.ro/login";
     private final String expectedPageTitle = "Intră în cont!";
@@ -16,6 +15,10 @@ public class LoginPage extends BasePage implements Page {
 
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void openPage() {
+        super.openPage(expectedPageUrl);
     }
 
     public void insertEmail(String email) {
@@ -30,13 +33,14 @@ public class LoginPage extends BasePage implements Page {
         getBaseElement(passwordField).sendKeys(email);
     }
 
+    @Override
     public String getExpectedPageTitle() {
-        return expectedPageTitle;
+        return super.getExpectedPageTitle();
     }
 
     @Override
     public String getExpectedPageUrl() {
-        return expectedPageUrl;
+        return super.getExpectedPageUrl();
     }
 
     public void clickEmailButton() {
@@ -47,11 +51,12 @@ public class LoginPage extends BasePage implements Page {
         getBaseElement(loginButton).click();
     }
 
-    @Override
-    public void openPage() { super.openPage(this.expectedPageUrl); }
-
     public WebElement getLoginButtonElement() {
         return getBaseElement(loginButton);
     }
 
+    @Override
+    public void waitForPageLoad() {
+        super.waitForPageLoad();
+    }
 }

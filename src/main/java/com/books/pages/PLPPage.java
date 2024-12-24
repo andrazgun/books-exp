@@ -2,7 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class PLPPage extends BasePage implements Page {
+public class PLPPage extends BasePage {
 
 
     public PLPPage(WebDriver driver) {

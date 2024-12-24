@@ -4,9 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,47 +13,44 @@ import java.util.Properties;
 
 public class WebDriverFactory {
 
-    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
+    private static WebDriver driver;
 
-    public static WebDriver getDriver() throws IOException {
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            try {
+                Properties properties = new Properties();
+                properties.load(new FileInputStream("src/test/resources/global.properties"));
+                String browser = properties.getProperty("browser");
 
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//test//resources//global.properties");
-        Properties prop = new Properties();
-        prop.load(fis);
-
-        switch (prop.getProperty("browser").toLowerCase()) {
-            case "chrome":
-                if (DRIVER.get() == null) {
-                    ChromeOptions options = new ChromeOptions();
-                    options.setAcceptInsecureCerts(true);
-                    options.addArguments("start-maximized");
-                    options.addArguments("incognito");
-
-                    DRIVER.set(new ChromeDriver(options));
+                switch (browser.toLowerCase()) {
+                    case "chrome":
+                        ChromeOptions options = new ChromeOptions();
+                        options.addArguments("incognito");
+                        options.addArguments("--headless");
+                        driver = new ChromeDriver(options);
+                        break;
+                    case "firefox":
+                        FirefoxOptions options1 = new FirefoxOptions();
+                        options1.addArguments("-private");
+                        options1.addArguments("--headless");
+                        WebDriverManager.firefoxdriver().setup();
+                        driver = new FirefoxDriver(options1);
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Unsupported browser: " + browser);
                 }
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                DRIVER.set(new FirefoxDriver());
-                break;
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                DRIVER.set(new EdgeDriver());
-                break;
-            case "safari":
-                DRIVER.set(new SafariDriver()); // SafariDriver doesn't require WebDriverManager
-                break;
-            default:
-                throw new IllegalArgumentException("Browser \"" + prop.getProperty("browser").toLowerCase() + "\" not supported.");
+                System.out.println("Starting " + browser + " browser");
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to read browser configuration", e);
+            }
         }
-        return DRIVER.get();
-
+        return driver;
     }
 
-    public static void quitDriver() {
-        if (DRIVER.get() != null) {
-            DRIVER.get().quit();
-            DRIVER.remove();
+    public static void closeDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
         }
     }
 }

@@ -7,10 +7,6 @@ import java.io.IOException;
 
 public class JavaScriptUtils {
 
-    public static Object executeScript(final String script, final Object... elements) throws IOException {
-        return getJavascriptExecutor().executeScript(script, elements);
-    }
-
     public static void scrollUp() throws IOException {
         executeScript("window.scrollBy(0,-document.body.scrollHeight)");
     }
@@ -29,5 +25,9 @@ public class JavaScriptUtils {
 
     private static JavascriptExecutor getJavascriptExecutor() throws IOException {
         return (JavascriptExecutor) WebDriverFactory.getDriver();
+    }
+
+    public static Object executeScript(final String script, final Object... elements) throws IOException {
+        return getJavascriptExecutor().executeScript(script, elements);
     }
 }

@@ -3,7 +3,7 @@ package com.books.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HeaderNav extends BasePage{
+public class HeaderNav extends BasePage {
 
     private final By cartIcon = By.cssSelector("[id='show-cart']");
     private final By cartButton = By.cssSelector("[class='button special full']");
