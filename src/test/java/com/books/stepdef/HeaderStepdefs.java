@@ -1,18 +1,21 @@
 package com.books.stepdef;
 
+import com.books.hook.GlobalHooks;
 import com.books.pages.HeaderNav;
-import com.books.pages.PageObjectManager;
+import com.books.utils.PageObjectFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HeaderStepdefs {
+    private HeaderNav headerNav;
 
-    PageObjectManager pageObjectManager = new PageObjectManager(driver);
-    HeaderNav headerNav = pageObjectManager.createPage(HeaderNav.class);
+    public HeaderStepdefs() {
+        PageObjectFactory pageObjectFactory = new PageObjectFactory(GlobalHooks.driver);
+        this.headerNav = pageObjectFactory.createPage(HeaderNav.class);
+    }
 
     @When("I hover over Account icon on the Header")
     public void iHoverOverAccountIcon() {
@@ -30,7 +33,6 @@ public class HeaderStepdefs {
         String expectedText = headerNav.getPersonalDetailsText();
         assertThat(expectedText).as("Expected text contains %s", expectedText)
                 .contains(actualText);
-
     }
 
     @And("I click User Details button on Header")

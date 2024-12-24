@@ -3,9 +3,8 @@ package com.books.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import com.books.utils.BrowserUtils;
 
-public class AccountPage extends BasePage implements Page {
+public class AccountPage extends BasePage {
 
     private final String expectedPageUrl = "https://www.books-express.ro/user/details";
     private final By personalDetailsElement = By.cssSelector("[id='profile']");
@@ -14,14 +13,13 @@ public class AccountPage extends BasePage implements Page {
         super(driver);
     }
 
-    @Override
     public void openPage() {
-        super.openPage(this.expectedPageUrl);
+        super.openPage(expectedPageUrl);
     }
 
     @Override
     public String getExpectedPageUrl() {
-        return expectedPageUrl;
+        return super.getExpectedPageUrl();
     }
 
     @Override
@@ -35,7 +33,7 @@ public class AccountPage extends BasePage implements Page {
     }
 
     public WebElement getViewablePersonalDetailsElement() {
-        BrowserUtils.waitUntilElementIsVisible(driver.findElement(personalDetailsElement));
+        waitUntilElementIsVisible(driver.findElement(personalDetailsElement));
         return getBaseElement(personalDetailsElement);
     }
 }

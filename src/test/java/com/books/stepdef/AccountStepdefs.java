@@ -1,17 +1,20 @@
 package com.books.stepdef;
 
+import com.books.hook.GlobalHooks;
 import com.books.pages.AccountPage;
-import com.books.pages.PageObjectManager;
+import com.books.utils.PageObjectFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
-import static com.books.pages.BasePage.driver;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountStepdefs {
+    private AccountPage accountPage;
 
-    PageObjectManager pageObjectManager = new PageObjectManager(driver);
-    AccountPage accountPage = pageObjectManager.createPage(AccountPage.class);
+    public AccountStepdefs() {
+        PageObjectFactory pageObjectFactory = new PageObjectFactory(GlobalHooks.driver);
+        this.accountPage = pageObjectFactory.createPage(AccountPage.class);
+    }
 
     @Then("I should see User Details Page")
     public void iShouldSeeUserDetailsPage() {

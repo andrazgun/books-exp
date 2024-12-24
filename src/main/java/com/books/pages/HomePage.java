@@ -5,9 +5,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
 
-public class HomePage extends BasePage implements Page {
+public class HomePage extends BasePage {
 
     private final String expectedPageUrl = "https://www.books-express.ro/";
     private final By searchField = By.cssSelector("[id='search']");
@@ -17,7 +16,9 @@ public class HomePage extends BasePage implements Page {
     private final By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
     private final By acceptAllCookiesButton = By.cssSelector("[id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
 
-    public HomePage(WebDriver driver) { super(driver); }
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
 
     public void searchForBook(String bookName) {
         getBaseElement(searchField).sendKeys(bookName);
@@ -34,14 +35,8 @@ public class HomePage extends BasePage implements Page {
         return super.getActualPageURL();
     }
 
-    @Override
     public void openPage() {
-        super.openPage(this.expectedPageUrl);
-    }
-
-    @Override
-    public void closePage() {
-        super.closePage();
+        super.openPage(expectedPageUrl);
     }
 
     @Override
@@ -51,24 +46,18 @@ public class HomePage extends BasePage implements Page {
 
     @Override
     public String getExpectedPageUrl() {
-        return expectedPageUrl;
+        return super.getExpectedPageUrl();
     }
 
     public void hoverOverProductsDropdown() {
         super.hoverOverElement(getBaseElement(productsDropdown));
     }
 
-    public WebElement selectProductCategory(String elementName) {
-        List<WebElement> elementsList = driver.findElements(categoryList);
-        return elementsList.stream()
-                .filter(elem -> elem.getText().equalsIgnoreCase((elementName)))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Category with name '" + elementName + "' not found."));
+    public void clickOnProductCategory(String elementName) {
+        getElementFromElementsCategory(elementName, categoryList)
+                .click();
     }
 
-    public void clickOnProductCategory (String categoryName) {
-        selectProductCategory(categoryName).click();
-    }
     public void clickAcceptAllCookiesButton() {
         try {
             if (getCookiesDialogElement().isDisplayed()) {

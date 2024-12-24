@@ -5,25 +5,25 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import com.books.utils.WebDriverFactory;
 
-import java.io.IOException;
 
 public class GlobalHooks {
 
-    private WebDriver driver;
+    public static WebDriver driver;
 
     @Before
-    public void beforeAll() throws IOException {
-        // Initialize WebDriver before each scenario
+    public void setUp() {
         if (driver == null) {
             driver = WebDriverFactory.getDriver();
+            driver.manage().deleteAllCookies();
+            driver.manage().window().maximize();
             System.out.println("WebDriver initialized.");
         }
     }
 
     @After
-    public void after() {
+    public void tearDown() {
         if (driver != null) {
-            WebDriverFactory.quitDriver();
+            WebDriverFactory.closeDriver();
         }
         System.out.println("WebDriver quit.");
     }
