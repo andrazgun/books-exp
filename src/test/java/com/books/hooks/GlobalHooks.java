@@ -34,7 +34,7 @@ public class GlobalHooks {
 
     @AfterStep
     public void attachScreenshotOnFailure(Scenario scenario) {
-        if (scenario.isFailed()) {
+        if (driver != null && scenario.isFailed()) {
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
             String timestamp = String.valueOf(System.currentTimeMillis());
@@ -59,6 +59,7 @@ public class GlobalHooks {
     public void tearDown() {
         if (driver != null) {
             WebDriverFactory.closeDriver();
+            driver = null;
         }
         System.out.println("WebDriver quit.");
     }
