@@ -28,8 +28,8 @@ public class HomePageStepdefs {
         testContextSetup.homePage.searchForBook(bookName);
     }
 
-    @Then("I should see a search results page with {string}")
-    public void iShouldSeeAResultsPageWith(String bookName) {
+    @Then("I should see a search result with {string}")
+    public void iShouldSeeASearchResult(String bookName) {
         String title = testContextSetup.homePage.getActualPageTitle();
         assertThat(title).as("%s title contains %s name", title, bookName)
                 .contains(bookName);

@@ -6,4 +6,4 @@ Feature: Search Functionality
 
   Scenario: Searching for a specific book returns a list of specific books
     Given I search for "Selenium Testing"
-    Then I should see a search results page with "Selenium Testing"
+    Then I should see a search result with "Selenium Testing"
