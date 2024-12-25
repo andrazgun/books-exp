@@ -23,7 +23,7 @@ public class AccountPage extends BasePage {
     }
 
     public WebElement getViewablePersonalDetailsElement() {
-        waitUntilElementIsVisible(driver.findElement(personalDetailsElement));
+        waitUntilElementIsVisible(personalDetailsElement);
         return getBaseElement(personalDetailsElement);
     }
 }

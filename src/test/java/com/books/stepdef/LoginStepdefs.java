@@ -5,36 +5,40 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepdefs {
-TestContextSetup testContextSetup;
+    TestContextSetup testContextSetup;
 
     public LoginStepdefs(TestContextSetup testContextSetup) {
         this.testContextSetup = testContextSetup;
     }
 
-    @When("I click Login button on Login Page")
-    public void iClickLoginButtonOnLoginPage() {
+//    @When("I click Login button on Login Page")
+//    public void iClickLoginButtonOnLoginPage() {
+//        testContextSetup.loginPage.clickLoginButton();
+//    }
 
-    }
-
-    @And("I click Login button")
-    public void iClickLoginButton() {
-    }
-
-    @When("I insert email {string} and click the email button")
-    public void iInsertEmailEmailAndClickTheEmailButton(String email) {
-        testContextSetup.loginPage.insertEmail(email);
-        testContextSetup.loginPage.clickEmailButton();
-        testContextSetup.loginPage.waitForPageLoad();
-    }
-
-    @When("I insert password {string} and click the Login button")
-    public void iInsertThePasswordAndClickTheLoginButton(String password) {
-        testContextSetup.loginPage.insertPassword(password);
+    @When("I click Login button")
+    public void clickLoginButton() {
         testContextSetup.loginPage.clickLoginButton();
-        testContextSetup.loginPage.waitForPageLoad();
+    }
+    @When("I click Email button")
+    public void clickEmailButton() {
+        testContextSetup.loginPage.clickEmailButton();
+    }
+
+    @When("I enter email {string}")
+    public void iInsertEmailEmail(String email) {
+        testContextSetup.registrationPage.enterEmail(email);
+//        testContextSetup.loginPage.waitForPageLoad();
+    }
+
+    @When("I enter password {string}")
+    public void iInsertThePassword(String password) {
+        testContextSetup.loginPage.insertPassword(password);
+//        testContextSetup.loginPage.waitForPageLoad();
     }
 
     @Then("I should see the Login Page")

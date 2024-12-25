@@ -25,13 +25,13 @@ public class WebDriverFactory {
                     case "chrome":
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("incognito");
-                        options.addArguments("--headless");
+//                        options.addArguments("--headless");
                         driver = new ChromeDriver(options);
                         break;
                     case "firefox":
                         FirefoxOptions options1 = new FirefoxOptions();
                         options1.addArguments("-private");
-                        options1.addArguments("--headless");
+//                        options1.addArguments("--headless");
                         WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver(options1);
                         break;

@@ -52,13 +52,8 @@ public abstract class BasePage {
         return getBaseElement(element);
     }
 
-    public WebElement getViewableBaseElement(By element) {
-        waitUntilElementIsClickable(driver.findElement(element));
-        return getBaseElement(element);
-    }
-
-    public void waitUntilElementIsVisible(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public void waitUntilElementIsVisible(By element) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
     public void hoverOverElement(WebElement element) {
