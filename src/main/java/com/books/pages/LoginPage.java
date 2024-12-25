@@ -35,12 +35,12 @@ public class LoginPage extends BasePage {
 
     @Override
     public String getExpectedPageTitle() {
-        return super.getExpectedPageTitle();
+        return this.expectedPageTitle;
     }
 
     @Override
     public String getExpectedPageUrl() {
-        return super.getExpectedPageUrl();
+        return this.expectedPageUrl;
     }
 
     public void clickEmailButton() {
@@ -55,8 +55,4 @@ public class LoginPage extends BasePage {
         return getBaseElement(loginButton);
     }
 
-    @Override
-    public void waitForPageLoad() {
-        super.waitForPageLoad();
-    }
 }

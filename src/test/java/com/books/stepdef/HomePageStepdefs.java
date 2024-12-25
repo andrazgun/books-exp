@@ -23,10 +23,8 @@ public class HomePageStepdefs {
     @Given("I navigate to Homepage")
     public void iNavigateToHomepage() {
         homePage.openPage();
-//        String actualPageURL = homePage.getActualPageURL();
-//        String expectedPageURL = homePage.getExpectedPageUrl();
-//        assertThat(expectedPageURL).as("Page URL is %s", expectedPageURL)
-//                .contains(actualPageURL);
+        assertThat(homePage.getActualPageUrl()).as("Expected Page URL to be %s", homePage.getActualPageUrl())
+                .contains(homePage.getActualPageUrl());
     }
 
     @When("I search for {string}")

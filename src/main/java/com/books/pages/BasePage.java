@@ -32,7 +32,7 @@ public abstract class BasePage {
         driver.navigate().refresh();
     }
 
-    public String getActualPageURL() {
+    public String getActualPageUrl() {
         return driver.getCurrentUrl();
     }
 

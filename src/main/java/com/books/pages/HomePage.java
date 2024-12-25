@@ -5,7 +5,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-
 public class HomePage extends BasePage {
 
     private final String expectedPageUrl = "https://www.books-express.ro/";
@@ -20,33 +19,18 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    public void openPage() {
+        super.openPage(expectedPageUrl);
+    }
+
     public void searchForBook(String bookName) {
         getBaseElement(searchField).sendKeys(bookName);
         getBaseElement(searchButton).click();
     }
 
     @Override
-    public String getActualPageTitle() {
-        return super.getActualPageTitle();
-    }
-
-    @Override
-    public String getActualPageURL() {
-        return super.getActualPageURL();
-    }
-
-    public void openPage() {
-        super.openPage(expectedPageUrl);
-    }
-
-    @Override
-    public void refreshPage() {
-        super.refreshPage();
-    }
-
-    @Override
     public String getExpectedPageUrl() {
-        return super.getExpectedPageUrl();
+        return this.expectedPageUrl;
     }
 
     public void hoverOverProductsDropdown() {

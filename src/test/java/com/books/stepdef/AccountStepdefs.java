@@ -18,7 +18,7 @@ public class AccountStepdefs {
 
     @Then("I should see User Details Page")
     public void iShouldSeeUserDetailsPage() {
-        String actualPageUrl = accountPage.getActualPageURL();
+        String actualPageUrl = accountPage.getActualPageUrl();
         String expectedPageUrl = accountPage.getExpectedPageUrl();
         assertThat(expectedPageUrl).as("Page URL is %s ", expectedPageUrl)
                 .contains(actualPageUrl);
