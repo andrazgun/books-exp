@@ -1,4 +1,4 @@
-package com.books.hook;
+package com.books.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
@@ -16,7 +16,11 @@ import java.nio.file.Files;
 
 public class GlobalHooks {
 
-    public static WebDriver driver;
+    private static WebDriver driver;
+
+//    public GlobalHooks(WebDriver driver) {
+//            GlobalHooks.driver = driver;
+//    }
 
     @Before
     public void setUp() {
@@ -31,11 +35,10 @@ public class GlobalHooks {
     @AfterStep
     public void attachScreenshotOnFailure(Scenario scenario) {
         if (scenario.isFailed()) {
-            // Take a screenshot as a file
             File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-            // Save the screenshot in the target/screenshots directory
-            String screenshotPath = System.getProperty("user.dir") + "/target/screenshots/" + scenario.getName() + ".png";
+            String timestamp = String.valueOf(System.currentTimeMillis());
+            String screenshotPath = System.getProperty("user.dir") + "/target/screenshots/" + scenario.getName() + "_" + timestamp + ".png";
 
             try {
                 // Ensure the directory exists

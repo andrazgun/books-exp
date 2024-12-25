@@ -1,8 +1,5 @@
 package com.books.stepdef;
-
-import com.books.hook.GlobalHooks;
-import com.books.pages.HeaderNav;
-import com.books.utils.PageObjectFactory;
+import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,33 +7,32 @@ import io.cucumber.java.en.When;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HeaderStepdefs {
-    private HeaderNav headerNav;
+    TestContextSetup testContextSetup;
 
-    public HeaderStepdefs() {
-        PageObjectFactory pageObjectFactory = new PageObjectFactory(GlobalHooks.driver);
-        this.headerNav = pageObjectFactory.createPage(HeaderNav.class);
+    public HeaderStepdefs(TestContextSetup testContextSetup) {
+        this.testContextSetup = testContextSetup;
     }
 
-    @When("I hover over Account icon on the Header")
-    public void iHoverOverAccountIcon() {
-        headerNav.hoverOverAccountIcon();
-    }
+        @When("I hover over Account icon on Header")
+        public void iHoverOverAccountIcon () {
+            testContextSetup.headerNav.hoverOverAccountIcon();
+        }
 
-    @And("I click Login button on Header")
-    public void iClickLoginButton() {
-        headerNav.clickLoginButton();
-    }
+        @And("I click Login button on Header")
+        public void iClickLoginButton () {
+            testContextSetup.headerNav.clickLoginButton();
+        }
 
-    @Then("I should see {string} on the Header")
-    public void iShouldSeePersonalDetailsOnTheHeader(String actualText) {
-        headerNav.hoverOverAccountIcon();
-        String expectedText = headerNav.getPersonalDetailsText();
-        assertThat(expectedText).as("Expected text contains %s", expectedText)
-                .contains(actualText);
-    }
+        @Then("I should see {string} on the Header")
+        public void iShouldSeePersonalDetailsOnTheHeader (String actualText){
+            testContextSetup.headerNav.hoverOverAccountIcon();
+            String expectedText = testContextSetup.headerNav.getPersonalDetailsText();
+            assertThat(expectedText).as("Expected text contains %s", expectedText)
+                    .contains(actualText);
+        }
 
-    @And("I click User Details button on Header")
-    public void iClickButtonOnHeader() {
-        headerNav.clickUserDetailsButton();
+        @And("I click Detalii Personale button on Header")
+        public void iClickButtonOnHeader () {
+            testContextSetup.headerNav.clickUserDetailsButton();
+        }
     }
-}
