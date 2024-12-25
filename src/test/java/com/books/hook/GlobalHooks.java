@@ -28,14 +28,6 @@ public class GlobalHooks {
         }
     }
 
-//    @AfterStep
-//    public void attachScreenshotOnFailure(Scenario scenario) {
-//        if (scenario.isFailed()) {
-//            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-//            scenario.attach(screenshot, "image/png", "Failure Screenshot");
-//        }
-//    }
-
     @AfterStep
     public void attachScreenshotOnFailure(Scenario scenario) {
         if (scenario.isFailed()) {
