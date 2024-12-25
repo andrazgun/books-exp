@@ -13,6 +13,7 @@ public class TestContextSetup {
     public CartPage cartPage;
     public PLPPage plpPage;
     public WishlistPage wishlistPage;
+    public RegistrationPage registrationPage;
 
     public TestContextSetup() {
         this.headerNav = new HeaderNav(driver);
@@ -22,5 +23,6 @@ public class TestContextSetup {
         this.cartPage = new CartPage(driver);
         this.plpPage = new PLPPage(driver);
         this.wishlistPage = new WishlistPage(driver);
+        this.registrationPage = new RegistrationPage(driver);
     }
 }
