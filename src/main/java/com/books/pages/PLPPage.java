@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 public class PLPPage extends BasePage {
 
-
     public PLPPage(WebDriver driver) {
         super(driver);
     }
@@ -17,5 +16,4 @@ public class PLPPage extends BasePage {
     public boolean isCategoryPresentInUrl(String categoryName) {
         return getActualPageUrl().toLowerCase().contains(categoryName.toLowerCase());
     }
-
 }

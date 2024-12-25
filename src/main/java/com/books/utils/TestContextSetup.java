@@ -15,7 +15,7 @@ public class TestContextSetup {
     public WishlistPage wishlistPage;
 
     public TestContextSetup() {
-        this.headerNav = new HeaderNav(driver);   // Assuming these page classes take a WebDriver as a constructor
+        this.headerNav = new HeaderNav(driver);
         this.homePage = new HomePage(driver);
         this.loginPage = new LoginPage(driver);
         this.accountPage = new AccountPage(driver);
@@ -23,6 +23,4 @@ public class TestContextSetup {
         this.plpPage = new PLPPage(driver);
         this.wishlistPage = new WishlistPage(driver);
     }
-
-
 }

@@ -3,7 +3,6 @@ package com.books.stepdef;
 import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.Given;
 
-
 public class ShoppingCartStepdefs {
     TestContextSetup testContextSetup;
 

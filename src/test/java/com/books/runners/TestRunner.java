@@ -9,7 +9,4 @@ import io.cucumber.testng.CucumberOptions;
         glue = "com/books",
         plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber.json"}
 )
-public class TestRunner extends AbstractTestNGCucumberTests {
-
-
-}
+public class TestRunner extends AbstractTestNGCucumberTests {}

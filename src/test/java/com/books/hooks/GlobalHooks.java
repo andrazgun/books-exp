@@ -8,7 +8,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import com.books.utils.WebDriverFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,10 +17,6 @@ public class GlobalHooks {
 
     private static WebDriver driver;
 
-//    public GlobalHooks(WebDriver driver) {
-//            GlobalHooks.driver = driver;
-//    }
-
     @Before
     public void setUp() {
         if (driver == null) {
@@ -30,6 +25,15 @@ public class GlobalHooks {
             driver.manage().window().maximize();
             System.out.println("WebDriver initialized.");
         }
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            WebDriverFactory.closeDriver();
+            driver = null;
+        }
+        System.out.println("WebDriver quit.");
     }
 
     @AfterStep
@@ -55,12 +59,4 @@ public class GlobalHooks {
         }
     }
 
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            WebDriverFactory.closeDriver();
-            driver = null;
-        }
-        System.out.println("WebDriver quit.");
-    }
 }

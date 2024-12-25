@@ -6,8 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.safari.SafariDriver;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -22,7 +20,6 @@ public class WebDriverFactory {
                 Properties properties = new Properties();
                 properties.load(new FileInputStream("src/test/resources/global.properties"));
                 String browser = properties.getProperty("browser");
-//                String browser = System.getProperty("browser", "chrome");
 
                 switch (browser.toLowerCase()) {
                     case "chrome":

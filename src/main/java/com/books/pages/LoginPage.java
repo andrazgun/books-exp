@@ -54,5 +54,4 @@ public class LoginPage extends BasePage {
     public WebElement getLoginButtonElement() {
         return getBaseElement(loginButton);
     }
-
 }
