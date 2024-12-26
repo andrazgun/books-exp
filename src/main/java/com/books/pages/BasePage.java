@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public abstract class BasePage {
         driver.navigate().refresh();
     }
 
-    public String getActualPageURL() {
+    public String getActualPageUrl() {
         return driver.getCurrentUrl();
     }
 
@@ -53,13 +52,8 @@ public abstract class BasePage {
         return getBaseElement(element);
     }
 
-    public WebElement getViewableBaseElement(By element) {
-        waitUntilElementIsClickable(driver.findElement(element));
-        return getBaseElement(element);
-    }
-
-    public void waitUntilElementIsVisible(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public void waitUntilElementIsVisible(By element) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
     public void hoverOverElement(WebElement element) {

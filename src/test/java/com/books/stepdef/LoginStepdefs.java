@@ -1,9 +1,6 @@
 package com.books.stepdef;
 
-import com.books.hook.GlobalHooks;
-import com.books.pages.HeaderNav;
-import com.books.pages.LoginPage;
-import com.books.utils.PageObjectFactory;
+import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,56 +9,54 @@ import io.cucumber.java.en.When;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginStepdefs {
+    TestContextSetup testContextSetup;
 
-    private HeaderNav headerNav;
-    private LoginPage loginPage;
-
-    private LoginStepdefs() {
-
-        PageObjectFactory pageObjectFactory = new PageObjectFactory(GlobalHooks.driver);
-        this.headerNav = pageObjectFactory.createPage(HeaderNav.class);
-        this.loginPage = pageObjectFactory.createPage(LoginPage.class);
+    public LoginStepdefs(TestContextSetup testContextSetup) {
+        this.testContextSetup = testContextSetup;
     }
 
-    @When("I click Login button on Login Page")
-    public void iClickLoginButtonOnLoginPage() {
+//    @When("I click Login button on Login Page")
+//    public void iClickLoginButtonOnLoginPage() {
+//        testContextSetup.loginPage.clickLoginButton();
+//    }
 
+    @When("I click Login button")
+    public void clickLoginButton() {
+        testContextSetup.loginPage.clickLoginButton();
+    }
+    @When("I click Email button")
+    public void clickEmailButton() {
+        testContextSetup.loginPage.clickEmailButton();
     }
 
-    @And("I click Login button")
-    public void iClickLoginButton() {
+    @When("I enter email {string}")
+    public void iInsertEmailEmail(String email) {
+        testContextSetup.registrationPage.enterEmail(email);
+//        testContextSetup.loginPage.waitForPageLoad();
     }
 
-    @When("I insert email {string} and click the email button")
-    public void iInsertEmailEmailAndClickTheEmailButton(String email) {
-        loginPage.insertEmail(email);
-        loginPage.clickEmailButton();
-        loginPage.waitForPageLoad();
-    }
-
-    @When("I insert password {string} and click the Login button")
-    public void iInsertThePasswordAndClickTheLoginButton(String password) {
-        loginPage.insertPassword(password);
-        loginPage.clickLoginButton();
-        loginPage.waitForPageLoad();
+    @When("I enter password {string}")
+    public void iInsertThePassword(String password) {
+        testContextSetup.loginPage.insertPassword(password);
+//        testContextSetup.loginPage.waitForPageLoad();
     }
 
     @Then("I should see the Login Page")
     public void iShouldSeeTheLoginPage() {
-        String actualTitle = headerNav.getActualPageTitle();
-        String expectedTitle = loginPage.getExpectedPageTitle();
+        String actualTitle = testContextSetup.headerNav.getActualPageTitle();
+        String expectedTitle = testContextSetup.loginPage.getExpectedPageTitle();
         assertThat(expectedTitle).as("Page title contains %s name", expectedTitle)
                 .contains(actualTitle);
     }
 
     @Given("I navigate to Login Page")
     public void iNavigateToLoginPage() {
-        loginPage.openPage();
+        testContextSetup.loginPage.openPage();
     }
 
     @Then("I should see the Login button")
     public void iShouldSeeTheLoginButton() {
-        assertThat(loginPage.getLoginButtonElement().isDisplayed())
+        assertThat(testContextSetup.loginPage.getLoginButtonElement().isDisplayed())
                 .withFailMessage("Expected element to be displayed, but it was not.")
                 .isTrue();
     }

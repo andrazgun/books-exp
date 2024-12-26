@@ -1,21 +1,17 @@
 package com.books.stepdef;
 
-import com.books.hook.GlobalHooks;
-import com.books.pages.HomePage;
-import com.books.utils.PageObjectFactory;
+import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.Given;
 
-
 public class ShoppingCartStepdefs {
-    private HomePage homePage;
+    TestContextSetup testContextSetup;
 
-    public ShoppingCartStepdefs() {
-        PageObjectFactory pageObjectFactory = new PageObjectFactory(GlobalHooks.driver);
-        this.homePage = pageObjectFactory.createPage(HomePage.class);
+    public ShoppingCartStepdefs(TestContextSetup testContextSetup) {
+        this.testContextSetup = testContextSetup;
     }
 
     @Given("I hover over the {string} dropdown")
     public void iHoverOverTheDropdown(String text) {
-        homePage.hoverOverProductsDropdown();
+        testContextSetup.homePage.hoverOverProductsDropdown();
     }
 }

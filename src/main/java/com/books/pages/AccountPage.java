@@ -19,21 +19,11 @@ public class AccountPage extends BasePage {
 
     @Override
     public String getExpectedPageUrl() {
-        return super.getExpectedPageUrl();
-    }
-
-    @Override
-    public String getActualPageURL() {
-        return super.getActualPageURL();
-    }
-
-    @Override
-    public String getActualPageTitle() {
-        return super.getActualPageTitle();
+        return this.expectedPageUrl;
     }
 
     public WebElement getViewablePersonalDetailsElement() {
-        waitUntilElementIsVisible(driver.findElement(personalDetailsElement));
+        waitUntilElementIsVisible(personalDetailsElement);
         return getBaseElement(personalDetailsElement);
     }
 }

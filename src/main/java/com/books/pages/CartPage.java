@@ -20,5 +20,4 @@ public class CartPage extends BasePage {
     public String getActualPageTitle() {
         return super.getActualPageTitle();
     }
-
 }

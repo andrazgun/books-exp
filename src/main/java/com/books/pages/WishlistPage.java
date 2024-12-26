@@ -11,12 +11,14 @@ public class WishlistPage extends BasePage {
         super(driver);
     }
 
+    @Override
     public String getExpectedPageTitle() {
-        return expectedPageTitle;
+        return this.expectedPageTitle;
     }
+
 
     @Override
     public String getExpectedPageUrl() {
-        return super.getExpectedPageUrl();
+        return this.expectedPageUrl;
     }
 }
