@@ -11,7 +11,7 @@ public class ShoppingCartStepdefs {
     }
 
     @Given("I hover over the {string} dropdown")
-    public void iHoverOverTheDropdown(String text) {
+    public void hoverOverTheDropdown(String text) {
         testContextSetup.homePage.hoverOverProductsDropdown();
     }
 }

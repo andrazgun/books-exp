@@ -14,6 +14,7 @@ public class TestContextSetup {
     public PLPPage plpPage;
     public WishlistPage wishlistPage;
     public RegistrationPage registrationPage;
+    public Search search;
 
     public TestContextSetup() {
         this.headerNav = new HeaderNav(driver);
@@ -24,5 +25,6 @@ public class TestContextSetup {
         this.plpPage = new PLPPage(driver);
         this.wishlistPage = new WishlistPage(driver);
         this.registrationPage = new RegistrationPage(driver);
+        this.search = new Search(driver);
     }
 }

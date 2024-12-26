@@ -21,13 +21,13 @@ public class LoginPage extends BasePage {
         super.openPage(expectedPageUrl);
     }
 
-    public void insertEmail(String email) {
+    public void enterEmail(String email) {
         waitUntilElementIsClickable(getBaseElement(emailField));
         getBaseElement(emailField).clear();
         getBaseElement(emailField).sendKeys(email);
     }
 
-    public void insertPassword(String email) {
+    public void enterPassword(String email) {
         waitUntilElementIsClickable(getBaseElement(passwordField));
         getBaseElement(passwordField).clear();
         getBaseElement(passwordField).sendKeys(email);

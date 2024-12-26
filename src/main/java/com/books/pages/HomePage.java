@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 public class HomePage extends BasePage {
 
     private final String expectedPageUrl = "https://www.books-express.ro/";
-    private final By searchField = By.cssSelector("[id='search']");
-    private final By searchButton = By.cssSelector("[class='button special search right']");
     private final By productsDropdown = By.cssSelector("[id='products']");
     private final By categoryList = By.cssSelector("[class='category-menu']");
     private final By cookieBotDialog = By.cssSelector("[id='CybotCookiebotDialog']");
@@ -21,11 +19,6 @@ public class HomePage extends BasePage {
 
     public void openPage() {
         super.openPage(expectedPageUrl);
-    }
-
-    public void searchForBook(String bookName) {
-        getBaseElement(searchField).sendKeys(bookName);
-        getBaseElement(searchButton).click();
     }
 
     @Override

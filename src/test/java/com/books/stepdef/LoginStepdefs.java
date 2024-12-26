@@ -1,7 +1,6 @@
 package com.books.stepdef;
 
 import com.books.utils.TestContextSetup;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -30,19 +29,19 @@ public class LoginStepdefs {
     }
 
     @When("I enter email {string}")
-    public void iInsertEmailEmail(String email) {
-        testContextSetup.registrationPage.enterEmail(email);
+    public void enterEmail(String email) {
+        testContextSetup.loginPage.enterEmail(email);
 //        testContextSetup.loginPage.waitForPageLoad();
     }
 
     @When("I enter password {string}")
-    public void iInsertThePassword(String password) {
-        testContextSetup.loginPage.insertPassword(password);
+    public void enterPassword(String password) {
+        testContextSetup.registrationPage.enterPassword(password);
 //        testContextSetup.loginPage.waitForPageLoad();
     }
 
     @Then("I should see the Login Page")
-    public void iShouldSeeTheLoginPage() {
+    public void shouldSeeTheLoginPage() {
         String actualTitle = testContextSetup.headerNav.getActualPageTitle();
         String expectedTitle = testContextSetup.loginPage.getExpectedPageTitle();
         assertThat(expectedTitle).as("Page title contains %s name", expectedTitle)
@@ -50,12 +49,12 @@ public class LoginStepdefs {
     }
 
     @Given("I navigate to Login Page")
-    public void iNavigateToLoginPage() {
+    public void navigateToLoginPage() {
         testContextSetup.loginPage.openPage();
     }
 
     @Then("I should see the Login button")
-    public void iShouldSeeTheLoginButton() {
+    public void shouldSeeTheLoginButton() {
         assertThat(testContextSetup.loginPage.getLoginButtonElement().isDisplayed())
                 .withFailMessage("Expected element to be displayed, but it was not.")
                 .isTrue();
