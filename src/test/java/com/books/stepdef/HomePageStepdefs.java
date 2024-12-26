@@ -23,11 +23,8 @@ public class HomePageStepdefs {
 
     @And("Cookie dialog is displayed")
     public void cookieDialogIsDisplayed() {
-        assertThat(testContextSetup.homePage.getClickableCookiesDialogElement())
-                .as("Base element from cookieBotDialog")
-                .isNotNull();
-
-        assertThat(testContextSetup.homePage.getClickableCookiesDialogElement().isDisplayed())
+        boolean isCookieDialogDisplayed = testContextSetup.homePage.getClickableCookiesDialogElement().isDisplayed();
+        assertThat(isCookieDialogDisplayed)
                 .withFailMessage("Expected the cookieBot dialog to be displayed, but it was not.")
                 .isTrue();
     }
@@ -53,6 +50,4 @@ public class HomePageStepdefs {
     public void clickTheProductCategoryNamed(String categoryName) {
         testContextSetup.homePage.clickOnProductCategory(categoryName);
     }
-
-
 }

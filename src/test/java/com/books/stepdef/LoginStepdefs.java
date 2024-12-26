@@ -14,11 +14,6 @@ public class LoginStepdefs {
         this.testContextSetup = testContextSetup;
     }
 
-//    @When("I click Login button on Login Page")
-//    public void iClickLoginButtonOnLoginPage() {
-//        testContextSetup.loginPage.clickLoginButton();
-//    }
-
     @When("I click Login button")
     public void clickLoginButton() {
         testContextSetup.loginPage.clickLoginButton();
@@ -28,23 +23,22 @@ public class LoginStepdefs {
         testContextSetup.loginPage.clickEmailButton();
     }
 
-    @When("I enter email {string}")
-    public void enterEmail(String email) {
+    @When("I enter email {string} on Login page")
+    public void enterEmailOnLoginPage(String email) {
         testContextSetup.loginPage.enterEmail(email);
-//        testContextSetup.loginPage.waitForPageLoad();
     }
 
     @When("I enter password {string}")
     public void enterPassword(String password) {
-        testContextSetup.registrationPage.enterPassword(password);
-//        testContextSetup.loginPage.waitForPageLoad();
+        testContextSetup.loginPage.enterPassword(password);
     }
 
     @Then("I should see the Login Page")
     public void shouldSeeTheLoginPage() {
         String actualTitle = testContextSetup.headerNav.getActualPageTitle();
         String expectedTitle = testContextSetup.loginPage.getExpectedPageTitle();
-        assertThat(expectedTitle).as("Page title contains %s name", expectedTitle)
+        assertThat(expectedTitle)
+                .withFailMessage("Expected the page title to contain '%s', but was '%s'", actualTitle, expectedTitle)
                 .contains(actualTitle);
     }
 

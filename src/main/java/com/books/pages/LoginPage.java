@@ -22,15 +22,11 @@ public class LoginPage extends BasePage {
     }
 
     public void enterEmail(String email) {
-        waitUntilElementIsClickable(getBaseElement(emailField));
-        getBaseElement(emailField).clear();
-        getBaseElement(emailField).sendKeys(email);
+        enterText(email, emailField);
     }
 
-    public void enterPassword(String email) {
-        waitUntilElementIsClickable(getBaseElement(passwordField));
-        getBaseElement(passwordField).clear();
-        getBaseElement(passwordField).sendKeys(email);
+    public void enterPassword(String password) {
+        enterText(password, passwordField);
     }
 
     @Override
@@ -44,10 +40,12 @@ public class LoginPage extends BasePage {
     }
 
     public void clickEmailButton() {
-        getBaseElement(emailButton).click();
+        waitUntilElementIsClickable(getBaseElement(emailButton));
+        clickButton(emailButton);
     }
 
     public void clickLoginButton() {
+        waitUntilElementIsClickable(getBaseElement(loginButton));
         getBaseElement(loginButton).click();
     }
 

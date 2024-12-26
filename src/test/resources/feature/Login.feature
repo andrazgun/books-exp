@@ -8,7 +8,7 @@
 #    Given I hover over Account icon on Header
 #    When I click Login button on Header
 #    Then I should see the Login Page
-#    When I enter email "agtest1@yopmail.com"
+#    When I enter email "agtest1@yopmail.com" on Login page
 #    And I click Email button
 #    And I enter password "Test!1234"
 #    And I click Login button

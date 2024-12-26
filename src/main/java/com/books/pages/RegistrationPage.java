@@ -38,39 +38,29 @@ public class RegistrationPage extends BasePage {
         return this.expectedPageUrl;
     }
 
-    public void clickRegisterButton() throws IOException {
-        JavaScriptUtils.scrollScreenDown();
-        getBaseElement(submitButton).click();
-    }
-
-    public void enterPassword(String email) {
-        waitUntilElementIsClickable(getBaseElement(passwordField));
-        getBaseElement(passwordField).clear();
-        getBaseElement(passwordField).sendKeys(email);
-    }
-
-    public void enterPasswordConfirm(String passwordConfirm) {
-        waitUntilElementIsClickable(getBaseElement(passwordConfirmField));
-        getBaseElement(passwordConfirmField).clear();
-        getBaseElement(passwordConfirmField).sendKeys(passwordConfirm);
-    }
-
     public void enterEmail(String email) {
-        waitUntilElementIsClickable(getBaseElement(emailField));
-        getBaseElement(emailField).clear();
-        getBaseElement(emailField).sendKeys(email);
+        enterText(email, emailField);
+    }
+
+    public void enterPassword(String password) {
+        enterText(password, passwordField);
     }
 
     public void enterFirstName(String firstName) {
-        waitUntilElementIsClickable(getBaseElement(firstNameField));
-        getBaseElement(firstNameField).clear();
-        getBaseElement(firstNameField).sendKeys(firstName);
+        enterText(firstName, firstNameField);
     }
 
     public void enterLastName(String lastName) {
-        waitUntilElementIsClickable(getBaseElement(lastNameField));
-        getBaseElement(lastNameField).clear();
-        getBaseElement(lastNameField).sendKeys(lastName);
+        enterText(lastName, lastNameField);
+    }
+
+    public void enterPasswordConfirm(String passwordConfirm) {
+        enterText(passwordConfirm, passwordConfirmField);
+    }
+
+    public void clickRegisterButton() throws IOException {
+        JavaScriptUtils.scrollScreenDown();
+        clickButton(submitButton);
     }
 
     public WebElement getEmailErrorElement() {

@@ -4,8 +4,6 @@ import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchStepdefs {
@@ -30,7 +28,7 @@ public class SearchStepdefs {
 
     @When("I search for {string}")
     public void searchFor(String productName) {
-        testContextSetup.search.searchForProduct(productName);
+        testContextSetup.search.enterProductName(productName);
     }
 
     @Then("I should see a search result list")

@@ -1,5 +1,6 @@
 package com.books.pages;
 
+import com.books.utils.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +18,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.WAIT_TIME_OUT));
     }
 
     public void openPage(String url) {
@@ -63,6 +64,21 @@ public abstract class BasePage {
 
     public WebElement getBaseElement(By element) {
         return driver.findElement(element);
+    }
+
+    public void enterText(String text, By element) {
+        waitUntilElementIsClickable(getBaseElement(element));
+        getBaseElement(element).clear();
+        getBaseElement(element).sendKeys(text);
+    }
+
+    public String getText(By element) {
+        return getBaseElement(element).getText();
+    }
+
+    public void clickButton(By element) {
+        waitUntilElementIsClickable(getBaseElement(element));
+        getBaseElement(element).click();
     }
 
     public void waitUntilElementIsClickable(WebElement element) {

@@ -24,10 +24,14 @@ public class RegistrationStepdefs {
         testContextSetup.registrationPage.openPage();
         String actualUrl = testContextSetup.registrationPage.getActualPageUrl();
         String expectedUrl = testContextSetup.registrationPage.getExpectedPageUrl();
-
         assertThat(actualUrl)
                 .withFailMessage("Expected the page URL to contain '%s', but the actual URL was '%s'", expectedUrl, actualUrl)
                 .contains(expectedUrl);
+    }
+
+    @When("I enter email {string} on Registration page")
+    public void enterEmailOnRegistrationPage(String email) {
+        testContextSetup.registrationPage.enterEmail(email);
     }
 
     @When("I enter password again {string}")
@@ -53,7 +57,6 @@ public class RegistrationStepdefs {
     @Then("I should see an error message")
     public void shouldSeeAMessage() {
         boolean isErrorDisplayed = testContextSetup.registrationPage.getEmailErrorElement().isDisplayed();
-        String isErrorDisplayedText = testContextSetup.registrationPage.getEmailErrorMessage();
         assertThat(isErrorDisplayed)
                 .withFailMessage("Expected the error message to be displayed, but it was not.")
                 .isTrue();
@@ -63,9 +66,9 @@ public class RegistrationStepdefs {
     public void fillInDetails(DataTable dataTable) {
         Map<String, String> details = dataTable.asMap(String.class, String.class);
         details.forEach((field, value) ->
-                testContextSetup.registrationPage.fillField(field, value)
-        );
+                testContextSetup.registrationPage.fillField(field, value));
     }
+
     @Then("I should see the following error messages:")
     public void verifyErrorMessages(DataTable dataTable) {
         Map<String, String> expectedErrorMessages = dataTable.asMap(String.class, String.class);
@@ -76,6 +79,4 @@ public class RegistrationStepdefs {
                     .isEqualTo(expectedMessage);
         });
     }
-
-
 }

@@ -17,13 +17,12 @@ public class Search extends BasePage {
         super(driver);
     }
 
-    public void searchForProduct(String bookName) {
-        getBaseElement(searchField).clear();
-        getBaseElement(searchField).sendKeys(bookName);
+    public void enterProductName(String productName) {
+        enterText(productName, searchField);
     }
 
     public void clickSearchButton() {
-        getBaseElement(searchButton).click();
+        clickButton(searchButton);
     }
 
     public List<String> getSearchResultList() {
@@ -33,6 +32,4 @@ public class Search extends BasePage {
     public WebElement getSearchResultError() {
         return getBaseElement(searchResultError);
     }
-
-
 }

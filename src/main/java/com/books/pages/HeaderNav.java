@@ -20,38 +20,38 @@ public class HeaderNav extends BasePage {
     }
 
     public void hoverOverAccountIcon() {
-        super.hoverOverElement(getBaseElement(accountIcon));
+        hoverOverElement(getBaseElement(accountIcon));
     }
 
     public void hoverOverListIcon() {
-        super.hoverOverElement(getBaseElement(listIcon));
+        hoverOverElement(getBaseElement(listIcon));
     }
 
     public void hoverOverCartIcon() {
-        super.hoverOverElement(getBaseElement(cartIcon));
+        hoverOverElement(getBaseElement(cartIcon));
     }
 
     public void clickLoginButton() {
-      getBaseElement(loginButton).click();
+      clickButton(loginButton);
     }
 
     public void clickUserDetailsButton() {
-        getBaseElement(userDetailsButton).click();
+      clickButton(userDetailsButton);
     }
 
     public void clickLogoutButton() {
-      getBaseElement(logoutButton).click();
+      clickButton(logoutButton);
     }
 
     public void clickListButton() {
-        getBaseElement(listButton).click();
+      clickButton(listButton);
     }
 
     public void clickCartButton() {
-        getBaseElement(cartButton).click();
+      clickButton(cartButton);
     }
 
     public String getPersonalDetailsText() {
-      return getBaseElement(personalDetailsButton).getText();
+      return getText(personalDetailsButton);
     }
 }

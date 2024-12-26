@@ -26,7 +26,8 @@ public class HeaderStepdefs {
         public void shouldSeePersonalDetailsOnTheHeader (String actualText){
             testContextSetup.headerNav.hoverOverAccountIcon();
             String expectedText = testContextSetup.headerNav.getPersonalDetailsText();
-            assertThat(expectedText).as("Expected text contains %s", expectedText)
+            assertThat(expectedText)
+                    .withFailMessage("Expected text to contain '%s', but was '%s'", actualText, expectedText)
                     .contains(actualText);
         }
 

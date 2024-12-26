@@ -27,7 +27,7 @@ public class HomePage extends BasePage {
     }
 
     public void hoverOverProductsDropdown() {
-        super.hoverOverElement(getBaseElement(productsDropdown));
+        hoverOverElement(getBaseElement(productsDropdown));
     }
 
     public void clickOnProductCategory(String elementName) {
