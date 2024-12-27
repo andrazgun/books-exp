@@ -17,8 +17,8 @@ public class HomePageStepdefs {
     @Given("I navigate to Homepage")
     public void navigateToHomepage() {
         testContextSetup.homePage.openPage();
-        assertThat(testContextSetup.homePage.getActualPageUrl()).as("Expected Page URL to be %s", testContextSetup.homePage.getActualPageUrl())
-                .contains(testContextSetup.homePage.getActualPageUrl());
+        assertThat(testContextSetup.homePage.getCurrentUrl()).as("Expected Page URL to be %s", testContextSetup.homePage.getCurrentUrl())
+                .contains(testContextSetup.homePage.getCurrentUrl());
     }
 
     @And("Cookie dialog is displayed")

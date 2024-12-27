@@ -20,15 +20,15 @@ public class HeaderNav extends BasePage {
     }
 
     public void hoverOverAccountIcon() {
-        hoverOverElement(getBaseElement(accountIcon));
+        hoverOverElement(getBaseWebElement(accountIcon));
     }
 
     public void hoverOverListIcon() {
-        hoverOverElement(getBaseElement(listIcon));
+        hoverOverElement(getBaseWebElement(listIcon));
     }
 
     public void hoverOverCartIcon() {
-        hoverOverElement(getBaseElement(cartIcon));
+        hoverOverElement(getBaseWebElement(cartIcon));
     }
 
     public void clickLoginButton() {

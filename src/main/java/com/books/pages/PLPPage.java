@@ -9,11 +9,11 @@ public class PLPPage extends BasePage {
     }
 
     @Override
-    public String getActualPageUrl() {
-        return super.getActualPageUrl();
+    public String getCurrentUrl() {
+        return super.getCurrentUrl();
     }
 
     public boolean isCategoryPresentInUrl(String categoryName) {
-        return getActualPageUrl().toLowerCase().contains(categoryName.toLowerCase());
+        return getCurrentUrl().toLowerCase().contains(categoryName.toLowerCase());
     }
 }

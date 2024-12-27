@@ -22,12 +22,12 @@ public class HomePage extends BasePage {
     }
 
     @Override
-    public String getExpectedPageUrl() {
+    public String getExpectedUrl() {
         return this.expectedPageUrl;
     }
 
     public void hoverOverProductsDropdown() {
-        hoverOverElement(getBaseElement(productsDropdown));
+        hoverOverElement(getBaseWebElement(productsDropdown));
     }
 
     public void clickOnProductCategory(String elementName) {
@@ -49,6 +49,6 @@ public class HomePage extends BasePage {
     }
 
     public WebElement getCookiesDialogElement() {
-        return getBaseElement(cookieBotDialog);
+        return getBaseWebElement(cookieBotDialog);
     }
 }

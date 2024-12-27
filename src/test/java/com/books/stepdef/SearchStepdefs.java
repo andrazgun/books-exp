@@ -1,6 +1,7 @@
 package com.books.stepdef;
 
 import com.books.utils.TestContextSetup;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -44,4 +45,10 @@ public class SearchStepdefs {
                 .withFailMessage("Expected the search result list to be empty, but it was not.")
                 .isEmpty();
     }
+
+    @Given("^I search for keyword (.+)$")
+    public void searchForKeyword(String keyword) {
+        testContextSetup.search.enterProductName(keyword);
+    }
 }
+

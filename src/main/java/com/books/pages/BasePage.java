@@ -32,28 +32,28 @@ public abstract class BasePage {
         driver.navigate().refresh();
     }
 
-    public String getActualPageUrl() {
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
 
-    public String getExpectedPageUrl() {
+    public String getExpectedUrl() {
         return this.expectedPageUrl;
     }
 
-    public String getExpectedPageTitle() {
+    public String getExpectedTitle() {
         return this.expectedPageTitle;
     }
 
-    public String getActualPageTitle() {
+    public String getCurrentTitle() {
         return driver.getTitle();
     }
 
     public WebElement getClickableBaseElement(By element) {
-        waitUntilElementIsClickable(driver.findElement(element));
-        return getBaseElement(element);
+        waitForElementToBeClickable(driver.findElement(element));
+        return getBaseWebElement(element);
     }
 
-    public void waitUntilElementIsVisible(By element) {
+    public void waitForElementToBeVisible(By element) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
@@ -62,35 +62,40 @@ public abstract class BasePage {
         actions.moveToElement(element).perform();
     }
 
-    public WebElement getBaseElement(By element) {
+    public WebElement getBaseWebElement(By element) {
         return driver.findElement(element);
     }
 
     public void enterText(String text, By element) {
-        waitUntilElementIsClickable(getBaseElement(element));
-        getBaseElement(element).clear();
-        getBaseElement(element).sendKeys(text);
+        waitForElementToBeClickable(getBaseWebElement(element));
+        getBaseWebElement(element).clear();
+        getBaseWebElement(element).sendKeys(text);
     }
 
     public String getText(By element) {
-        return getBaseElement(element).getText();
+        return getBaseWebElement(element).getText();
     }
 
     public void clickButton(By element) {
-        waitUntilElementIsClickable(getBaseElement(element));
-        getBaseElement(element).click();
+        waitForElementToBeClickable(getBaseWebElement(element));
+        getBaseWebElement(element).click();
     }
 
-    public void waitUntilElementIsClickable(WebElement element) {
+    public void clickButton(WebElement element) {
+        waitForElementToBeClickable(element);
+        element.click();
+    }
+
+    public void waitForElementToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public WebElement getFirstElementFromLimitedListOfElements(By element) {
+    public WebElement getElementFromLimitedListOfElements(By element, int listLength, int index) {
         List<WebElement> elementsList = driver.findElements(element);
         return elementsList.stream()
-                .limit(5)
+                .limit(listLength)
                 .toList()
-                .get(0);
+                .get(index);
     }
 
     public List<String> getElementsTitleFromList(By elementCategory) {

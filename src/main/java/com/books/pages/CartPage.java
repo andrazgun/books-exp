@@ -17,7 +17,7 @@ public class CartPage extends BasePage {
     }
 
     @Override
-    public String getActualPageTitle() {
-        return super.getActualPageTitle();
+    public String getCurrentTitle() {
+        return super.getCurrentTitle();
     }
 }
