@@ -34,7 +34,7 @@ public class RegistrationPage extends BasePage {
     }
 
     @Override
-    public String getExpectedPageUrl() {
+    public String getExpectedUrl() {
         return this.expectedPageUrl;
     }
 
@@ -64,8 +64,8 @@ public class RegistrationPage extends BasePage {
     }
 
     public WebElement getEmailErrorElement() {
-        waitUntilElementIsVisible(emailError);
-        return getBaseElement(emailError);
+        waitForElementToBeVisible(emailError);
+        return getBaseWebElement(emailError);
     }
 
     private final Map<String, Supplier<String>> errorMessageSuppliers = Map.of(
@@ -108,18 +108,18 @@ public class RegistrationPage extends BasePage {
     }
 
     public String getFirstNameErrorMessage() {
-        return getBaseElement(firstNameError).getText();
+        return getBaseWebElement(firstNameError).getText();
     }
 
     public String getLastNameErrorMessage() {
-        return getBaseElement(lastNameError).getText();
+        return getBaseWebElement(lastNameError).getText();
     }
 
     public String getPasswordErrorMessage() {
-        return getBaseElement(passwordError).getText();
+        return getBaseWebElement(passwordError).getText();
     }
 
     public String getPasswordAgainErrorMessage() {
-        return getBaseElement(passwordConfirmError).getText();
+        return getBaseWebElement(passwordConfirmError).getText();
     }
 }

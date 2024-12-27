@@ -22,8 +22,8 @@ public class RegistrationStepdefs {
     @Given("I navigate to Registration page")
     public void navigateToHomepage() {
         testContextSetup.registrationPage.openPage();
-        String actualUrl = testContextSetup.registrationPage.getActualPageUrl();
-        String expectedUrl = testContextSetup.registrationPage.getExpectedPageUrl();
+        String actualUrl = testContextSetup.registrationPage.getCurrentUrl();
+        String expectedUrl = testContextSetup.registrationPage.getExpectedUrl();
         assertThat(actualUrl)
                 .withFailMessage("Expected the page URL to contain '%s', but the actual URL was '%s'", expectedUrl, actualUrl)
                 .contains(expectedUrl);

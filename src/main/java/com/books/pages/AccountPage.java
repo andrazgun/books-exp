@@ -18,12 +18,12 @@ public class AccountPage extends BasePage {
     }
 
     @Override
-    public String getExpectedPageUrl() {
+    public String getExpectedUrl() {
         return this.expectedPageUrl;
     }
 
     public WebElement getViewablePersonalDetailsElement() {
-        waitUntilElementIsVisible(personalDetailsElement);
-        return getBaseElement(personalDetailsElement);
+        waitForElementToBeVisible(personalDetailsElement);
+        return getBaseWebElement(personalDetailsElement);
     }
 }

@@ -12,13 +12,13 @@ public class WishlistPage extends BasePage {
     }
 
     @Override
-    public String getExpectedPageTitle() {
+    public String getExpectedTitle() {
         return this.expectedPageTitle;
     }
 
 
     @Override
-    public String getExpectedPageUrl() {
+    public String getExpectedUrl() {
         return this.expectedPageUrl;
     }
 }

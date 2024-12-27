@@ -35,8 +35,8 @@ public class LoginStepdefs {
 
     @Then("I should see the Login Page")
     public void shouldSeeTheLoginPage() {
-        String actualTitle = testContextSetup.headerNav.getActualPageTitle();
-        String expectedTitle = testContextSetup.loginPage.getExpectedPageTitle();
+        String actualTitle = testContextSetup.headerNav.getCurrentTitle();
+        String expectedTitle = testContextSetup.loginPage.getExpectedTitle();
         assertThat(expectedTitle)
                 .withFailMessage("Expected the page title to contain '%s', but was '%s'", actualTitle, expectedTitle)
                 .contains(actualTitle);

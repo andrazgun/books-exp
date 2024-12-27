@@ -30,26 +30,26 @@ public class LoginPage extends BasePage {
     }
 
     @Override
-    public String getExpectedPageTitle() {
+    public String getExpectedTitle() {
         return this.expectedPageTitle;
     }
 
     @Override
-    public String getExpectedPageUrl() {
+    public String getExpectedUrl() {
         return this.expectedPageUrl;
     }
 
     public void clickEmailButton() {
-        waitUntilElementIsClickable(getBaseElement(emailButton));
+        waitForElementToBeClickable(getBaseWebElement(emailButton));
         clickButton(emailButton);
     }
 
     public void clickLoginButton() {
-        waitUntilElementIsClickable(getBaseElement(loginButton));
-        getBaseElement(loginButton).click();
+        waitForElementToBeClickable(getBaseWebElement(loginButton));
+        getBaseWebElement(loginButton).click();
     }
 
     public WebElement getLoginButtonElement() {
-        return getBaseElement(loginButton);
+        return getBaseWebElement(loginButton);
     }
 }

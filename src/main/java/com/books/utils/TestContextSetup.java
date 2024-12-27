@@ -15,6 +15,7 @@ public class TestContextSetup {
     public WishlistPage wishlistPage;
     public RegistrationPage registrationPage;
     public Search search;
+    public SubNav subNav;
 
     public TestContextSetup() {
         this.headerNav = new HeaderNav(driver);
@@ -26,5 +27,6 @@ public class TestContextSetup {
         this.wishlistPage = new WishlistPage(driver);
         this.registrationPage = new RegistrationPage(driver);
         this.search = new Search(driver);
+        this.subNav = new SubNav(driver);
     }
 }
