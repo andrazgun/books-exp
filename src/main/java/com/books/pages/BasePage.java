@@ -81,16 +81,21 @@ public abstract class BasePage {
         getBaseWebElement(element).click();
     }
 
+    public void clickButton(WebElement element) {
+        waitForElementToBeClickable(element);
+        element.click();
+    }
+
     public void waitForElementToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public WebElement getFirstElementFromLimitedListOfElements(By element) {
+    public WebElement getElementFromLimitedListOfElements(By element, int listLength, int index) {
         List<WebElement> elementsList = driver.findElements(element);
         return elementsList.stream()
-                .limit(5)
+                .limit(listLength)
                 .toList()
-                .get(0);
+                .get(index);
     }
 
     public List<String> getElementsTitleFromList(By elementCategory) {

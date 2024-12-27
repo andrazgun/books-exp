@@ -8,13 +8,13 @@ Feature: Search Functionality
     Given I search for keyword <name>
     And I click Search button
     Then I should see the keyword <name>
+    When I hover over the sorting filter
+    And I click filter by price ascending
+    Then the product list should be ordered by price ascending
     Examples:
-      | name      |
-      | Selenium  |
-      | Cucumber  |
-When I hover over the sorting filter
-  And I click filter by price ascending
-  Then the product list should be order by price ascending
+      | name     |
+      | Selenium |
+#      | Cucumber |
 
 #
 #  Scenario: Searching for a specific book returns a list of specific books

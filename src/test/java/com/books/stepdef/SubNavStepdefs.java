@@ -5,6 +5,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SubNavStepdefs {
@@ -34,13 +36,16 @@ public class SubNavStepdefs {
         testContextSetup.subNav.clickFilterPriceAsc();
     }
 
-    @Then("the product list should be order by price ascending")
-    public void theProductListShouldBeOrderByPriceAscending() {
-        prices = testContextSetup.search.getProductPrices();
-        assertThat(testContextSetup.search.getProductPrices())
-                .as("The product list should be ordered by price in ascending order.")
-                .isSorted()
-                .withFailMessage("The product list is not sorted by price in ascending order. Found prices: %s", prices);
+    @Then("the product list should be ordered by price ascending")
+    public void theProductListShouldBeOrderedByPriceAscending() {
+        System.out.println("Prices" + testContextSetup.search.getProductPrices());
+        List<Double> prices = testContextSetup.search.getProductPrices();
+
+        List<Double> sortedPrices = prices.stream().sorted().toList();
+        assertThat(prices.equals(sortedPrices))
+                .withFailMessage("The product list should be ordered by price in ascending order but it was not.")
+                .isTrue();
+//                .withFailMessage("The product list is not sorted by price in ascending order. Found prices: %s", prices);
 
     }
 }
