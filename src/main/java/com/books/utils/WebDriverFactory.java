@@ -31,14 +31,14 @@ public class WebDriverFactory {
                     case "firefox":
                         FirefoxOptions options1 = new FirefoxOptions();
                         options1.addArguments("-private");
-//                        options1.addArguments("--headless");
+                        options1.addArguments("--headless");
                         WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver(options1);
                         break;
                     default:
                         throw new IllegalArgumentException("Unsupported browser: " + browser);
                 }
-                System.out.println("Starting " + browser + " browser");
+                System.out.println("\"" + browser + "\"" + " browser selected");
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read browser configuration", e);
             }

@@ -1,5 +1,6 @@
 package com.books.pages;
 
+import com.books.utils.Constants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,7 +18,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.WAIT_TIME_OUT));
     }
 
     public void openPage(String url) {
@@ -65,16 +66,39 @@ public abstract class BasePage {
         return driver.findElement(element);
     }
 
+    public void enterText(String text, By element) {
+        waitUntilElementIsClickable(getBaseElement(element));
+        getBaseElement(element).clear();
+        getBaseElement(element).sendKeys(text);
+    }
+
+    public String getText(By element) {
+        return getBaseElement(element).getText();
+    }
+
+    public void clickButton(By element) {
+        waitUntilElementIsClickable(getBaseElement(element));
+        getBaseElement(element).click();
+    }
+
     public void waitUntilElementIsClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public WebElement getLimitedNumberOfElementsFromList(By element) {
+    public WebElement getFirstElementFromLimitedListOfElements(By element) {
         List<WebElement> elementsList = driver.findElements(element);
-        List<WebElement> limitedElementsList = elementsList.stream()
+        return elementsList.stream()
                 .limit(5)
+                .toList()
+                .get(0);
+    }
+
+    public List<String> getElementsTitleFromList(By elementCategory) {
+        List<WebElement> elementsList = driver.findElements(elementCategory);
+        return elementsList.stream()
+                .limit(3)
+                .map(WebElement::getText)
                 .toList();
-        return limitedElementsList.get(0);
     }
 
     public WebElement getElementFromElementsCategory(String elementName, By elementCategory) {

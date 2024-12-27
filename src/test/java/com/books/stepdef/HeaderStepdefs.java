@@ -13,25 +13,26 @@ public class HeaderStepdefs {
     }
 
         @When("I hover over Account icon on Header")
-        public void iHoverOverAccountIcon () {
+        public void hoverOverAccountIcon () {
             testContextSetup.headerNav.hoverOverAccountIcon();
         }
 
         @And("I click Login button on Header")
-        public void iClickLoginButton () {
+        public void clickLoginButton () {
             testContextSetup.headerNav.clickLoginButton();
         }
 
         @Then("I should see {string} on the Header")
-        public void iShouldSeePersonalDetailsOnTheHeader (String actualText){
+        public void shouldSeePersonalDetailsOnTheHeader (String actualText){
             testContextSetup.headerNav.hoverOverAccountIcon();
             String expectedText = testContextSetup.headerNav.getPersonalDetailsText();
-            assertThat(expectedText).as("Expected text contains %s", expectedText)
+            assertThat(expectedText)
+                    .withFailMessage("Expected text to contain '%s', but was '%s'", actualText, expectedText)
                     .contains(actualText);
         }
 
         @And("I click Detalii Personale button on Header")
-        public void iClickButtonOnHeader () {
+        public void clickUserDetailsButtonOnHeader () {
             testContextSetup.headerNav.clickUserDetailsButton();
         }
     }

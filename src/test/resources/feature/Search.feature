@@ -6,8 +6,11 @@
 #
 #  Scenario: Searching for a specific book returns a list of specific books
 #    Given I search for "Selenium Testing"
-#    Then I should see a search result with "Selenium Testing"
+#    And I click Search button
+#    Then I should see a search result list
 #
 #  Scenario: Search for a non-existing product
 #    Given I search for "NonExistentBook123"
-#    Then I should see a message "No results found"
+#    And I click Search button
+#    Then I should not see a search result list
+#    And I should see a message "Îmi pare nespus de rău, dar nu am găsit în acest moment ceea ce îți dorești. Aș mai avea nevoie de puțin timp."

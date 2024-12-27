@@ -13,7 +13,8 @@ public class PLPStepdefs {
     }
 
     @Then("the {string} product list page opens")
-    public void theProductProductListPageOpens(String productCategory) {
-        assertThat(testContextSetup.plpPage.getActualPageUrl()).containsIgnoringCase(productCategory);
+    public void productListPageOpens(String productCategory) {
+        assertThat(testContextSetup.plpPage.getActualPageUrl())
+                .containsIgnoringCase(productCategory);
     }
 }
