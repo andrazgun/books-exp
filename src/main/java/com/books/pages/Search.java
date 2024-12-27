@@ -40,6 +40,8 @@ public class Search extends BasePage {
         return driver.findElements(searchResultList);
     }
 
+
+//    check this method, it returns only 1 price
     public List<Double> getProductPrices() {
         List<Double> prices = getProductsFromSearchList().stream()
                 .map(product -> product.findElement(productPriceSelector).getText()) // Extract price text

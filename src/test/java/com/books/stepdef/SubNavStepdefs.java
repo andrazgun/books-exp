@@ -45,7 +45,5 @@ public class SubNavStepdefs {
         assertThat(prices.equals(sortedPrices))
                 .withFailMessage("The product list should be ordered by price in ascending order but it was not.")
                 .isTrue();
-//                .withFailMessage("The product list is not sorted by price in ascending order. Found prices: %s", prices);
-
     }
 }
