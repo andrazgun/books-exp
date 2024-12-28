@@ -29,7 +29,7 @@ public class Search extends BasePage {
     }
 
     public List<String> getSearchResultList() {
-        return getElementsTitleFromList(searchResultList);
+        return getListWithElementsText(searchResultList);
     }
 
     public WebElement getSearchResultError() {

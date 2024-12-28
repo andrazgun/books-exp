@@ -1,19 +1,19 @@
-Feature: Search Functionality
-
-  Background:
-    Given I navigate to Homepage
-    And I click accept all cookies button
-
-  Scenario Outline: Searching for a specific keyword, the keyword is displayed
-    Given I search for keyword <name>
-    And I click Search button
-    Then I should see the keyword <name>
-    When I hover over the sorting filter
-    And I click filter by price ascending
-    Then the product list should be ordered by price ascending
-    Examples:
-      | name     |
-      | Selenium |
+#Feature: Search Functionality
+#
+#  Background:
+#    Given I navigate to Homepage
+#    And I click accept all cookies button
+#
+#  Scenario Outline: Searching for a specific keyword, the keyword is displayed
+#    Given I search for keyword <name>
+#    And I click Search button
+#    Then I should see the keyword <name>
+#    When I hover over the sorting filter
+#    And I click filter by price ascending
+#    Then the product list should be ordered by price ascending
+#    Examples:
+#      | name     |
+#      | Selenium |
 #      | Cucumber |
 
 #

@@ -54,7 +54,7 @@ public class WebDriverFactory {
 //    }
 
 // ThreadLocal variable to hold WebDriver for each thread (i.e., each test in parallel)
-private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         if (driverThreadLocal.get() == null) {
@@ -67,6 +67,7 @@ private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
                     case "chrome":
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("incognito");
+//                        options.addArguments("--headless");
                         driverThreadLocal.set(new ChromeDriver(options));
                         break;
                     case "firefox":

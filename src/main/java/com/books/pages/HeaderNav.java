@@ -1,7 +1,9 @@
 package com.books.pages;
 
+import com.books.utils.SeleniumUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HeaderNav extends BasePage {
 
@@ -14,6 +16,7 @@ public class HeaderNav extends BasePage {
     private final By listIcon = By.cssSelector("[id='show-lists']");
     private final By listButton = By.cssSelector("[href='/user/wishlist']");
     private final By personalDetailsButton = By.cssSelector("[href='/user/details']");
+    private final By userDataDropdown = By.cssSelector("[id='user-data'] > ul > li");
 
   public HeaderNav(WebDriver driver) {
       super(driver);
@@ -53,5 +56,13 @@ public class HeaderNav extends BasePage {
 
     public String getPersonalDetailsText() {
       return getText(personalDetailsButton);
+    }
+
+    public void clickUserSection(String name) {
+        printWebElementTexts(userDataDropdown);
+        WebElement sectionSelected = findElement(userDataDropdown, name, 5);
+        waitForElementToBeClickable(sectionSelected);
+        sectionSelected.click();
+
     }
 }
