@@ -14,7 +14,7 @@ Feature: Login Functionality
     And I click Login button
     And I navigate to Homepage
     And I hover over Account icon on Header
-    And I click "Detalii Personale" button on Header
+    And I click "DETALII PERSONALE" button on Header
     Then I should see User Details component
 
 #  Scenario: Logged in customer can access User Details page

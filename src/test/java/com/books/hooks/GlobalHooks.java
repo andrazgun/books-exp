@@ -4,7 +4,8 @@ import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import com.books.utils.WebDriverFactory;
+import com.books.utils.WebDriverInstanceFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,7 +18,7 @@ public class GlobalHooks {
     @Before
     public void setUp() {
         if (driver == null) {
-            driver = WebDriverFactory.getDriver();
+            driver = WebDriverInstanceFactory.getDriver();
             driver.manage().deleteAllCookies();
             driver.manage().window().maximize();
             System.out.println("WebDriver initialized.");
@@ -27,7 +28,7 @@ public class GlobalHooks {
     @After
     public void tearDown() {
         if (driver != null) {
-            WebDriverFactory.closeDriver();
+            WebDriverInstanceFactory.closeDriver();
             driver = null;
         }
         System.out.println("WebDriver quit.");

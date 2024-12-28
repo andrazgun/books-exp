@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BasePage {
 
@@ -113,9 +112,10 @@ public abstract class BasePage {
     }
 
     public void printWebElementTexts(By locator) {
-        driver.findElements(locator).stream()  // Get list of WebElements based on the By locator
+        driver.findElements(locator)
+                .stream()  // Get list of WebElements based on the By locator
                 .map(WebElement::getText)  // Extract text from each WebElement
-                .forEach(System.out::println);  // Print each text to console
+                .forEach(text -> System.out.println("Text: [" + text + "] Length: " + text.length()));
     }
 
     public WebElement findElement(By locator, String name, int limit) {
@@ -125,25 +125,21 @@ public abstract class BasePage {
         if (limit < 1) {
             throw new IllegalArgumentException("Limit must be greater than 0.");
         }
-
-        // Find and filter the elements
         return driver.findElements(locator)
                 .stream()
+                .peek(element -> System.out.println("Element text: [" + element.getText() + "]")) // Debug
                 .limit(limit)  // Limit the stream to 'limit' elements
                 .filter(element -> matchesName(name, element.getText()))  // Match based on the name
                 .findFirst()  // Get the first match
                 .orElseThrow(() -> new IllegalArgumentException("No matching WebElement found for name: " + name));  // Throw exception if no match found
     }
 
-    private static boolean matchesName(String name, String text) {
-// Normalize both name and text by trimming and converting to lowercase
-        String normalizedName = name.trim().toLowerCase().replaceAll("\\s", "");
-        String normalizedText = text.trim().toLowerCase().replaceAll("\\s", "");
+    private static boolean matchesName(String inputText, String elemText) {
+        String normInputText = inputText.trim().toLowerCase().replaceAll("\\s", "");
+        String normElemText = elemText.trim().toLowerCase().replaceAll("\\s", "");
 
-        // Match the provided name with specific expected text in the elements
-        return (normalizedName.equals("new account") && normalizedText.contains("cont nou"))
-                || (normalizedName.equals("log in") && normalizedText.contains("intră în cont"))
-                || (normalizedName.equals("detalii personale") && normalizedText.contains("detalii personale"));
+        System.out.println("Comparing input: [" + normInputText + "] with element: [" + normElemText + "]");
+        return normElemText.contains(normInputText);
     }
 
     public WebElement getElementFromElementsCategory(String elementName, By elementCategory) {
@@ -152,13 +148,6 @@ public abstract class BasePage {
                 .filter(elem -> elem.getText().equalsIgnoreCase((elementName)))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Category with name " + elementName + " not found."));
-    }
-
-    public static List<WebElement> filterElements(List<WebElement> elements, String name, int limit) {
-        return elements.stream()
-                .filter(element -> element.getText().contains(name))
-                .limit(limit)
-                .collect(Collectors.toList());
     }
 
     public void waitForPageLoad() {

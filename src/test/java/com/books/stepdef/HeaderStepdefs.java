@@ -4,7 +4,6 @@ import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,6 +40,6 @@ public class HeaderStepdefs {
 
     @And("I click {string} button on Header")
     public void clickUserSectionOnHeader(String userSection) {
-        testContextSetup.headerNav.clickUserSection(userSection);
+        testContextSetup.headerNav.clickSelectedUserSection(userSection);
     }
 }

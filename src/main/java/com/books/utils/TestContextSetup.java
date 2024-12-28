@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class TestContextSetup {
 
-    public WebDriver driver = WebDriverFactory.getDriver();
+    public WebDriver driver = WebDriverInstanceFactory.getDriver();
     public HeaderNav headerNav;
     public HomePage homePage;
     public LoginPage loginPage;

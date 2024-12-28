@@ -23,11 +23,11 @@ public class JavaScriptUtils {
         executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    private static JavascriptExecutor getJavascriptExecutor() throws IOException {
-        return (JavascriptExecutor) WebDriverFactory.getDriver();
+    private static JavascriptExecutor getJavascriptExecutor() {
+        return (JavascriptExecutor) WebDriverInstanceFactory.getDriver();
     }
 
-    public static Object executeScript(final String script, final Object... elements) throws IOException {
+    public static Object executeScript(final String script, final Object... elements) {
         return getJavascriptExecutor().executeScript(script, elements);
     }
 }

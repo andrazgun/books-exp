@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SubNav extends BasePage{
+public class SubNav extends BasePage {
 
     private final By subNavElement = By.cssSelector("[id='breadcrumbs']");
     private final By sortFilterElement = By.cssSelector("[id='sort-filter']");
@@ -15,13 +15,14 @@ public class SubNav extends BasePage{
         super(driver);
     }
 
-    public String getSubNavText() { return getText(subNavElement); }
+    public String getSubNavText() {
+        return getText(subNavElement);
+    }
 
-    public void  hoverOverSortingFilter() {
+    public void hoverOverSortingFilter() {
         waitForElementToBeClickable(getBaseWebElement(sortFilterElement));
         hoverOverElement(getBaseWebElement(sortFilterElement));
         clickButton(sortFilterElement);
-//        System.out.println(getElementFromLimitedListOfElements(sortFilterOptions, 4, 2));
     }
 
     public WebElement getFilterPriceAscElem() {

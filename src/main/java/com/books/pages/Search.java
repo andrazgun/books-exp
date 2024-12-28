@@ -41,7 +41,7 @@ public class Search extends BasePage {
     }
 
 
-//    check this method, it returns only 1 price
+    //    **check this method, it returns only 1 price
     public List<Double> getProductPrices() {
         List<Double> prices = getProductsFromSearchList().stream()
                 .map(product -> product.findElement(productPriceSelector).getText()) // Extract price text
@@ -54,5 +54,4 @@ public class Search extends BasePage {
                 .collect(Collectors.toList());
         return prices;
     }
-
 }

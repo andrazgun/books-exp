@@ -1,7 +1,9 @@
 package com.books.stepdef;
+
 import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountStepdefs {
@@ -27,7 +29,8 @@ public class AccountStepdefs {
 
     @Then("I should see User Details component")
     public void iShouldUserDetailsComponent() {
-        assertThat(testContextSetup.accountPage.getViewablePersonalDetailsElement().isDisplayed())
+        assertThat(testContextSetup.accountPage.getViewablePersonalDetailsElement()
+                .isDisplayed())
                 .withFailMessage("Expected component is displayed, but it was not.")
                 .isTrue();
     }
