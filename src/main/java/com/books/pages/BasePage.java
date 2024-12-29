@@ -68,7 +68,6 @@ public abstract class BasePage {
     }
 
     public WebElement getBaseWebElement(By element) {
-        waitForElementToBeVisible(element);
         return driver.findElement(element);
     }
 
@@ -105,8 +104,7 @@ public abstract class BasePage {
     }
 
     public List<WebElement> getListOfElements (By element) {
-        List<WebElement> elementsList = driver.findElements(element);
-        return elementsList;
+        return driver.findElements(element);
     }
 
     public WebElement getElementFromLimitedListOfElements(By element, int listLength, int index) {

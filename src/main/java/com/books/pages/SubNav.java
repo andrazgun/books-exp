@@ -30,8 +30,6 @@ public class SubNav extends BasePage {
     }
 
     public void clickFilterPriceAsc() {
-        System.out.println(getFilterPriceAscElem().getText());
-        waitForElementToBeClickable(getFilterPriceAscElem());
         clickButton(getFilterPriceAscElem());
     }
 }

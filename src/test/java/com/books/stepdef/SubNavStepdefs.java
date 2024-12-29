@@ -16,7 +16,7 @@ public class SubNavStepdefs {
         this.testContextSetup = testContextSetup;
     }
 
-    @Then("^I should see the keyword (.+)$")
+    @Then("^I should see the keyword (.+) displayed$")
     public void iShouldSeeASearchResultListWithName(String text) {
         System.out.println(testContextSetup.subNav.getSubNavText());
         String fullText = testContextSetup.subNav.getSubNavText();
