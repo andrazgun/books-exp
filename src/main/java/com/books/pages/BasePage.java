@@ -68,6 +68,7 @@ public abstract class BasePage {
     }
 
     public WebElement getBaseWebElement(By element) {
+        waitForElementToBeVisible(element);
         return driver.findElement(element);
     }
 
@@ -95,20 +96,25 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(target));
     }
 
+    public List<String> getLimitedListWithElementsText(By element, int elementsLimit) {
+        List<WebElement> elementsList = driver.findElements(element);
+        return elementsList.stream()
+                .limit(elementsLimit)
+                .map(WebElement::getText)
+                .toList();
+    }
+
+    public List<WebElement> getListOfElements (By element) {
+        List<WebElement> elementsList = driver.findElements(element);
+        return elementsList;
+    }
+
     public WebElement getElementFromLimitedListOfElements(By element, int listLength, int index) {
         List<WebElement> elementsList = driver.findElements(element);
         return elementsList.stream()
                 .limit(listLength)
                 .toList()
                 .get(index);
-    }
-
-    public List<String> getListWithElementsText(By element) {
-        List<WebElement> elementsList = driver.findElements(element);
-        return elementsList.stream()
-                .limit(3)
-                .map(WebElement::getText)
-                .toList();
     }
 
     public void printWebElementTexts(By locator) {
@@ -118,7 +124,7 @@ public abstract class BasePage {
                 .forEach(text -> System.out.println("Text: [" + text + "] Length: " + text.length()));
     }
 
-    public WebElement findElement(By locator, String name, int limit) {
+    public WebElement findElementByName(By locator, String name, int limit) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }

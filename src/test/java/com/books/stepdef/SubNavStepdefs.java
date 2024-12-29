@@ -38,7 +38,6 @@ public class SubNavStepdefs {
 
     @Then("the product list should be ordered by price ascending")
     public void theProductListShouldBeOrderedByPriceAscending() {
-        System.out.println("Prices" + testContextSetup.search.getProductPrices());
         List<Double> prices = testContextSetup.search.getProductPrices();
 
         List<Double> sortedPrices = prices.stream().sorted().toList();

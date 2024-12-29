@@ -38,8 +38,8 @@ public class HeaderStepdefs {
         testContextSetup.headerNav.clickUserDetailsButton();
     }
 
-    @And("I click {string} button on Header")
-    public void clickUserSectionOnHeader(String userSection) {
-        testContextSetup.headerNav.clickSelectedUserSection(userSection);
+    @And("I click {string}")
+    public void clickSelectedSectionOnHeader(String selectedSection) {
+        testContextSetup.headerNav.clickSelectedSection(selectedSection);
     }
 }

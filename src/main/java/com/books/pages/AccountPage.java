@@ -8,6 +8,8 @@ public class AccountPage extends BasePage {
 
     private final String expectedPageUrl = "https://www.books-express.ro/user/details";
     private final By personalDetailsElement = By.cssSelector("[id='profile']");
+    private final By sectionListElement = By.cssSelector("[class='left'] li");
+
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -23,7 +25,12 @@ public class AccountPage extends BasePage {
     }
 
     public WebElement getViewablePersonalDetailsElement() {
-        waitForElementToBeVisible(personalDetailsElement);
         return getBaseWebElement(personalDetailsElement);
+    }
+
+    public String getSectionListText(String inputText) {
+        waitForElementToBeVisible(sectionListElement);
+        printWebElementTexts(sectionListElement);
+        return findElementByName(sectionListElement, inputText, 5).getText();
     }
 }

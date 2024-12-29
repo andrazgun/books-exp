@@ -57,9 +57,8 @@ public class HeaderNav extends BasePage {
         return getText(personalDetailsButton);
     }
 
-    public void clickSelectedUserSection(String name) {
-        printWebElementTexts(userDataDropdown);
-        WebElement sectionSelected = findElement(userDataDropdown, name, 5);
+    public void clickSelectedSection(String name) {
+        WebElement sectionSelected = findElementByName(userDataDropdown, name, 5);
         sectionSelected.click();
     }
 }

@@ -34,4 +34,12 @@ public class AccountStepdefs {
                 .withFailMessage("Expected component is displayed, but it was not.")
                 .isTrue();
     }
+//WIP
+    @Then("I should see {string} section")
+    public void iShouldSeeSection(String inputText) {
+        String expectedText = testContextSetup.accountPage.getSectionListText(inputText);
+        assertThat(expectedText)
+                .withFailMessage("Expected text to contain '%s', but was '%s'", inputText, expectedText)
+                .contains(inputText);
+    }
 }
