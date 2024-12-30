@@ -4,7 +4,7 @@ Feature: Shopping Cart Functionality
     Given I navigate to Homepage
     And I click accept all cookies button
 
-  @check
+  @wip
   Scenario: Add and remove a product from the cart
     Given I hover over the "Products" dropdown
     And I click the product category named "Lifestyle"
