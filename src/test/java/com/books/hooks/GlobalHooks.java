@@ -12,7 +12,7 @@ import java.nio.file.Files;
 
 public class GlobalHooks {
 
-    private WebDriver driver;
+    public WebDriver driver = WebDriverInstanceFactory.getDriver();
 
     @Before
     public void setUp() {
