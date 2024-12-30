@@ -8,7 +8,11 @@ import org.testng.annotations.DataProvider;
         features = "src/test/resources/feature",
         tags = "@wip",
         glue = "com/books",
-        plugin = {"pretty", "html:target/cucumber-reports.html", "json:target/cucumber.json"}
+        plugin = {
+                "pretty",
+                "html:target/cucumber-reports.html",
+                "json:target/cucumber.json"
+        }
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
 
