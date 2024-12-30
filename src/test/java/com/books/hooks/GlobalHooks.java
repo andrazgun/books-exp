@@ -3,17 +3,16 @@ package com.books.hooks;
 import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import com.books.utils.WebDriverInstanceFactory;
+import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-
 public class GlobalHooks {
 
-    private static WebDriver driver;
+    private WebDriver driver;
 
     @Before
     public void setUp() {
@@ -21,7 +20,7 @@ public class GlobalHooks {
             driver = WebDriverInstanceFactory.getDriver();
             driver.manage().deleteAllCookies();
             driver.manage().window().maximize();
-            System.out.println("WebDriver initialized.");
+            System.out.println("WebDriver initialized for thread: " + Thread.currentThread().getName());
         }
     }
 
@@ -31,7 +30,7 @@ public class GlobalHooks {
             WebDriverInstanceFactory.closeDriver();
             driver = null;
         }
-        System.out.println("WebDriver quit.");
+        System.out.println("WebDriver quit for thread: " + Thread.currentThread().getName());
     }
 
     @AfterStep
@@ -56,5 +55,4 @@ public class GlobalHooks {
             scenario.attach(screenshotBytes, "image/png", "Failure Screenshot");
         }
     }
-
 }
