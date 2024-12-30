@@ -16,7 +16,7 @@ public class SubNavStepdefs {
         this.testContextSetup = testContextSetup;
     }
 
-    @Then("^I should see the keyword (.+)$")
+    @Then("^I should see the keyword (.+) displayed$")
     public void iShouldSeeASearchResultListWithName(String text) {
         System.out.println(testContextSetup.subNav.getSubNavText());
         String fullText = testContextSetup.subNav.getSubNavText();
@@ -38,7 +38,6 @@ public class SubNavStepdefs {
 
     @Then("the product list should be ordered by price ascending")
     public void theProductListShouldBeOrderedByPriceAscending() {
-        System.out.println("Prices" + testContextSetup.search.getProductPrices());
         List<Double> prices = testContextSetup.search.getProductPrices();
 
         List<Double> sortedPrices = prices.stream().sorted().toList();

@@ -28,8 +28,8 @@ public class Search extends BasePage {
         clickButton(searchButton);
     }
 
-    public List<String> getSearchResultList() {
-        return getElementsTitleFromList(searchResultList);
+    public List<WebElement> getSearchResultList() {
+        return getListOfElements(searchResultList);
     }
 
     public WebElement getSearchResultError() {
@@ -37,14 +37,13 @@ public class Search extends BasePage {
     }
 
     public List<WebElement> getProductsFromSearchList() {
-        return driver.findElements(searchResultList);
+        return getListOfElements(searchResultList);
     }
 
 
-//    check this method, it returns only 1 price
+    //    **check this method, it returns only 1 price
     public List<Double> getProductPrices() {
-        List<Double> prices = getProductsFromSearchList().stream()
-                .map(product -> product.findElement(productPriceSelector).getText()) // Extract price text
+        List<Double> prices = getLimitedListWithElementsText(productPriceSelector, 5).stream()
                 .limit(5)
                 .map(priceText -> {
                     // Parse the price directly in the lambda
@@ -54,5 +53,4 @@ public class Search extends BasePage {
                 .collect(Collectors.toList());
         return prices;
     }
-
 }

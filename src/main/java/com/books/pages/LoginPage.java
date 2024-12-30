@@ -40,13 +40,11 @@ public class LoginPage extends BasePage {
     }
 
     public void clickEmailButton() {
-        waitForElementToBeClickable(getBaseWebElement(emailButton));
         clickButton(emailButton);
     }
 
     public void clickLoginButton() {
-        waitForElementToBeClickable(getBaseWebElement(loginButton));
-        getBaseWebElement(loginButton).click();
+        clickButton(loginButton);
     }
 
     public WebElement getLoginButtonElement() {

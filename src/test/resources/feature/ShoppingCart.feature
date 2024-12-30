@@ -1,17 +1,15 @@
-#TO DO
+Feature: Shopping Cart Functionality
 
-#Feature: Shopping Cart Functionality
-#
-#  Background:
-#    Given I navigate to Homepage
-#    And I click accept all cookies button
-#
-#  Scenario: Add and remove a product from the cart
-#    Given I hover over the "Products" dropdown
-#    And I click the product category named "Lifestyle"
-#    Then the "lifestyle" product list page opens
-#
-#
+  Background:
+    Given I navigate to Homepage
+    And I click accept all cookies button
+
+  @wip
+  Scenario: Add and remove a product from the cart
+    Given I hover over the "Products" dropdown
+    And I click the product category named "Lifestyle"
+    Then the "lifestyle" product list page opens
+
 ##    When I click the "first" book number in the PLP page
 ##    Then the product detail page opens
 ##    When I click the "Add to cart" button

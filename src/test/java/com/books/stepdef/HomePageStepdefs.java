@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePageStepdefs {
@@ -17,13 +18,17 @@ public class HomePageStepdefs {
     @Given("I navigate to Homepage")
     public void navigateToHomepage() {
         testContextSetup.homePage.openPage();
-        assertThat(testContextSetup.homePage.getCurrentUrl()).as("Expected Page URL to be %s", testContextSetup.homePage.getCurrentUrl())
+        assertThat(testContextSetup.homePage
+                .getCurrentUrl())
+                .as("Expected Page URL to be %s", testContextSetup.homePage.getCurrentUrl())
                 .contains(testContextSetup.homePage.getCurrentUrl());
     }
 
     @And("Cookie dialog is displayed")
     public void cookieDialogIsDisplayed() {
-        boolean isCookieDialogDisplayed = testContextSetup.homePage.getClickableCookiesDialogElement().isDisplayed();
+        boolean isCookieDialogDisplayed = testContextSetup.homePage
+                .getClickableCookiesDialogElement()
+                .isDisplayed();
         assertThat(isCookieDialogDisplayed)
                 .withFailMessage("Expected the cookieBot dialog to be displayed, but it was not.")
                 .isTrue();
@@ -36,7 +41,9 @@ public class HomePageStepdefs {
 
     @Then("The cookies dialog is not displayed")
     public void cookiesDialogIsNotDisplayed() {
-        assertThat(testContextSetup.homePage.getCookiesDialogElement().isDisplayed())
+        assertThat(testContextSetup.homePage
+                .getCookiesDialogElement()
+                .isDisplayed())
                 .withFailMessage("Expected the cookieBot dialog to not be displayed, but it was.")
                 .isFalse();
     }

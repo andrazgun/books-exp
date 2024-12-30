@@ -2,6 +2,7 @@ package com.books.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HeaderNav extends BasePage {
 
@@ -14,9 +15,10 @@ public class HeaderNav extends BasePage {
     private final By listIcon = By.cssSelector("[id='show-lists']");
     private final By listButton = By.cssSelector("[href='/user/wishlist']");
     private final By personalDetailsButton = By.cssSelector("[href='/user/details']");
+    private final By userDataDropdown = By.cssSelector("[id='user-data'] > ul > li");
 
-  public HeaderNav(WebDriver driver) {
-      super(driver);
+    public HeaderNav(WebDriver driver) {
+        super(driver);
     }
 
     public void hoverOverAccountIcon() {
@@ -32,26 +34,31 @@ public class HeaderNav extends BasePage {
     }
 
     public void clickLoginButton() {
-      clickButton(loginButton);
+        clickButton(loginButton);
     }
 
     public void clickUserDetailsButton() {
-      clickButton(userDetailsButton);
+        clickButton(userDetailsButton);
     }
 
     public void clickLogoutButton() {
-      clickButton(logoutButton);
+        clickButton(logoutButton);
     }
 
     public void clickListButton() {
-      clickButton(listButton);
+        clickButton(listButton);
     }
 
     public void clickCartButton() {
-      clickButton(cartButton);
+        clickButton(cartButton);
     }
 
     public String getPersonalDetailsText() {
-      return getText(personalDetailsButton);
+        return getText(personalDetailsButton);
+    }
+
+    public void clickSelectedSection(String name) {
+        WebElement sectionSelected = findElementByName(userDataDropdown, name, 5);
+        sectionSelected.click();
     }
 }

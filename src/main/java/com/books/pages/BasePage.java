@@ -5,9 +5,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import java.util.List;
-
 
 public abstract class BasePage {
 
@@ -22,7 +22,7 @@ public abstract class BasePage {
     }
 
     public void openPage(String url) {
-        if (driver == null){
+        if (driver == null) {
             throw new IllegalStateException("WebDriver is not initialized.");
         }
         driver.get(url);
@@ -57,9 +57,14 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
-    public void hoverOverElement(WebElement element) {
+    public void hoverOverElement(WebElement target) {
         Actions actions = new Actions(driver);
-        actions.moveToElement(element).perform();
+        actions.moveToElement(target).perform();
+    }
+
+    public void hoverOverElement(By element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(getBaseWebElement(element));
     }
 
     public WebElement getBaseWebElement(By element) {
@@ -81,13 +86,25 @@ public abstract class BasePage {
         getBaseWebElement(element).click();
     }
 
-    public void clickButton(WebElement element) {
-        waitForElementToBeClickable(element);
-        element.click();
+    public void clickButton(WebElement target) {
+        waitForElementToBeClickable(target);
+        target.click();
     }
 
-    public void waitForElementToBeClickable(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    public void waitForElementToBeClickable(WebElement target) {
+        wait.until(ExpectedConditions.elementToBeClickable(target));
+    }
+
+    public List<String> getLimitedListWithElementsText(By element, int elementsLimit) {
+        List<WebElement> elementsList = driver.findElements(element);
+        return elementsList.stream()
+                .limit(elementsLimit)
+                .map(WebElement::getText)
+                .toList();
+    }
+
+    public List<WebElement> getListOfElements (By element) {
+        return driver.findElements(element);
     }
 
     public WebElement getElementFromLimitedListOfElements(By element, int listLength, int index) {
@@ -98,12 +115,35 @@ public abstract class BasePage {
                 .get(index);
     }
 
-    public List<String> getElementsTitleFromList(By elementCategory) {
-        List<WebElement> elementsList = driver.findElements(elementCategory);
-        return elementsList.stream()
-                .limit(3)
-                .map(WebElement::getText)
-                .toList();
+    public void printWebElementTexts(By locator) {
+        driver.findElements(locator)
+                .stream()  // Get list of WebElements based on the By locator
+                .map(WebElement::getText)  // Extract text from each WebElement
+                .forEach(text -> System.out.println("Text: [" + text + "] Length: " + text.length()));
+    }
+
+    public WebElement findElementByName(By locator, String name, int limit) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
+        if (limit < 1) {
+            throw new IllegalArgumentException("Limit must be greater than 0.");
+        }
+        return driver.findElements(locator)
+                .stream()
+                .peek(element -> System.out.println("Element text: [" + element.getText() + "]")) // Debug
+                .limit(limit)  // Limit the stream to 'limit' elements
+                .filter(element -> matchesName(name, element.getText()))  // Match based on the name
+                .findFirst()  // Get the first match
+                .orElseThrow(() -> new IllegalArgumentException("No matching WebElement found for name: " + name));  // Throw exception if no match found
+    }
+
+    private static boolean matchesName(String inputText, String elemText) {
+        String normInputText = inputText.trim().toLowerCase().replaceAll("\\s", "");
+        String normElemText = elemText.trim().toLowerCase().replaceAll("\\s", "");
+
+        System.out.println("Comparing input: [" + normInputText + "] with element: [" + normElemText + "]");
+        return normElemText.contains(normInputText);
     }
 
     public WebElement getElementFromElementsCategory(String elementName, By elementCategory) {

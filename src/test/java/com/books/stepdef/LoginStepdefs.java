@@ -18,6 +18,7 @@ public class LoginStepdefs {
     public void clickLoginButton() {
         testContextSetup.loginPage.clickLoginButton();
     }
+
     @When("I click Email button")
     public void clickEmailButton() {
         testContextSetup.loginPage.clickEmailButton();
@@ -38,7 +39,7 @@ public class LoginStepdefs {
         String actualTitle = testContextSetup.headerNav.getCurrentTitle();
         String expectedTitle = testContextSetup.loginPage.getExpectedTitle();
         assertThat(expectedTitle)
-                .withFailMessage("Expected the page title to contain '%s', but was '%s'", actualTitle, expectedTitle)
+                .withFailMessage("Expected the page title to contain '%s', but was '%s'", expectedTitle, actualTitle)
                 .contains(actualTitle);
     }
 
@@ -49,7 +50,9 @@ public class LoginStepdefs {
 
     @Then("I should see the Login button")
     public void shouldSeeTheLoginButton() {
-        assertThat(testContextSetup.loginPage.getLoginButtonElement().isDisplayed())
+        assertThat(testContextSetup.loginPage
+                .getLoginButtonElement()
+                .isDisplayed())
                 .withFailMessage("Expected element to be displayed, but it was not.")
                 .isTrue();
     }
