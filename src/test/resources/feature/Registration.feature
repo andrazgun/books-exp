@@ -1,5 +1,6 @@
+@Regression
 Feature: Negative Registration Flow
-Scenarios for validating incorrect inputs during registration.
+  Scenarios for validating incorrect inputs during registration.
 
   Background:
     Given I navigate to Registration page

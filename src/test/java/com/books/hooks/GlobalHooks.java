@@ -18,8 +18,6 @@ public class GlobalHooks {
     public void setUp() {
         if (driver == null) {
             driver = WebDriverInstanceFactory.getDriver();
-            driver.manage().deleteAllCookies();
-            driver.manage().window().maximize();
             System.out.println("WebDriver initialized for thread: " + Thread.currentThread().getName());
         }
     }

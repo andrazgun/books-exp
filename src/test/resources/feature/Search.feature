@@ -1,3 +1,4 @@
+@Regression
 Feature: Search Functionality
 
   Background:
