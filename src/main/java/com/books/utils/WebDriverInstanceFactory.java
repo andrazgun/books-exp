@@ -20,7 +20,10 @@ public class WebDriverInstanceFactory {
             try {
                 Properties properties = new Properties();
                 properties.load(new FileInputStream("src/test/resources/global.properties"));
-                String browser = properties.getProperty("browser");
+                String browser_properties = properties.getProperty("browser");
+                String browser_maven = System.getProperty("browser");
+
+                String browser = browser_maven != null ? browser_maven : browser_properties;
 
                 switch (browser.toLowerCase()) {
                     case "chrome":
@@ -43,6 +46,8 @@ public class WebDriverInstanceFactory {
                 throw new RuntimeException("Failed to read browser configuration", e);
             }
         }
+        driverThreadLocal.get().manage().deleteAllCookies();
+        driverThreadLocal.get().manage().window().maximize();
         return driverThreadLocal.get();
     }
 
