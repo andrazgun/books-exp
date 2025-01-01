@@ -31,7 +31,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnProductCategory(String elementName) {
-        getElementFromElementsCategory(elementName, categoryList)
+        getElementByTextFromListOfElements(elementName, categoryList)
                 .click();
     }
 

@@ -12,6 +12,7 @@ public class TestContextSetup {
     public AccountPage accountPage;
     public CartPage cartPage;
     public PLPPage plpPage;
+    public PDPPage pdpPage;
     public WishlistPage wishlistPage;
     public RegistrationPage registrationPage;
     public Search search;
@@ -24,6 +25,7 @@ public class TestContextSetup {
         this.accountPage = new AccountPage(driver);
         this.cartPage = new CartPage(driver);
         this.plpPage = new PLPPage(driver);
+        this.pdpPage = new PDPPage(driver);
         this.wishlistPage = new WishlistPage(driver);
         this.registrationPage = new RegistrationPage(driver);
         this.search = new Search(driver);

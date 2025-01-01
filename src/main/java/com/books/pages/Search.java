@@ -43,7 +43,7 @@ public class Search extends BasePage {
 
     //    **check this method, it returns only 1 price
     public List<Double> getProductPrices() {
-        List<Double> prices = getLimitedListWithElementsText(productPriceSelector, 5).stream()
+        List<Double> prices = getElementsTextFromALimitedList(productPriceSelector, 5).stream()
                 .limit(5)
                 .map(priceText -> {
                     // Parse the price directly in the lambda

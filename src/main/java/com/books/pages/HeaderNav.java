@@ -58,7 +58,7 @@ public class HeaderNav extends BasePage {
     }
 
     public void clickSelectedSection(String name) {
-        WebElement sectionSelected = findElementByName(userDataDropdown, name, 5);
+        WebElement sectionSelected = getElementByNameFromLimitedListOfElements(userDataDropdown, name, 5);
         sectionSelected.click();
     }
 }
