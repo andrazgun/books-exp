@@ -11,12 +11,12 @@
 - **[Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/main/cucumber-picocontainer)**: Dependency injection of step definition classes and their dependencies.
 - **[Page Object Model](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium.html)**: A design pattern to create object-oriented classes that serve as an interface to the pages of the application.
 - **[Page Factory](https://www.selenium.dev/documentation/en/webdriver/page_objects/)**: Enhances POM by providing an optimized way to initialize page elements.
-- **[ChatGPT](https://chatgpt.com/)**: Powerful AI offering a wide range of benefits such as coding assistant, mentor, content creator and a tireless learning companion.
 - **[Allure Report](https://allurereport.org/docs/cucumberjvm/)**: Popular open source tool for visualizing the results of a test run.
+- **[ChatGPT](https://chatgpt.com/)**: Powerful AI offering a wide range of benefits such as coding assistant, mentor, content creator and a tireless learning companion.
   
 **Test Results**
 
 - Run in CLI "mvn clean test"
 - Reports are generated in target folder
-- To view the Allure report run in CLI "allure serve .\target\allure-results\".
-- To view the Cucumber report open in browser target\cucumber-reports.html .
+- Execute "allure generate .\target\allure-results\" in CLI to create the Allure report in allure-report folder. Open in browser allure-report\index.html.
+- To view the Cucumber report open in browser target\cucumber-reports.html.
