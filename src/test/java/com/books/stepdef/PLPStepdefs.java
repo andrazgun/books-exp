@@ -4,6 +4,8 @@ import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.io.IOException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PLPStepdefs {
@@ -22,7 +24,7 @@ public class PLPStepdefs {
     }
 
     @When("I click the book number {int} from the PLP page")
-    public void iClickTheBookNumberInThePLPPage(int index) {
+    public void iClickTheBookNumberInThePLPPage(int index) throws IOException {
         testContextSetup.plpPage.clickOnSelectedProductByIndex(index);
     }
 }

@@ -1,5 +1,6 @@
 package com.books.utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -20,6 +21,10 @@ public class JavaScriptUtils {
     }
 
     public static void scrollIntoView(WebElement element) throws IOException {
+        executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static void scrollIntoViewBy(By element) throws IOException {
         executeScript("arguments[0].scrollIntoView(true);", element);
     }
 

@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static com.books.utils.Constants.LIST_LIMIT;
+
 public abstract class BasePage {
 
     protected WebDriver driver;
@@ -106,27 +108,28 @@ public abstract class BasePage {
         target.click();
     }
 
-    public List<String> getElementsTextFromALimitedList(By element, int elementsLimit) {
+    public List<String> getElementsTextFromALimitedList(By element) {
         List<WebElement> elementsList = getListOfElements(element);
         return elementsList.stream()
-                .limit(elementsLimit)
+                .limit(LIST_LIMIT)
                 .map(WebElement::getText)
                 .toList();
     }
 
-    public WebElement getElementByIndexFromLimitedListOfElements(By element, int listLength, int index) {
+    public WebElement getElementByIndexFromLimitedListOfElements(By element, int index) {
         List<WebElement> elementsList = getListOfElements(element);
         return elementsList.stream()
-                .limit(listLength)
+                .limit(LIST_LIMIT)
                 .toList()
                 .get(index);
     }
 
-    public void printElementsTextsFromElementsList(By locator) {
+    public void printElementsTextsFromLimitedListOfElements(By locator) {
         getListOfElements(locator)
                 .stream()  // Get list of WebElements based on the By locator
                 .map(WebElement::getText)  // Extract text from each WebElement
-                .forEach(text -> System.out.println("Text: [" + text + "] Length: " + text.length()));
+                .limit(LIST_LIMIT)
+                .forEach(text -> System.out.println("Text: [ " + text + " ] Length: [ " + text.length() + " ]"));
     }
 
     public WebElement getElementByNameFromLimitedListOfElements(By locator, String name, int limit) {

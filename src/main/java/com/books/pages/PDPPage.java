@@ -20,7 +20,7 @@ public class PDPPage extends BasePage {
     }
 
     public String getProductTitle() {
-        return getBaseWebElement(productSelector).getText();
+        return super.getCurrentTitle();
     }
 
     @Override
