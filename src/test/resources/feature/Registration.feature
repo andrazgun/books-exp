@@ -1,4 +1,4 @@
-@Regression
+@Regression @Smoke
 Feature: Negative Registration Flow
   Scenarios for validating incorrect inputs during registration.
 

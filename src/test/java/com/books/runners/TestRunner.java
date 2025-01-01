@@ -6,7 +6,9 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = "src/test/resources/feature",
-        tags = "@wip",
+//        tags = "@wip",
+//        tags = "@Smoke",
+        tags = "@Regression",
         glue = "com/books",
         plugin = {
                 "pretty",
