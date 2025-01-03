@@ -1,6 +1,7 @@
 package com.books.utils;
 
 import com.books.pages.*;
+import com.books.session.ScenarioSession;
 import org.openqa.selenium.WebDriver;
 
 public class TestContextSetup {
@@ -17,6 +18,7 @@ public class TestContextSetup {
     public RegistrationPage registrationPage;
     public Search search;
     public SubNav subNav;
+    public static ScenarioSession scenarioSession;
 
     public TestContextSetup() {
         this.headerNav = new HeaderNav(driver);
@@ -30,5 +32,6 @@ public class TestContextSetup {
         this.registrationPage = new RegistrationPage(driver);
         this.search = new Search(driver);
         this.subNav = new SubNav(driver);
+        scenarioSession = new ScenarioSession();
     }
 }

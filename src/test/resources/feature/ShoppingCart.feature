@@ -9,7 +9,7 @@ Feature: Shopping Cart Functionality
     Given I hover over the "Products" dropdown
     And I click the product category named "Lifestyle"
     Then the "lifestyle" product list page opens
-    When I click the book number 1 from the PLP page
+    When I click the first book from the PLP page
     Then the product detail page opens
 #    When I click the "Add to cart" button
 #    Then the confirmation page is displayed showing the book was added to the cart

@@ -23,8 +23,9 @@ public class PLPStepdefs {
                 .containsIgnoringCase(productCategory);
     }
 
-    @When("I click the book number {int} from the PLP page")
-    public void iClickTheBookNumberInThePLPPage(int index) throws IOException {
-        testContextSetup.plpPage.clickOnSelectedProductByIndex(index);
+    @When("I click the first book from the PLP page")
+    public void iClickTheBookNumberInThePLPPage() throws IOException {
+        testContextSetup.plpPage.clickOnSelectedProductByIndex(1);
+
     }
 }

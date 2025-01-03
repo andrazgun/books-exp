@@ -17,19 +17,16 @@ public class PDPStepdefs {
     @Then("the product detail page opens")
     public void productDetailsPageOpens() {
 
-//        String plpProductPrice = testContextSetup.plpPage.getProductPrice();
-//        String pdpProductPrice = testContextSetup.pdpPage.getProductPrice();
-//        System.out.println("PLP Price: " + plpProductPrice);
-//        System.out.println("PDP Price: " + pdpProductPrice);
-
+        String productTitle = TestContextSetup.scenarioSession.getAsString("book name");
         String pdpCurrentUrl = testContextSetup.pdpPage.getCurrentUrl();
         String pdpCurrentTitle = testContextSetup.pdpPage.getCurrentTitle();
 
         System.out.println("PDP Url: " + pdpCurrentUrl);
         System.out.println("PDP Title: " + pdpCurrentTitle);
 
-//        assertThat(pdpCurrentUrl)
-//                .containsIgnoringCase(pdpProductTitle);
+//        check this assert
+        assertThat(pdpCurrentTitle)
+                .containsIgnoringCase(productTitle);
 
 //        assertThat(pdpProductPrice)
 //                .withFailMessage("Expected the message to contain '%s', but the actual message was '%s'", pdpProductPrice, plpProductPrice)
