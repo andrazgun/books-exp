@@ -30,7 +30,7 @@ public class AccountPage extends BasePage {
 
     public String getSectionListText(String inputText) {
         waitForElementToBeVisible(sectionListElement);
-        printWebElementTexts(sectionListElement);
-        return findElementByName(sectionListElement, inputText, 5).getText();
+        printElementsTextsFromLimitedListOfElements(sectionListElement);
+        return getElementByNameFromLimitedListOfElements(sectionListElement, inputText, 5).getText();
     }
 }

@@ -26,7 +26,7 @@ public class SubNav extends BasePage {
     }
 
     public WebElement getFilterPriceAscElem() {
-        return getElementFromLimitedListOfElements(sortFilterOptions, 4, 2);
+        return getElementByIndexFromLimitedListOfElements(sortFilterOptions, 4);
     }
 
     public void clickFilterPriceAsc() {

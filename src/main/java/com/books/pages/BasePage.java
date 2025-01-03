@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static com.books.utils.Constants.LIST_LIMIT;
+
 public abstract class BasePage {
 
     protected WebDriver driver;
@@ -57,18 +59,33 @@ public abstract class BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
+    public void waitForElementToBeClickable(WebElement target) {
+        wait.until(ExpectedConditions.elementToBeClickable(target));
+    }
+
     public void hoverOverElement(WebElement target) {
         Actions actions = new Actions(driver);
         actions.moveToElement(target).perform();
     }
 
-    public void hoverOverElement(By element) {
+    public void hoverOverByElement(By element) {
         Actions actions = new Actions(driver);
         actions.moveToElement(getBaseWebElement(element));
     }
 
     public WebElement getBaseWebElement(By element) {
         return driver.findElement(element);
+    }
+
+    public List<WebElement> getListOfElements(By element) {
+        return driver.findElements(element);
+    }
+
+    public List<WebElement> getLimitedListOfElements(By element, int listLimit) {
+        List<WebElement> elementsList = getListOfElements(element);
+        return elementsList.stream()
+                .limit(listLimit)
+                .toList();
     }
 
     public void enterText(String text, By element) {
@@ -91,45 +108,38 @@ public abstract class BasePage {
         target.click();
     }
 
-    public void waitForElementToBeClickable(WebElement target) {
-        wait.until(ExpectedConditions.elementToBeClickable(target));
-    }
-
-    public List<String> getLimitedListWithElementsText(By element, int elementsLimit) {
-        List<WebElement> elementsList = driver.findElements(element);
+    public List<String> getElementsTextFromALimitedList(By element) {
+        List<WebElement> elementsList = getListOfElements(element);
         return elementsList.stream()
-                .limit(elementsLimit)
+                .limit(LIST_LIMIT)
                 .map(WebElement::getText)
                 .toList();
     }
 
-    public List<WebElement> getListOfElements (By element) {
-        return driver.findElements(element);
-    }
-
-    public WebElement getElementFromLimitedListOfElements(By element, int listLength, int index) {
-        List<WebElement> elementsList = driver.findElements(element);
+    public WebElement getElementByIndexFromLimitedListOfElements(By element, int index) {
+        List<WebElement> elementsList = getListOfElements(element);
         return elementsList.stream()
-                .limit(listLength)
+                .limit(LIST_LIMIT)
                 .toList()
                 .get(index);
     }
 
-    public void printWebElementTexts(By locator) {
-        driver.findElements(locator)
+    public void printElementsTextsFromLimitedListOfElements(By locator) {
+        getListOfElements(locator)
                 .stream()  // Get list of WebElements based on the By locator
                 .map(WebElement::getText)  // Extract text from each WebElement
-                .forEach(text -> System.out.println("Text: [" + text + "] Length: " + text.length()));
+                .limit(LIST_LIMIT)
+                .forEach(text -> System.out.println("Text: [ " + text + " ] Length: [ " + text.length() + " ]"));
     }
 
-    public WebElement findElementByName(By locator, String name, int limit) {
+    public WebElement getElementByNameFromLimitedListOfElements(By locator, String name, int limit) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }
         if (limit < 1) {
             throw new IllegalArgumentException("Limit must be greater than 0.");
         }
-        return driver.findElements(locator)
+        return getListOfElements(locator)
                 .stream()
                 .peek(element -> System.out.println("Element text: [" + element.getText() + "]")) // Debug
                 .limit(limit)  // Limit the stream to 'limit' elements
@@ -146,8 +156,8 @@ public abstract class BasePage {
         return normElemText.contains(normInputText);
     }
 
-    public WebElement getElementFromElementsCategory(String elementName, By elementCategory) {
-        List<WebElement> elementsList = driver.findElements(elementCategory);
+    public WebElement getElementByTextFromListOfElements(String elementName, By listOfElementsLocator) {
+        List<WebElement> elementsList = getListOfElements(listOfElementsLocator);
         return elementsList.stream()
                 .filter(elem -> elem.getText().equalsIgnoreCase((elementName)))
                 .findFirst()
