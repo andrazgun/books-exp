@@ -8,14 +8,6 @@ import static java.lang.String.format;
 public class ScenarioSession {
     private ThreadLocal<Map<String, Object>> CONTAINER = ThreadLocal.withInitial(HashMap::new);
 
-//    public void put(String key, Object value) {
-//        threadLocalMap().put(key, value);
-//    }
-//
-//    public Object get(String key) {
-//        return threadLocalMap().get(key);
-//    }
-
     public <T> void put(String key, T value) {
         threadLocalMap().put(key, value);
     }
