@@ -3,6 +3,7 @@ package com.books.stepdef;
 import com.books.pages.ProductDto;
 import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,5 +30,10 @@ public class PDPStepdefs {
         assertThat(pdpProductPrice)
                 .withFailMessage("Expected word to be '%s', but got '%s'", productPrice, pdpProductPrice)
                 .isEqualTo(productPrice);
+    }
+
+    @When("I click Add to cart button")
+    public void clickAddToCartButton() {
+        testContextSetup.pdpPage.clickAddToCartButton();
     }
 }
