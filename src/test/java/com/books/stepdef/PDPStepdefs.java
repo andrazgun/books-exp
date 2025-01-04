@@ -28,7 +28,7 @@ public class PDPStepdefs {
         assertThat(pdpCurrentTitle)
                 .containsIgnoringCase(productTitle);
         assertThat(pdpProductPrice)
-                .withFailMessage("Expected word to be '%s', but got '%s'", productPrice, pdpProductPrice)
+                .withFailMessage("Expected word to be '%s', but was '%s'", productPrice, pdpProductPrice)
                 .isEqualTo(productPrice);
     }
 
