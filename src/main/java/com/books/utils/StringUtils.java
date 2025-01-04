@@ -7,5 +7,7 @@ public class StringUtils {
         return str.replaceAll("\\s", EMPTY);
     }
 
-
+    public static String removePunctuationSigns(String str) {
+        return str.replaceAll("[^a-zA-Z\\s]", "").trim();
+    }
 }

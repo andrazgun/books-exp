@@ -2,9 +2,6 @@ package com.books.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class PDPPage extends BasePage {
 
@@ -15,12 +12,12 @@ public class PDPPage extends BasePage {
         super(driver);
     }
 
-    public String getProductPrice() {
-        return getBaseWebElement(productPrice).getText();
+    public double getProductPrice() {
+        return getDoubleBy(productPrice);
     }
 
     public String getProductTitle() {
-        return super.getCurrentTitle();
+        return getTextBy(productSelector);
     }
 
     @Override

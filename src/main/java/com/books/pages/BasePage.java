@@ -94,8 +94,41 @@ public abstract class BasePage {
         getBaseWebElement(element).sendKeys(text);
     }
 
-    public String getText(By element) {
+    public String getTextBy(By element) {
         return getBaseWebElement(element).getText();
+    }
+
+    public String getOnlyText(WebElement target) {
+        String text = target.getText();
+        return text.replaceAll("[^a-zA-Z\\s]", "").trim();
+    }
+
+    public double getDoubleBy(By element) {
+        String text = getTextBy(element);
+        // Regular expression to find numbers (e.g., 123.45)
+        String numberString = text.replaceAll("[^\\d.]", "");
+
+        try {
+            // Parse the extracted string to a double
+            return Double.parseDouble(numberString);
+        } catch (NumberFormatException e) {
+            System.err.println("Unable to parse price from text: " + text);
+            throw new RuntimeException("Invalid price format in element text: " + text, e);
+        }
+    }
+
+    public double getDouble(WebElement target) {
+        String text = target.getText();
+        // Regular expression to find numbers (e.g., 123.45)
+        String numberString = text.replaceAll("[^\\d.]", "");
+
+        try {
+            // Parse the extracted string to a double
+            return Double.parseDouble(numberString);
+        } catch (NumberFormatException e) {
+            System.err.println("Unable to parse price from text: " + text);
+            throw new RuntimeException("Invalid price format in element text: " + text, e);
+        }
     }
 
     public void clickButton(By element) {
@@ -154,6 +187,14 @@ public abstract class BasePage {
 
         System.out.println("Comparing input: [" + normInputText + "] with element: [" + normElemText + "]");
         return normElemText.contains(normInputText);
+    }
+
+    private static boolean matchesNumber(double actualValue, double expectedValue) {
+        System.out.println("Actual value: " + actualValue);
+        System.out.println("Expected value: " + expectedValue);
+
+        // Compare the two double values
+        return Double.compare(actualValue, expectedValue) == 0;
     }
 
     public WebElement getElementByTextFromListOfElements(String elementName, By listOfElementsLocator) {

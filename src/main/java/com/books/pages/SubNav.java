@@ -16,7 +16,7 @@ public class SubNav extends BasePage {
     }
 
     public String getSubNavText() {
-        return getText(subNavElement);
+        return getTextBy(subNavElement);
     }
 
     public void hoverOverSortingFilter() {
