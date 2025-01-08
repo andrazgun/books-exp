@@ -16,6 +16,7 @@ public class HeaderNav extends BasePage {
     private final By listButton = By.cssSelector("[href='/user/wishlist']");
     private final By personalDetailsButton = By.cssSelector("[href='/user/details']");
     private final By userDataDropdown = By.cssSelector("[id='user-data'] > ul > li");
+    private final By listDropdownLocator = By.cssSelector("[id='lists-data']");
 
     public HeaderNav(WebDriver driver) {
         super(driver);

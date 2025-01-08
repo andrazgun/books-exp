@@ -2,6 +2,7 @@ package com.books.stepdef;
 
 import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -44,5 +45,12 @@ public class SubNavStepdefs {
         assertThat(prices.equals(sortedPrices))
                 .withFailMessage("The product list should be ordered by price in ascending order but it was not.")
                 .isTrue();
+    }
+
+    @Given("I select {string} from the dropdown")
+    public void iSelectFromTheDropdown(String text) {
+        System.out.println(testContextSetup.headerNav.getOptions().toString());
+//        testContextSetup.headerNav.selectOptionByText("Wish list");
+
     }
 }
