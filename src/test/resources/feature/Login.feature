@@ -15,7 +15,7 @@ Feature: Login Functionality
     And I click Login button
     And I navigate to Homepage
     And I hover over Account icon on Header
-    And I click "detalii personale"
+    And I click "detalii personale" from the Account dropdown
     Then I should see "Detalii personale" section
 
 #    Then I should see User Details component

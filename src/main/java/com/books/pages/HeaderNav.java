@@ -27,6 +27,7 @@ public class HeaderNav extends BasePage {
     }
 
     public void hoverOverListIcon() {
+        waitForElementToBeClickable(getBaseWebElement(listIcon));
         hoverOverElement(getBaseWebElement(listIcon));
     }
 
@@ -58,8 +59,13 @@ public class HeaderNav extends BasePage {
         return getTextBy(personalDetailsButton);
     }
 
-    public void clickSelectedSection(String name) {
+    public void clickSelectedSectionFromUserData(String name) {
         WebElement sectionSelected = getElementByNameFromLimitedListOfElements(userDataDropdown, name, 5);
+        sectionSelected.click();
+    }
+
+    public void clickSelectedSectionFromWishlists(String name) {
+        WebElement sectionSelected = getElementByNameFromLimitedListOfElements(listDropdownLocator, name, 5);
         sectionSelected.click();
     }
 }

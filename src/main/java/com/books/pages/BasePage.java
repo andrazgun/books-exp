@@ -88,6 +88,13 @@ public abstract class BasePage {
                 .toList();
     }
 
+    public void login(String email, By emailTextField, By emailButton, String password, By passwordTextField, By loginButton) {
+        enterText(email, emailTextField);
+        clickButton(emailButton);
+        enterText(password, passwordTextField);
+        clickButton(loginButton);
+    }
+
     public void enterText(String text, By element) {
         waitForElementToBeClickable(getBaseWebElement(element));
         getBaseWebElement(element).clear();

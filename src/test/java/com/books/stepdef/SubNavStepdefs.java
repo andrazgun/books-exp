@@ -46,11 +46,4 @@ public class SubNavStepdefs {
                 .withFailMessage("The product list should be ordered by price in ascending order but it was not.")
                 .isTrue();
     }
-
-    @Given("I select {string} from the dropdown")
-    public void iSelectFromTheDropdown(String text) {
-        System.out.println(testContextSetup.headerNav.getOptions().toString());
-//        testContextSetup.headerNav.selectOptionByText("Wish list");
-
-    }
 }

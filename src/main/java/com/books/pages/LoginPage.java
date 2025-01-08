@@ -21,6 +21,10 @@ public class LoginPage extends BasePage {
         super.openPage(expectedPageUrl);
     }
 
+    public void login(String email, String password) {
+        login(email, emailField, emailButton, password, passwordField, loginButton);
+    }
+
     public void enterEmail(String email) {
         enterText(email, emailField);
     }

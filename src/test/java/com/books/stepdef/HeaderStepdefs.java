@@ -19,6 +19,11 @@ public class HeaderStepdefs {
         testContextSetup.headerNav.hoverOverAccountIcon();
     }
 
+    @When("I hover over Lists icon on Header")
+    public void hoverOverListIcon() {
+        testContextSetup.headerNav.hoverOverListIcon();
+    }
+
     @And("I click Login button on Header")
     public void clickLoginButton() {
         testContextSetup.headerNav.clickLoginButton();
@@ -38,8 +43,13 @@ public class HeaderStepdefs {
         testContextSetup.headerNav.clickUserDetailsButton();
     }
 
-    @And("I click {string}")
-    public void clickSelectedSectionOnHeader(String selectedSection) {
-        testContextSetup.headerNav.clickSelectedSection(selectedSection);
+    @And("I click {string} from the Account dropdown")
+    public void clickSelectedSectionFromAccountOnHeader(String selectedSection) {
+        testContextSetup.headerNav.clickSelectedSectionFromUserData(selectedSection);
+    }
+
+    @And("I click {string} from the Wishlists dropdown")
+    public void clickSelectedSectionFromWishlistsOnHeader(String selectedSection) {
+        testContextSetup.headerNav.clickSelectedSectionFromWishlists(selectedSection);
     }
 }
