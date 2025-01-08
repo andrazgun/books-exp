@@ -1,12 +1,10 @@
 package com.books.pages;
 
-import com.books.session.ScenarioSession;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
-import java.util.List;
 
 import static com.books.utils.JavaScriptUtils.scrollScreenDown;
 import static com.books.utils.TestContextSetup.scenarioSession;
@@ -22,24 +20,28 @@ public class PLPPage extends BasePage {
         super(driver);
     }
 
-    public List<WebElement> getLimitedProductList(int limit) {
-        return getLimitedListOfElements(productListSelector, limit);
+    public double getSelectedProductPrice(int index) {
+        WebElement selectedProductPrice = getElementByIndexFromLimitedListOfElements(productPrice, index);
+        return getDouble(selectedProductPrice);
     }
 
-    public String getProductPrice() {
-        return getBaseWebElement(productPrice).getText();
-    }
-
-    public String getProductTitle() {
-        return getBaseWebElement(productTitle).getText();
+    public String getSelectedProductTitle(int index) {
+        WebElement selectedProductTitle = getElementByIndexFromLimitedListOfElements(productTitle, index);
+        return getOnlyText(selectedProductTitle);
     }
 
     public WebElement getSelectedProductAnchor(int index) {
         return getElementByIndexFromLimitedListOfElements(productAnchorSelector, index);
     }
 
+    public void captureProductDetails(int index) {
+        String productTitle = getSelectedProductTitle(index);
+        double productPrice = getSelectedProductPrice(index);
+        ProductDto productDto = new ProductDto(productTitle, productPrice);
+        scenarioSession.put("product", productDto);
+    }
+
     public void clickOnSelectedProductByIndex(int index) throws IOException {
-        scenarioSession.put("book name", getProductTitle()); //fix this to pass the data to ProductDto object
         scrollScreenDown();
         scrollScreenDown();
         WebElement selectedProduct = getSelectedProductAnchor(index);

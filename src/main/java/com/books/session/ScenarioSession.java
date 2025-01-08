@@ -8,12 +8,12 @@ import static java.lang.String.format;
 public class ScenarioSession {
     private ThreadLocal<Map<String, Object>> CONTAINER = ThreadLocal.withInitial(HashMap::new);
 
-    public void put(String key, Object value) {
+    public <T> void put(String key, T value) {
         threadLocalMap().put(key, value);
     }
 
-    public Object get(String key) {
-        return threadLocalMap().get(key);
+    public <T> T get(String key, Class<T> type) {
+        return type.cast(threadLocalMap().get(key));
     }
 
     public <T> T getAs(String key, Class<T> type) {
@@ -35,5 +35,4 @@ public class ScenarioSession {
     public double getAsDouble(String key) {
         return Double.parseDouble(getAsString(key));
     }
-
 }

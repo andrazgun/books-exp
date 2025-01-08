@@ -54,7 +54,7 @@ public class HeaderNav extends BasePage {
     }
 
     public String getPersonalDetailsText() {
-        return getText(personalDetailsButton);
+        return getTextBy(personalDetailsButton);
     }
 
     public void clickSelectedSection(String name) {

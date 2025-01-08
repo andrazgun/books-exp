@@ -1,5 +1,6 @@
 package com.books.stepdef;
 
+import com.books.pages.ProductDto;
 import com.books.utils.TestContextSetup;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,21 +17,23 @@ public class PDPStepdefs {
 
     @Then("the product detail page opens")
     public void productDetailsPageOpens() {
+        ProductDto productDto = TestContextSetup.scenarioSession.get("product", ProductDto.class);
+        System.out.println(productDto.toString());
+        String productTitle = productDto.getTitle();
+        double productPrice = productDto.getPrice();
 
-        String productTitle = TestContextSetup.scenarioSession.getAsString("book name");
-        String pdpCurrentUrl = testContextSetup.pdpPage.getCurrentUrl();
+        double pdpProductPrice = testContextSetup.pdpPage.getProductPrice();
         String pdpCurrentTitle = testContextSetup.pdpPage.getCurrentTitle();
 
-        System.out.println("PDP Url: " + pdpCurrentUrl);
-        System.out.println("PDP Title: " + pdpCurrentTitle);
-
-//        check this assert
         assertThat(pdpCurrentTitle)
                 .containsIgnoringCase(productTitle);
-
-//        assertThat(pdpProductPrice)
-//                .withFailMessage("Expected the message to contain '%s', but the actual message was '%s'", pdpProductPrice, plpProductPrice)
-//                .containsIgnoringCase(pdpProductPrice);
+        assertThat(pdpProductPrice)
+                .withFailMessage("Expected word to be '%s', but was '%s'", productPrice, pdpProductPrice)
+                .isEqualTo(productPrice);
     }
 
+    @When("I click Add to cart button")
+    public void clickAddToCartButton() {
+        testContextSetup.pdpPage.clickAddToCartButton();
+    }
 }
