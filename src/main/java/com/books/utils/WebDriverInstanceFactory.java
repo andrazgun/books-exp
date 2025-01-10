@@ -1,6 +1,5 @@
 package com.books.utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -35,7 +34,6 @@ public class WebDriverInstanceFactory {
                     case "firefox":
                         FirefoxOptions options1 = new FirefoxOptions();
                         options1.addArguments("-private");
-                        WebDriverManager.firefoxdriver().setup();
                         driverThreadLocal.set(new FirefoxDriver(options1));
                         break;
                     default:
