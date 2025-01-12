@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.books.utils.Constants.LIST_LIMIT;
 
-public abstract class BasePage {
+public abstract class BasePage implements Page {
 
     protected WebDriver driver;
     public String expectedPageUrl;
