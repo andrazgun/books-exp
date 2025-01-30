@@ -6,16 +6,16 @@ Feature: Search Functionality
     And I click accept all cookies button
 
   Scenario Outline: Searching for a specific keyword, the keyword is displayed
-    Given I search for keyword <name>
+    Given I search for keyword <searchedText>
     And I click Search button
-    Then I should see the keyword <name> displayed
+    Then I should see the keyword <expectedText> displayed
     When I hover over the sorting filter
     And I click filter by price ascending
     Then the product list should be ordered by price ascending
     Examples:
-      | name     |
-      | Selenium |
-      | Cucumber |
+      | searchedText | expectedText |
+      | Selenium     | Selenium     |
+      | Cucumber     | Cucumber     |
 
   Scenario: Searching for a specific book returns a list of specific books
     Given I search for "Selenium Testing"
