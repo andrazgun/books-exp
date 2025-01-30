@@ -1,6 +1,7 @@
 package com.books.stepdef;
 
 import com.books.utils.TestContextSetup;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -55,5 +56,10 @@ public class LoginStepdefs {
                 .isDisplayed())
                 .withFailMessage("Expected element to be displayed, but it was not.")
                 .isTrue();
+    }
+
+    @And("I am logged in with email {string} and password {string}")
+    public void iAmLoggedIn(String email, String password) {
+        testContextSetup.loginPage.login(email, password);
     }
 }

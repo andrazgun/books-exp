@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.books.utils.Constants.LIST_LIMIT;
 
-public abstract class BasePage {
+public abstract class BasePage implements Page {
 
     protected WebDriver driver;
     public String expectedPageUrl;
@@ -86,6 +86,13 @@ public abstract class BasePage {
         return elementsList.stream()
                 .limit(listLimit)
                 .toList();
+    }
+
+    public void login(String email, By emailTextField, By emailButton, String password, By passwordTextField, By loginButton) {
+        enterText(email, emailTextField);
+        clickButton(emailButton);
+        enterText(password, passwordTextField);
+        clickButton(loginButton);
     }
 
     public void enterText(String text, By element) {

@@ -16,6 +16,7 @@ public class HeaderNav extends BasePage {
     private final By listButton = By.cssSelector("[href='/user/wishlist']");
     private final By personalDetailsButton = By.cssSelector("[href='/user/details']");
     private final By userDataDropdown = By.cssSelector("[id='user-data'] > ul > li");
+    private final By listDropdownLocator = By.cssSelector("[id='lists-data']");
 
     public HeaderNav(WebDriver driver) {
         super(driver);
@@ -26,6 +27,7 @@ public class HeaderNav extends BasePage {
     }
 
     public void hoverOverListIcon() {
+        waitForElementToBeClickable(getBaseWebElement(listIcon));
         hoverOverElement(getBaseWebElement(listIcon));
     }
 
@@ -57,8 +59,13 @@ public class HeaderNav extends BasePage {
         return getTextBy(personalDetailsButton);
     }
 
-    public void clickSelectedSection(String name) {
+    public void clickSelectedSectionFromUserData(String name) {
         WebElement sectionSelected = getElementByNameFromLimitedListOfElements(userDataDropdown, name, 5);
+        sectionSelected.click();
+    }
+
+    public void clickSelectedSectionFromWishlists(String name) {
+        WebElement sectionSelected = getElementByNameFromLimitedListOfElements(listDropdownLocator, name, 5);
         sectionSelected.click();
     }
 }

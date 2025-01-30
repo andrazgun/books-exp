@@ -67,39 +67,33 @@ public class RegistrationPage extends BasePage {
         return getBaseWebElement(emailError);
     }
 
-    private final Map<String, Supplier<String>> errorMessageSuppliers = Map.of(
-            "Email", this::getEmailErrorMessage,
-            "First Name", this::getFirstNameErrorMessage,
-            "Last Name", this::getLastNameErrorMessage,
-            "Password", this::getPasswordErrorMessage,
-            "Password Confirm", this::getPasswordAgainErrorMessage
+    private record FieldHandler(Supplier<String> errorMessageSupplier, Consumer<String> fieldFiller) {}
+
+    private final Map<String, FieldHandler> fieldHandlers = Map.of(
+            "Email", new FieldHandler(this::getEmailErrorMessage, this::enterEmail),
+            "First Name", new FieldHandler(this::getFirstNameErrorMessage, this::enterFirstName),
+            "Last Name", new FieldHandler(this::getLastNameErrorMessage, this::enterLastName),
+            "Password", new FieldHandler(this::getPasswordErrorMessage, this::enterPassword),
+            "Password Confirm", new FieldHandler(this::getPasswordAgainErrorMessage, this::enterPasswordConfirm)
     );
 
     public String getErrorMessageForField(String field) {
-        Supplier<String> errorMessageSupplier = errorMessageSuppliers.get(field);
-        if (errorMessageSupplier == null) {
+        FieldHandler handler = fieldHandlers.get(field);
+        if (handler == null) {
             throw new IllegalArgumentException("Unexpected field: " + field);
         }
-        return errorMessageSupplier.get();
+        return handler.errorMessageSupplier().get(); // If using record
     }
-
-    private final Map<String, Consumer<String>> fieldFillers = Map.of(
-            "Email", this::enterEmail,
-            "First Name", this::enterFirstName,
-            "Last Name", this::enterLastName,
-            "Password", this::enterPassword,
-            "Password Confirm", this::enterPasswordConfirm
-    );
 
     public void fillField(String field, String value) {
         if (value == null || "[empty]".equals(value)) {
             value = "";
         }
-        Consumer<String> fieldFiller = fieldFillers.get(field);
-        if (fieldFiller == null) {
+        FieldHandler handler = fieldHandlers.get(field);
+        if (handler == null) {
             throw new IllegalArgumentException("Unexpected field: " + field);
         }
-        fieldFiller.accept(value);
+        handler.fieldFiller().accept(value); // If using record
     }
 
     public String getEmailErrorMessage() {

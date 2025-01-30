@@ -36,4 +36,22 @@ public class PDPStepdefs {
     public void clickAddToCartButton() {
         testContextSetup.pdpPage.clickAddToCartButton();
     }
+
+    @When("I click Add to Wishlist button")
+    public void clickAddToWishlistButton() {
+        testContextSetup.pdpPage.clickAddToWishlistButton();
+    }
+
+    @Then("I should see a confirmation popup with message {string}")
+    public void iShouldSeeAConfirmationPopupWithMessage(String message) {
+        String actualMessage = testContextSetup.pdpPage.getNotificationPopupText();
+        assertThat(actualMessage)
+                .withFailMessage("Expected the message to contain '%s', but the actual message was '%s'", message, actualMessage)
+                .contains(message);
+    }
+
+    @When("I click close button on the popup")
+    public void iClickCloseButtonOnThePopup() {
+        testContextSetup.pdpPage.closeNotificationPopup();
+    }
 }
