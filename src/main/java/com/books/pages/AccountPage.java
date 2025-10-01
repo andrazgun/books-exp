@@ -10,7 +10,6 @@ public class AccountPage extends BasePage {
     private final By personalDetailsElement = By.cssSelector("[id='profile']");
     private final By sectionListElement = By.cssSelector("[class='left'] li");
 
-
     public AccountPage(WebDriver driver) {
         super(driver);
     }

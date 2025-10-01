@@ -1,5 +1,10 @@
 ## Test Automation for E-commerce website
 
+### Description
+
+The main scope is the framework structure rather than actual testing, therefore the number of tests in the feature files
+is small.
+
 ### SUT: [Books Express](https://www.books-express.ro/)
 
 ### Key Technologies:

@@ -15,7 +15,6 @@ public class CartPage extends BasePage {
     private final By quantityInput = By.cssSelector("[class='qty small']");
     private final By cartEmptyConfirmation = By.xpath("//*[contains(@class, 'cart-empty')]");
 
-
     public CartPage(WebDriver driver) {
         super(driver);
     }
@@ -58,6 +57,4 @@ public class CartPage extends BasePage {
     public String getEmptyCartConfirmation() {
         return getTextBy(cartEmptyConfirmation);
     }
-
-
 }
