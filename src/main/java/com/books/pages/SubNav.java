@@ -9,7 +9,6 @@ public class SubNav extends BasePage {
     private final By subNavElement = By.cssSelector("[id='breadcrumbs']");
     private final By sortFilterElement = By.cssSelector("[id='sort-filter']");
     private final By sortFilterOptions = By.cssSelector("[id='sort-data'] [class='align-center']");
-//    private final By filterPriceAsc = By.cssSelector("[id='sort-data'] > ul > li:nth-child(3) > a");
 
     public SubNav(WebDriver driver) {
         super(driver);

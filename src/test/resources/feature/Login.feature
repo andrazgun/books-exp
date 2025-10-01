@@ -18,8 +18,6 @@ Feature: Login Functionality
     And I click "detalii personale" from the Account dropdown
     Then I should see "Detalii personale" section
 
-#    Then I should see User Details component
-
   Scenario: Logged in customer can access User Details page
     Given I hover over Account icon on Header
     When I click Login button on Header

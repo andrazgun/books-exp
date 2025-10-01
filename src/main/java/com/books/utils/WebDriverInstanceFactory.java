@@ -49,7 +49,6 @@ public class WebDriverInstanceFactory {
         return driverThreadLocal.get();
     }
 
-    // Close the WebDriver for the current thread
     public static void closeDriver() {
         WebDriver driver = driverThreadLocal.get();
         if (driver != null) {

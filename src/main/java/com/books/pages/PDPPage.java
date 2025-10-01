@@ -44,5 +44,4 @@ public class PDPPage extends BasePage {
     public void closeNotificationPopup() {
         clickButton(notificationPopupCloseButton);
     }
-
 }
